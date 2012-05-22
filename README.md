@@ -1,1 +1,1 @@
-# Photon - **Light**weight, fast and modular JavaScript library
+# Photon - Lightweight, fast and modular JavaScript library
