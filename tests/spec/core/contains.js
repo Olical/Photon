@@ -1,5 +1,5 @@
-require(['photon/contains'], function(contains) {
-    describe('contains', function() {
+require(['photon/core/contains'], function(contains) {
+    describe('photon/core/contains', function() {
         it('should find a string in an array that is present', function() {
             var a = ['foo', 'bar', 'baz'];
             expect(contains(a, 'foo')).toEqual(true);

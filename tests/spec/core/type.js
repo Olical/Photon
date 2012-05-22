@@ -1,5 +1,5 @@
-require(['photon/type'], function(type) {
-    describe('type', function() {
+require(['photon/core/type'], function(type) {
+    describe('photon/core/type', function() {
         it('should identify arrays', function() {
             var a = [];
             expect(type(a)).toEqual('array');
