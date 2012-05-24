@@ -62,5 +62,15 @@ require(['photon/core/Class'], function(Class) {
             expect(a.boo()).toEqual('test');
             expect(b.bar()).toEqual(false);
         });
+        
+        it('should run the constructor', function() {
+            var a = false;
+            var Test = new Class();
+            Test.prototype.construct = function() {
+                a = true;
+            };
+            var b = new Test();
+            expect(a).toEqual(true);
+        });
     });
 });

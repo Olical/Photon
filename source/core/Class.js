@@ -1,8 +1,9 @@
 define([
     './merge',
     './each',
-    './clone'
-], function(merge, each, clone) {
+    './clone',
+    './type'
+], function(merge, each, clone, type) {
     /*
         Class: Class
         
@@ -25,7 +26,7 @@ define([
         // This will call the constructor when initialized
         cl = function() {
             // Make sure we actually have a construct method
-            if(this.hasOwnProperty('construct')) {
+            if(type(this.construct) === 'function') {
                 this.construct.apply(this, arguments);
             }
         };
