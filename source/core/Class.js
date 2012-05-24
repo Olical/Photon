@@ -1,4 +1,4 @@
-define('Class', ['./merge', './each', './clone'], function(merge, each, clone) {
+define(['./merge', './each', './clone'], function(merge, each, clone) {
     /*
         Class: Class
         

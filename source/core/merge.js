@@ -1,4 +1,4 @@
-define('merge', ['./clone', './each', './type'], function(clone, each, type) {
+define(['./clone', './each', './type'], function(clone, each, type) {
     /*
         Function: merge
         

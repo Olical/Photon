@@ -1,4 +1,4 @@
-define('scope', function() {
+define(function() {
     /*
         Function: scope
         

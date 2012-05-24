@@ -1,4 +1,4 @@
-define('each', ['./type'], function(type) {
+define(['./type'], function(type) {
     /*
         Function: each
         
