@@ -14,6 +14,22 @@ require(['photon/core/Class'], function(Class) {
             expect(a.foo()).toEqual(true);
         });
         
+        it('should allow extension of normal classes', function() {
+            function Vanilla() {}
+            Vanilla.prototype.foo = function() {
+                return 'this is foo';
+            };
+            
+            Photon = new Class(Vanilla);
+            Photon.prototype.bar = function() {
+                return 'this is bar';
+            };
+            
+            var a = new Photon();
+            expect(a.foo()).toEqual('this is foo');
+            expect(a.bar()).toEqual('this is bar');
+        });
+        
         it('should allow extension', function() {
             var Test = new Class();
             Test.prototype.foo = function() {
