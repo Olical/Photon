@@ -45,5 +45,14 @@ require(['photon/core/each'], function(each) {
             expect(a).toContain('y');
             expect(a).toContain('z');
         });
+        
+        it('should pass all characters from a string', function() {
+            var b = 'abc';
+            var a = '';
+            each(b, function(value) {
+                a += value + '-';
+            });
+            expect(a).toEqual('a-b-c-');
+        });
     });
 });
