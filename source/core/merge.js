@@ -33,6 +33,9 @@ define(['./clone', './each', './type'], function(clone, each, type) {
                 baseClone[key] = value;
             }
         });
+        
+        // Now return the merged object
+        return baseClone;
     }
     
     return merge;
