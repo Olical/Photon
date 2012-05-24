@@ -34,12 +34,17 @@ require(['photon/core/Class'], function(Class) {
             Test4.prototype.boo = function() {
                 return 'test';
             };
+            Test4.prototype.bar = function() {
+                return true;
+            };
             
             var a = new Test4();
+            var b = new Test2();
             expect(a.foo()).toEqual(true);
-            expect(a.bar()).toEqual(false);
+            expect(a.bar()).toEqual(true);
             expect(a.baz()).toEqual('javascript');
             expect(a.boo()).toEqual('test');
+            expect(b.bar()).toEqual(false);
         });
     });
 });
