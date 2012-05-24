@@ -2,11 +2,11 @@ define(['./type'], function(type) {
     /*
         Function: each
         
-        Loops over the passed object or array and passes each value and key to the callback.
+        Loops over the passed object, string or array and passes each value and key to the callback.
         
         Parameters:
         
-            list - Object or array to loop over.
+            list - Object, string or array to loop over.
             callback - Function for the value and key to be passed to. For an array the key would be the index.
     */
     function each(list, callback) {
