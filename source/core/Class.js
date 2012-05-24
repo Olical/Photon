@@ -3,6 +3,10 @@ define(['./merge', './each', './clone'], function(merge, each, clone) {
         Class: Class
         
         The king of classes that everything else should extend.
+        It is very similar to the Python style of classes.
+        It can also extend normal JavaScript classes, they do not have to be an instance of Class.
+        You can use the parent module to call untouched methods from the inherited classes.
+        This means you can call methods you have just overridden.
         
         Parameters:
         
