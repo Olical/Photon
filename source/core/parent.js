@@ -39,7 +39,7 @@ define([
                     scopeLoop(value);
                 }
                 else if(vt === 'function') {
-                    value = scope(value, scopeObj);
+                    list[key] = scope(value, scopeObj);
                 }
             });
         }
