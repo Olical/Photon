@@ -17,9 +17,10 @@ define(['./clone', './each', './type'], function(clone, each, type) {
             A new object containing properties from both the base and extra objects.
     */
     function merge(base, extra, shallow) {
-        // First clone both objects shallowly
-        var baseClone = clone(base, true),
-            extraClone = clone(extra, true);
+        // First clone both objects
+        // This is so it does not kill the original objects
+        var baseClone = clone(base),
+            extraClone = clone(extra);
         
         // Now loop over extra dropping each property into base
         each(extraClone, function(value, key) {
