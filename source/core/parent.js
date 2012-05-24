@@ -1,4 +1,4 @@
-define(['./clone', './scope'], function(clone, scope) {
+define(['./clone', './scope', './each'], function(clone, scope, each) {
     /*
         Function: parent
         
