@@ -10,6 +10,7 @@ define([
         
         Allows you to call an overridden method from a parent class.
         It will also allow you to access variables such as strings from the parent.
+        Please bear in mind that this is shallow. It will not work for nested methods.
         
         Parameters:
         
@@ -23,27 +24,14 @@ define([
     */
     function parent(host, scopeObj) {
         // Make another clone of the hosts inherited values
-        // Also initialise the vt (value type) variable
-        var inherits = clone(host._inherits),
-            vt = null;
+        var inherits = clone(host._inherits);
         
-        // Recurse down this tree setting the scope of all functions
-        function scopeLoop(list) {
-            each(list, function(value, key) {
-                // Get the values type
-                vt = type(value);
-                
-                // If it is an object or array then recurse
-                // Otherwise, if it is a function then set it's scope
-                if(contains(['object', 'array'], vt)) {
-                    scopeLoop(value);
-                }
-                else if(vt === 'function') {
-                    list[key] = scope(value, scopeObj);
-                }
-            });
-        }
-        scopeLoop(inherits);
+        each(inherits, function(value, key) {
+            // If it is a function then set it's scope
+            if(type(value) === 'function') {
+                inherits[key] = scope(value, scopeObj);
+            }
+        });
         
         // Return the scoped object
         return inherits;
