@@ -40,6 +40,13 @@ require(['photon/core/type'], function(type) {
             expect(type(a)).toEqual('boolean');
         });
         
+        it('should identify argument lists', function() {
+            function test() {
+                expect(type(arguments)).toEqual('arguments');
+            }
+            test(true, false, 1, 2, 3);
+        });
+        
         it('should identify a class instance as an object', function() {
             var b = function() {};
             var a = new b();
