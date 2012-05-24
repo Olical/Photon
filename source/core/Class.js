@@ -12,7 +12,10 @@ define(['./merge', './each'], function(merge, each) {
         // Initialise the new class
         // This will call the constructor when initialized
         var cl = function() {
-            this.construct.apply(this, arguments);
+            // Make sure we actually have a construct method
+            if(this.hasOwnProperty('construct')) {
+                this.construct.apply(this, arguments);
+            }
         };
         
         // Inherit from all passed classes
