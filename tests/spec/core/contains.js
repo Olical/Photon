@@ -92,5 +92,15 @@ require(['photon/core/contains'], function(contains) {
             };
             expect(contains(a, c)).toEqual(false);
         });
+        
+        it('should find a string in an string that is present', function() {
+            var a = 'javascript';
+            expect(contains(a, 'scr')).toEqual(true);
+        });
+        
+        it('should not find a string in an string that is not present', function() {
+            var a = 'javascript';
+            expect(contains(a, 'gone')).toEqual(false);
+        });
     });
 });

@@ -1,13 +1,14 @@
-define(['./each'], function(each) {
+define(['./each', './type'], function(each, type) {
     /*
         Function: contains
         
-        Checks if the object or array contains an item.
+        Checks if the object, string or array contains an item.
+        This item would be a sub string if you are searching a string.
         
         Parameters:
         
             list - The list to check.
-            item - The item to check for.
+            item - The item (or substring) to check for.
         
         Returns:
         
@@ -16,6 +17,11 @@ define(['./each'], function(each) {
     function contains(list, item) {
         // Initialise variables
         var res = false;
+        
+        // If the list is a string then check for the sub string
+        if(type(list) === 'string') {
+            return list.indexOf(item) !== -1;
+        }
         
         // Loop over the list
         each(list, function(value, key) {
