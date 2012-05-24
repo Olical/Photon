@@ -15,7 +15,7 @@ define(function() {
     */
     function scope(fn, scopeObj) {
         return function() {
-            fn.apply(scopeObj, arguments);
+            return fn.apply(scopeObj, arguments);
         };
     }
     
