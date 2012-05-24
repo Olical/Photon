@@ -29,7 +29,7 @@ define(['./clone', './scope'], function(clone, scope) {
                 
                 // If it is an object or array then recurse
                 // Otherwise, if it is a function then set it's scope
-                if(vt === 'object' || vt === 'array') {
+                if(contains(['object', 'array'], vt)) {
                     scopeLoop(value);
                 }
                 else if(vt === 'function') {
