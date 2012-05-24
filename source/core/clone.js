@@ -33,8 +33,8 @@ define(['./type', './contains', './each'], function(type, contains, each) {
             // If the current item is an object or array then recurse
             // Store the recursed item in the place of the current item
             // Only do this if shallow is not true
-            if(shallow !== true && contains(['object', 'array'], type(current))) {
-                copy[key] = clone(current);
+            if(shallow !== true && contains(['object', 'array'], type(value))) {
+                copy[key] = clone(value);
             }
             else {
                 // It is not an object or array, just store it
