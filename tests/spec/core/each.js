@@ -54,5 +54,16 @@ require(['photon/core/each'], function(each) {
             });
             expect(a).toEqual('a-b-c-');
         });
+        
+        it('should pass all values from an arguments array', function() {
+            function test() {
+                var a = '';
+                each(arguments, function(value) {
+                    a += value;
+                });
+                expect(a).toEqual('abc');
+            }
+            test('a', 'b', 'c');
+        });
     });
 });

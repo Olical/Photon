@@ -23,7 +23,7 @@ define(['./type'], function(type) {
                 }
             }
         }
-        else if(listType === 'array' || listType === 'string') {
+        else if(listType === 'array' || listType === 'string' || listType === 'arguments') {
             for(key = 0; key < list.length; key += 1) {
                 callback.call(null, list[key], key);
             }
