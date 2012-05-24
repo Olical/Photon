@@ -1,4 +1,4 @@
-define(['./type', './contains', './each'], function(type, contains, each) {
+define('clone', ['./type', './contains', './each'], function(type, contains, each) {
     /*
         Function: clone
         

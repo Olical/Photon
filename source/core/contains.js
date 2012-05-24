@@ -1,4 +1,4 @@
-define(['./each'], function(each) {
+define('contains', ['./each'], function(each) {
     /*
         Function: contains
         

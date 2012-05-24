@@ -1,4 +1,4 @@
-define(function() {
+define('type', function() {
     /*
         Function: type
         
