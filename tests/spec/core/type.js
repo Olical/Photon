@@ -10,6 +10,13 @@ require(['photon/core/type'], function(type) {
             expect(type(a)).toEqual('object');
         });
         
+        it('should identify undefined', function() {
+            function test(a) {
+                expect(type(a)).toEqual('undefined');
+            }
+            test();
+        });
+        
         it('should identify dates', function() {
             var a = new Date();
             expect(type(a)).toEqual('date');
