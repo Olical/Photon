@@ -1,4 +1,4 @@
-define(['./merge', './each'], function(merge, each) {
+define(['./merge', './each', './clone'], function(merge, each, clone) {
     /*
         Class: Class
         
@@ -28,9 +28,11 @@ define(['./merge', './each'], function(merge, each) {
         });
         
         // Replace the prototype with the inherited methods
-        // Also clone it into _super, this will allow the super function to work
         cl.prototype = inherits;
-        cl._super = clone(inherits);
+        
+        // And make a clone of inherits
+        // This is for use by the parent function
+        cl._inherits = clone(inherits);
         
         // Return the finished class
         // You can now add your own methods
