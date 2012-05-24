@@ -28,7 +28,7 @@ define(['./merge', './each', './clone'], function(merge, each, clone) {
         
         // Merge all passed classes into one object
         each(arguments, function(value, key) {
-            inherits = merge(cl.prototype, value.prototype);
+            inherits = merge(inherits, value.prototype);
         });
         
         // Replace the prototype with the inherited methods
