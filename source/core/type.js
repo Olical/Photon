@@ -18,7 +18,7 @@ define(function() {
         // Remove the last character
         // Convert to lowercase
         // Return it
-        return  Object.prototype.toString.call(item)
+        return Object.prototype.toString.call(item)
                 .split(' ')[1]
                 .slice(0, -1)
                 .toLowerCase();
