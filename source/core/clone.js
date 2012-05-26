@@ -28,16 +28,16 @@ define([
         if(origType === 'object') {
             copy = {};
         }
-        else if(origType === 'array') {
+        else if(origType === 'array' || origType === 'arguments') {
             copy = [];
         }
         
         // Loop over all the lists properties
         each(orig, function(value, key) {
-            // If the current item is an object or array then recurse
+            // If the current item is iterable then recurse
             // Store the recursed item in the place of the current item
             // Only do this if shallow is not true
-            if(shallow !== true && contains(['object', 'array'], type(value))) {
+            if(shallow !== true && each(value)) {
                 copy[key] = clone(value);
             }
             else {

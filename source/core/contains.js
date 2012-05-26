@@ -20,11 +20,10 @@ define([
     */
     function contains(list, item) {
         // Initialise variables
-        var res = false,
-            listType = type(list);
+        var res = false;
         
-        // If the list is a string, array or arguments list then use index
-        if(listType === 'string' || listType === 'array' || listType === 'arguments') {
+        // If the list is indexable
+        if(index(list)) {
             return index(list, item) !== -1;
         }
         
