@@ -65,5 +65,13 @@ require(['photon/core/each'], function(each) {
             }
             test('a', 'b', 'c');
         });
+
+        it('should check if a list is iterable', function() {
+            expect(each('')).toEqual(true);
+            expect(each([])).toEqual(true);
+            expect(each(arguments)).toEqual(true);
+            expect(each({})).toEqual(true);
+            expect(each(function(){})).toEqual(false);
+        });
     });
 });
