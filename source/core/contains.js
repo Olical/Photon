@@ -1,8 +1,7 @@
 define([
     './each',
-    './type',
     './index'
-], function(each, type, index) {
+], function(each, index) {
     /*
         Function: contains
         
