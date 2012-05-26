@@ -6,10 +6,30 @@ define([
     /*
         Function: merge
         
-        Returns an object containing all properties from the passed objects.
-        The objects are first cloned to prevent horrible unforeseen consequences.
-        Then they are recursively merged unless shallow is specified as true.
-        
+        Returns an object containing all properties from the two passed objects. The objects are first cloned to prevent horrible unforeseen consequences such as death and / or Armageddon. Then they are recursively merged unless shallow is specified as true.
+
+        (start code)
+        var baseSettings = {
+            width: 100,
+            height: 100,
+            speed: 1
+        };
+
+        var passedSettings = {
+            height: 150,
+            speed: 0.8
+        };
+
+        var merged = merge(baseSettings, passedSettings);
+
+        // You will end up with the following:
+        // {
+        //     width: 100,
+        //     height: 150,
+        //     speed: 0.8
+        // }
+        (end)
+
         Parameters:
         
             base - Base object to merge with.
