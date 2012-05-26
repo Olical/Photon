@@ -73,14 +73,5 @@ require(['photon/core/each'], function(each) {
             expect(each({})).toEqual(true);
             expect(each(function(){})).toEqual(false);
         });
-
-        it('should pass all values recursively', function() {
-            var b = ['a', 'b', {one:'c'}, 'd'];
-            var a = '';
-            each(b, function(value, key) {
-                a += value;
-            }, true);
-            expect(a).toEqual('abcd');
-        });
     });
 });
