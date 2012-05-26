@@ -6,8 +6,28 @@ define([
     /*
         Function: clone
         
-        Returns a deep copy of the passed object or array.
-        It will recurse on arrays and objects.
+        Returns a deep copy of the passed object or array. It will recurse on what <each> deems iterable. So things like arrays and objects.
+
+        Without cloning an array or object then two variables can actually point to the same object. Here is an example and how cloning fixes it.
+
+        (start code)
+        // Create an array and copy it
+        var a = [1, 2, 3];
+        var b = a;
+
+        // When pushing to b it is also pushed to a because it is a copy
+        b.push(4);
+        b[3]; // is 4
+        a[3]; // is 4, should ideally be undefined
+
+        // A clone will not do this
+        a = [1, 2, 3];
+        b = clone(a);
+
+        b.push(4);
+        b[3]; // is 4
+        a[3]; // is undefined
+        (end)
         
         Parameters:
         
