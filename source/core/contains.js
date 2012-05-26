@@ -5,8 +5,17 @@ define([
     /*
         Function: contains
         
-        Checks if the object, string or array contains an item.
-        This item would be a sub string if you are searching a string.
+        Checks if the object, string or array contains an item. This item would be a sub string if you are searching a string.
+
+        (start code)
+        var str = 'photon';
+        contains(str, 'pho'); // true
+        contains(str, 'foo'); // false
+
+        var arr = [1, 2, 3];
+        contains(arr, 2); // true
+        contains(arr, 5); // false
+        (end)
         
         Parameters:
         
