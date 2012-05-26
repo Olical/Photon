@@ -1,7 +1,7 @@
 Format: 1.52
 
 
-Title: Photon
+Title: Photon API documentation
 SubTitle: Lightweight, fast and modular JavaScript library
 
 # You can add a footer to your documentation like this:
