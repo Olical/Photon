@@ -7,6 +7,7 @@ define([
         
         Returns the index of the item within the string or array.
         It will return -1 if not found.
+        If you only pass a list and no item then it will return true or false depending on whether the list is indexable.
         
         Parameters:
         
@@ -16,8 +17,15 @@ define([
         Returns:
         
             The location of the item in the list or -1 if not found.
+            If you only pass a list then true or false depending on whether it is indexable or not.
     */
     function index(list, item) {
+        // If the item is undefined then check if the list is indexable
+        if(type(item) === 'undefined') {
+            var listType = type(list);
+            return (listType === 'string' || listType === 'array' || listType === 'arguments');
+        }
+
         // Initialise the index count
         // Used for finding without the native indexOf
         var i = -1;
