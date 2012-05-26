@@ -7,9 +7,9 @@ define([
     /*
         Function: parent
         
-        Allows you to call an overridden method from a parent class.
-        It will also allow you to access variables such as strings from the parent.
-        Please bear in mind that this is shallow. It will not work for nested methods.
+        Allows you to call an overridden method from a parent class. It will also allow you to access variables such as strings from the parent.
+
+        Please bear in mind that this is shallow. It will not work for nested methods. If you try to access a nested method with this then it will be called in the wrong context, you can fix that by manually running the method through <scope>. For an example of parent check the <Class> page.
         
         Parameters:
         
