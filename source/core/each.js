@@ -23,7 +23,7 @@ define([
         
         // If the item is undefined then check if the list is indexable
         if(type(callback) === 'undefined') {
-            return (listType === 'string' || listType === 'array' || listType === 'arguments' || listType === 'object');
+            return (listType === 'array' || listType === 'arguments' || listType === 'object');
         }
 
         // Loop over the list in different ways depending on what it is

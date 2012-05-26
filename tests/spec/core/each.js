@@ -67,7 +67,7 @@ require(['photon/core/each'], function(each) {
         });
 
         it('should check if a list is iterable', function() {
-            expect(each('')).toEqual(true);
+            expect(each('')).toEqual(false);
             expect(each([])).toEqual(true);
             expect(each(arguments)).toEqual(true);
             expect(each({})).toEqual(true);
