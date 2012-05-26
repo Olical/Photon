@@ -7,21 +7,31 @@ define([
     /*
         Class: Class
 
-        The king of classes that everything else should extend. It is very similar to the Python style of classes. It can also extend normal JavaScript classes, they do not have to be an instance of Class.
+        The base class that all other classes should be created with. It is very similar to the Python style of classes. It can also inherit normal JavaScript classes, they do not have to be an instance of Class.
 
-        You can use the parent module to call untouched methods from the inherited classes. This means you can call methods you have just overridden. Here is a little example.
+        You can use the <parent> function to call untouched methods from the inherited classes. This means you can call methods you have just overridden. Here is a little example.
         
         (start code)
         var Foo = new Class();
-        Foo.prototype.something = ...
+        Foo.prototype.run = function() {
+            // Original code
+            ...
+        };
 
         var Bar = new Class(Foo);
-        Bar.prototype.somethingElse = ...
+        Bar.prototype.run = function() {
+            // Extra code
+            ...
+            
+            // Execute the original code
+            parent(Bar, this).run();
+        };
 
         var test = new Bar();
-        test.something();
-        test.somethingElse();
+        test.run();
         (end)
+
+        As you can see, all methods are added via the prototype. This keeps with JavaScripts prototypical inheritance.
         
         Parameters:
         
