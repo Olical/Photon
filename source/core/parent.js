@@ -18,8 +18,7 @@ define([
         
         Returns:
         
-            A copy of the inherited values that have not been override by the child class.
-            All functions are wrapped in the scope of your current class instance.
+            A copy of the inherited values that have not been overridden by the child class. All functions are wrapped in the scope of your current class instance.
     */
     function parent(host, scopeObj) {
         // Make another clone of the hosts inherited values
