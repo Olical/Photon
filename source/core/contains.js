@@ -32,6 +32,11 @@ define([
         Returns:
         
             True if the item was found, false if not.
+
+        Requires:
+
+            - <each>
+            - <index>
     */
     function contains(list, item) {
         // Initialise variables

@@ -37,6 +37,12 @@ define([
         Returns:
         
             A clone of the passed object or array.
+
+        Requires:
+
+            - <type>
+            - <contains>
+            - <each>
     */
     function clone(orig, shallow) {
         // Initialise variables

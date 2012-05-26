@@ -19,6 +19,12 @@ define([
         Returns:
         
             A new object containing properties from both the base and extra objects.
+
+        Requires:
+
+            - <clone>
+            - <each>
+            - <type>
     */
     function merge(base, extra, shallow) {
         // First clone both objects

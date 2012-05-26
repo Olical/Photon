@@ -18,6 +18,11 @@ define([
         
             The location of the item in the list or -1 if not found.
             If you only pass a list then true or false depending on whether it is indexable or not.
+
+        Requires:
+
+            - <type>
+            - <each>
     */
     function index(list, item) {
         // If the item is undefined then check if the list is indexable

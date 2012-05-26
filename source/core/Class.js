@@ -40,6 +40,13 @@ define([
         Returns:
 
             Your built class for you to instantiate.
+
+        Requires:
+
+            - <merge>
+            - <each>
+            - <clone>
+            - <type>
     */
     function Class() {
         // Initialise variables

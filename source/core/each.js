@@ -36,6 +36,10 @@ define([
         Returns:
 
             If you only pass a list then true or false depending on whether it is iterable or not.
+
+        Requires:
+
+            - <type>
     */
     function each(list, callback) {
         // Initialise variables
