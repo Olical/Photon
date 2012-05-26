@@ -27,5 +27,12 @@ require(['photon/core/index'], function(index) {
             }
             test('foo', 'bar', 'baz');
         });
+
+        it('should check if a list is indexable', function() {
+            expect(index('')).toEqual(true);
+            expect(index([])).toEqual(true);
+            expect(index(arguments)).toEqual(true);
+            expect(index({})).toEqual(false);
+        });
     });
 });
