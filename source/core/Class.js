@@ -12,10 +12,26 @@ define([
         It can also extend normal JavaScript classes, they do not have to be an instance of Class.
         You can use the parent module to call untouched methods from the inherited classes.
         This means you can call methods you have just overridden.
+
+        Here is a little example.
+
+            var Foo = new Class();
+            Foo.prototype.something = ...
+
+            var Bar = new Class(Foo);
+            Bar.prototype.somethingElse = ...
+
+            var test = new Bar();
+            test.something();
+            test.somethingElse();
         
         Parameters:
         
             Each parameter corresponds to another class to inherit from.
+
+        Returns:
+
+            Your built class for you to instantiate.
     */
     function Class() {
         // Initialise variables
