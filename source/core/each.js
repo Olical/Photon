@@ -6,6 +6,9 @@ define([
         
         Loops over the passed object, string or array and passes each value and key to the callback.
         If you only pass a list and no callback then it will return true or false depending on whether the list is iterable.
+        A string is actually iterable, as in you can pass it to each. But the iterable check will deny strings.
+        This is because iterating over strings is so rare and causes a lot of problems in internal loops.
+        The iterable check should be used to see if the item can contains other items.
         
         Parameters:
         
