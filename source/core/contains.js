@@ -15,6 +15,13 @@ define([
         var arr = [1, 2, 3];
         contains(arr, 2); // true
         contains(arr, 5); // false
+
+        var obj = {
+            foo: 1,
+            bar: 2
+        };
+        contains(obj, 2); // true
+        contains(obj, 5); // false
         (end)
         
         Parameters:
