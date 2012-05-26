@@ -1,9 +1,8 @@
 Format: 1.52
 
 
-# You can add a title and sub-title to your menu like this:
-# Title: [project name]
-# SubTitle: [subtitle]
+Title: Photon
+SubTitle: Lightweight, fast and modular JavaScript library
 
 # You can add a footer to your documentation like this:
 # Footer: [text]
@@ -46,15 +45,18 @@ Format: 1.52
 # --------------------------------------------------------------------------
 
 
-File: Class  (core/Class.js)
-File: clone  (core/clone.js)
-File: contains  (core/contains.js)
-File: each  (core/each.js)
-File: index  (core/index.js)
-File: merge  (core/merge.js)
-File: parent  (core/parent.js)
-File: scope  (core/scope.js)
-File: type  (core/type.js)
+Group: core  {
+
+   File: Class  (core/Class.js)
+   File: clone  (core/clone.js)
+   File: contains  (core/contains.js)
+   File: each  (core/each.js)
+   File: index  (core/index.js)
+   File: merge  (core/merge.js)
+   File: parent  (core/parent.js)
+   File: scope  (core/scope.js)
+   File: type  (core/type.js)
+   }  # Group: core
 
 Group: Index  {
 
