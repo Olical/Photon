@@ -10,15 +10,11 @@ My goal is to have Photon working perfectly in IE6+ as well as all modern browse
 
 ## Testing
 
-Every module is thoroughly tested using [Jasmine](http://pivotal.github.com/jasmine/). You can run the tests by opening `tests/SpecRunner.html` in a browser of your choice.
-
-When I have GitHub pages set up you will be able to run the latest versions tests online. I will link to that page from here.
+Every module is thoroughly tested using [Jasmine](http://pivotal.github.com/jasmine/). You can run the tests by opening `tests/SpecRunner.html` in a browser of your choice. You can also execute it via the version hosted on [GitHub pages](http://oli.me.uk/Photon/tests/SpecRunner.html).
 
 ## Documentation
 
-I have provided large comments in the source matching the [NaturalDocs](http://www.naturaldocs.org/) format. The documentation site can be generated from these comments by running `make documentation`. Once done you can open `docs/html/index.html` in your browser to see every modules documentation.
-
-The same goes for this as it does for [testing](#testing). Once I have GitHub pages set up you will be able to view the latest documentation online. I will provide a link from here when it is uploaded.
+I have provided large comments in the source matching the [NaturalDocs](http://www.naturaldocs.org/) format. The documentation site can be generated from these comments by running `make documentation`. Once done you can open `docs/html/index.html` in your browser to see every modules documentation. You can also load the documentation from the [GitHub pages site](http://oli.me.uk/Photon/docs/html/files/core/Class-js.html).
 
 ## Loading
 
