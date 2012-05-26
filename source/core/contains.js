@@ -1,7 +1,8 @@
 define([
     './each',
-    './type'
-], function(each, type) {
+    './type',
+    './index'
+], function(each, type, index) {
     /*
         Function: contains
         
@@ -19,14 +20,15 @@ define([
     */
     function contains(list, item) {
         // Initialise variables
-        var res = false;
+        var res = false,
+            listType = type(list);
         
-        // If the list is a string then check for the sub string
-        if(type(list) === 'string') {
-            return list.indexOf(item) !== -1;
+        // If the list is a string, array or arguments list then use index
+        if(listType === 'string' || listType === 'array' || listType === 'arguments') {
+            return index(list, item) !== -1;
         }
         
-        // Loop over the list
+        // This means it is an object, so do it the manual way
         each(list, function(value, key) {
             if(value === item) {
                 res = true;
