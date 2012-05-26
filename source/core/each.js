@@ -36,22 +36,24 @@ define([
             for(key in list) {
                 // Make sure it is not from the prototype
                 if(list.hasOwnProperty(key)) {
-                    callback.call(null, list[key], key);
-
                     // Recurse if required
                     if(recurse && each(list[key])) {
                         each(list[key], callback, recurse);
+                    }
+                    else {
+                        callback.call(null, list[key], key);
                     }
                 }
             }
         }
         else if(listType === 'array' || listType === 'string' || listType === 'arguments') {
             for(key = 0; key < list.length; key += 1) {
-                callback.call(null, list[key], key);
-
                 // Recurse if required
                 if(recurse && each(list[key])) {
                     each(list[key], callback, recurse);
+                }
+                else {
+                    callback.call(null, list[key], key);
                 }
             }
         }
