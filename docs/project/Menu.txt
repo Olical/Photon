@@ -60,10 +60,13 @@ Group: core  {
    File: type  (core/type.js)
    }  # Group: core
 
+File: Meta  (meta.js)
+
 Group: Index  {
 
    Index: Everything
    Class Index: Classes
    Function Index: Functions
+   File Index: Files
    }  # Group: Index
 
