@@ -2,9 +2,8 @@ define([
     './clone',
     './scope',
     './each',
-    './type',
-    './contains'
-], function(clone, scope, each, type, contains) {
+    './type'
+], function(clone, scope, each, type) {
     /*
         Function: parent
         
