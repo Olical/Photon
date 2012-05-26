@@ -5,9 +5,19 @@ define([
     /*
         Function: index
         
-        Returns the index of the item within the string or array.
-        It will return -1 if not found.
+        Returns the index of the item within the string or array. It will return -1 if not found.
+        
         If you only pass a list and no item then it will return true or false depending on whether the list is indexable.
+
+        (start code)
+        var str = 'photon';
+        index(str, 'ton'); // 3
+        index(str, 'foo'); // -1
+
+        var arr = [1, 2, 3];
+        index(arr, 2); // 1
+        index(arr, 5); // -1
+        (end)
         
         Parameters:
         
