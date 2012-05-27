@@ -11,17 +11,13 @@ if (browserType) {document.write("<div class=" + browserType + ">");if (browserV
 
 
 
-<div id=Content><div class="CFunction"><div class=CTopic id=MainTopic><h1 class=CTitle><a name="type"></a>type</h1><div class=CBody><blockquote><table border=0 cellspacing=0 cellpadding=0 class="Prototype"><tr><td><table border=0 cellspacing=0 cellpadding=0><tr><td class="PBeforeParameters  prettyprint "nowrap>function type(</td><td class="PParameter  prettyprint " nowrap>item</td><td class="PAfterParameters  prettyprint "nowrap>)</td></tr></table></td></tr></table></blockquote><p>Returns the real type of the variable.&nbsp; It is basically an improved version of the typeof statement.</p><blockquote><pre class="prettyprint">var arr = [1, 2, 3];
+<div id=Content><div class="CFunction"><div class=CTopic id=MainTopic><h1 class=CTitle><a name="type"></a>type</h1><div class=CBody><blockquote><table border=0 cellspacing=0 cellpadding=0 class="Prototype"><tr><td><table border=0 cellspacing=0 cellpadding=0><tr><td class="PBeforeParameters  prettyprint "nowrap>function type(</td><td class="PParameter  prettyprint " nowrap>item</td><td class="PAfterParameters  prettyprint "nowrap>)</td></tr></table></td></tr></table></blockquote><p>Returns the type of the variable.&nbsp; It is an improved version of the typeof statement.</p><blockquote><pre class="prettyprint">var arr = [1, 2, 3];
 
 // The default JavaScript typeof is silly
 typeof arr; // object
 
 // This method is better
-type(arr); // array</pre></blockquote><p>Be careful though.&nbsp; This method will also pick up argument arrays separate to arrays.</p><blockquote><pre class="prettyprint">function test(arr) {
-    type(arguments); // arguments
-    type(arr); // array
-}
-test([]);</pre></blockquote><p>So please remember to check for both.</p><h4 class=CHeading>Parameters</h4><table border=0 cellspacing=0 cellpadding=0 class=CDescriptionList><tr><td class=CDLEntry>item</td><td class=CDLDescription>The variable to get the type of.</td></tr></table><h4 class=CHeading>Returns</h4><p>A lowercase string of the real type.</p></div></div></div>
+type(arr); // array</pre></blockquote><h4 class=CHeading>Parameters</h4><table border=0 cellspacing=0 cellpadding=0 class=CDescriptionList><tr><td class=CDLEntry>item</td><td class=CDLDescription>The variable to get the type of.</td></tr></table><h4 class=CHeading>Returns</h4><p>A lowercase string of the variables type.</p></div></div></div>
 
 </div><!--Content-->
 
