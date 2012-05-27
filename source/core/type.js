@@ -35,15 +35,20 @@ define(function() {
             A lowercase string of the real type.
     */
     function type(item) {
-        // Get the raw type string
-        // Split by spaces and get the second part
-        // Remove the last character
-        // Convert to lowercase
-        // Return it
-        return Object.prototype.toString.call(item)
-                .split(' ')[1]
-                .slice(0, -1)
-                .toLowerCase();
+        var itemType = typeof item;
+
+        if(itemType === 'object') {
+            if(item) {
+                if (Object.prototype.toString.call(item) === '[object Array]') {
+                    itemType = 'array';
+                }
+            }
+            else {
+                itemType = 'null';
+            }
+        }
+        
+        return itemType;
     }
     
     return type;
