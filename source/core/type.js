@@ -25,17 +25,16 @@ define(function() {
     function type(item) {
         var itemType = typeof item;
 
-        if(itemType === 'object') {
-            if(item) {
-                if(item instanceof Array || (typeof item.length === 'number' && item.callee)) {
+        if (itemType === 'object') {
+            if (item) {
+                if(Object.prototype.toString.call(item) === '[object Array]') {
                     itemType = 'array';
                 }
-            }
-            else {
+            } else {
                 itemType = 'null';
             }
         }
-        
+
         return itemType;
     }
     
