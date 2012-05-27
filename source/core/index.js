@@ -38,7 +38,7 @@ define([
         // If the item is undefined then check if the list is indexable
         if(type(item) === 'undefined') {
             var listType = type(list);
-            return (listType === 'string' || listType === 'array' || listType === 'arguments');
+            return (listType === 'string' || listType === 'array');
         }
 
         // Initialise the index count

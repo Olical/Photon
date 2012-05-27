@@ -54,7 +54,7 @@ define([
         if(origType === 'object') {
             copy = {};
         }
-        else if(origType === 'array' || origType === 'arguments') {
+        else if(origType === 'array') {
             copy = [];
         }
         
