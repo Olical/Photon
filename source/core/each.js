@@ -48,7 +48,7 @@ define([
         
         // If the item is undefined then check if the list is iterable
         if(type(callback) === 'undefined') {
-            return (listType === 'array' || listType === 'arguments' || listType === 'object');
+            return (listType === 'array' || listType === 'object');
         }
 
         // Loop over the list in different ways depending on what it is
@@ -56,13 +56,13 @@ define([
             for(key in list) {
                 // Make sure it is not from the prototype
                 if(list.hasOwnProperty(key)) {
-                    callback.call(null, list[key], key);
+                    callback(list[key], key);
                 }
             }
         }
-        else if(listType === 'array' || listType === 'string' || listType === 'arguments') {
+        else if(listType === 'array' || listType === 'string') {
             for(key = 0; key < list.length; key += 1) {
-                callback.call(null, list[key], key);
+                callback(list[key], key);
             }
         }
     }

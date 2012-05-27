@@ -17,11 +17,6 @@ require(['photon/core/type'], function(type) {
             test();
         });
         
-        it('should identify dates', function() {
-            var a = new Date();
-            expect(type(a)).toEqual('date');
-        });
-        
         it('should identify numbers', function() {
             var a = 50;
             expect(type(a)).toEqual('number');
@@ -32,11 +27,6 @@ require(['photon/core/type'], function(type) {
             expect(type(a)).toEqual('string');
         });
         
-        it('should identify regular expressions', function() {
-            var a = /pho(t|T)on/;
-            expect(type(a)).toEqual('regexp');
-        });
-        
         it('should identify functions', function() {
             var a = function() {};
             expect(type(a)).toEqual('function');
@@ -45,13 +35,6 @@ require(['photon/core/type'], function(type) {
         it('should identify booleans', function() {
             var a = true;
             expect(type(a)).toEqual('boolean');
-        });
-        
-        it('should identify argument lists', function() {
-            function test() {
-                expect(type(arguments)).toEqual('arguments');
-            }
-            test(true, false, 1, 2, 3);
         });
         
         it('should identify a class instance as an object', function() {

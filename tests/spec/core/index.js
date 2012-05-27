@@ -18,20 +18,10 @@ require(['photon/core/index'], function(index) {
             expect(index(a, 'gone')).toEqual(-1);
         });
 
-        it('should search argument lists', function() {
-            function test() {
-                var a = arguments;
-                expect(index(a, 'bar')).toEqual(1);
-                expect(index(a, 'foo')).toEqual(0);
-                expect(index(a, 'gone')).toEqual(-1);
-            }
-            test('foo', 'bar', 'baz');
-        });
-
         it('should check if a list is indexable', function() {
             expect(index('')).toEqual(true);
             expect(index([])).toEqual(true);
-            expect(index(arguments)).toEqual(true);
+            expect(index(arguments)).toEqual(false);
             expect(index({})).toEqual(false);
         });
     });

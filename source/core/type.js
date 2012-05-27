@@ -2,7 +2,7 @@ define(function() {
     /*
         Function: type
         
-        Returns the real type of the variable. It is basically an improved version of the typeof statement.
+        Returns the type of the variable. It is an improved version of the typeof statement.
 
         (start code)
         var arr = [1, 2, 3];
@@ -13,18 +13,6 @@ define(function() {
         // This method is better
         type(arr); // array
         (end)
-
-        Be careful though. This method will also pick up argument arrays separate to arrays.
-
-        (start code)
-        function test(arr) {
-            type(arguments); // arguments
-            type(arr); // array
-        }
-        test([]);
-        (end)
-
-        So please remember to check for both.
         
         Parameters:
         
@@ -32,18 +20,23 @@ define(function() {
         
         Returns:
         
-            A lowercase string of the real type.
+            A lowercase string of the variables type.
     */
     function type(item) {
-        // Get the raw type string
-        // Split by spaces and get the second part
-        // Remove the last character
-        // Convert to lowercase
-        // Return it
-        return Object.prototype.toString.call(item)
-                .split(' ')[1]
-                .slice(0, -1)
-                .toLowerCase();
+        var itemType = typeof item;
+
+        if(itemType === 'object') {
+            if(item) {
+                if(Object.prototype.toString.call(item) === '[object Array]') {
+                    itemType = 'array';
+                }
+            }
+            else {
+                itemType = 'null';
+            }
+        }
+
+        return itemType;
     }
     
     return type;
