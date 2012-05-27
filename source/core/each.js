@@ -56,13 +56,13 @@ define([
             for(key in list) {
                 // Make sure it is not from the prototype
                 if(list.hasOwnProperty(key)) {
-                    callback.call(null, list[key], key);
+                    callback(list[key], key);
                 }
             }
         }
         else if(listType === 'array' || listType === 'string') {
             for(key = 0; key < list.length; key += 1) {
-                callback.call(null, list[key], key);
+                callback(list[key], key);
             }
         }
     }
