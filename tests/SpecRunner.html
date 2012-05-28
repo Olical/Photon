@@ -9,8 +9,6 @@
     <body>
         <script type='text/javascript' src='lib/jasmine-1.2.0/jasmine.js'></script>
         <script type='text/javascript' src='lib/jasmine-1.2.0/jasmine-html.js'></script>
-        
-        <!-- include source files here... -->
         <script type='text/javascript' src='lib/require.js'></script>
         <script type='text/javascript'>
             require.config({
@@ -18,45 +16,33 @@
                     'photon': '../source'
                 }
             });
-        </script>
-        
-        <!-- include spec files here... -->
-        <script type='text/javascript' src='spec/core/type.js'></script>
-        <script type='text/javascript' src='spec/core/contains.js'></script>
-        <script type='text/javascript' src='spec/core/each.js'></script>
-        <script type='text/javascript' src='spec/core/clone.js'></script>
-        <script type='text/javascript' src='spec/core/merge.js'></script>
-        <script type='text/javascript' src='spec/core/scope.js'></script>
-        <script type='text/javascript' src='spec/core/Class.js'></script>
-        <script type='text/javascript' src='spec/core/parent.js'></script>
-        <script type='text/javascript' src='spec/core/index.js'></script>
-        
-        <script type='text/javascript'>
-            ;(function() {
-                var jasmineEnv = jasmine.getEnv();
-                jasmineEnv.updateInterval = 1000;
-                
-                var htmlReporter = new jasmine.HtmlReporter();
-                
-                jasmineEnv.addReporter(htmlReporter);
-                
-                jasmineEnv.specFilter = function(spec) {
-                    return htmlReporter.specFilter(spec);
-                };
-                
-                var currentWindowOnload = window.onload;
-                
-                window.onload = function() {
-                    if(currentWindowOnload) {
-                        currentWindowOnload();
-                    }
-                    execJasmine();
-                };
-                
-                function execJasmine() {
+
+            var jasmineEnv = jasmine.getEnv();
+            jasmineEnv.updateInterval = 1000;
+            
+            var htmlReporter = new jasmine.HtmlReporter();
+            
+            jasmineEnv.addReporter(htmlReporter);
+            
+            jasmineEnv.specFilter = function(spec) {
+                return htmlReporter.specFilter(spec);
+            };
+
+            require([
+                'spec/core/type.js',
+                'spec/core/contains.js',
+                'spec/core/each.js',
+                'spec/core/clone.js',
+                'spec/core/merge.js',
+                'spec/core/scope.js',
+                'spec/core/Class.js',
+                'spec/core/parent.js',
+                'spec/core/index.js'
+            ], function() {
+                setTimeout(function() {
                     jasmineEnv.execute();
-                }
-            }());
+                }, 100);
+            });
         </script>
     </body>
 </html>
