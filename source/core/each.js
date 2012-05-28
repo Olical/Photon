@@ -27,6 +27,18 @@ define([
             console.log(key + ' is ' + value.age + ' years old.');
         });
         (end)
+
+        Be careful, if you pass an arguments array then it will break. This is because arguments is not really an array but an object with a length. If you need to pass it then please convert it to a real array like so.
+
+        (start code)
+        function someFunc() {
+            var safeArgs = Array.prototype.slice.call(arguments);
+
+            each(safeArgs, function() {
+                // ...
+            });
+        }
+        (end)
         
         Parameters:
         
@@ -44,7 +56,8 @@ define([
     function each(list, callback) {
         // Initialise variables
         var key = null,
-            listType = type(list);
+            listType = type(list),
+            str = listType === 'string';
         
         // If the item is undefined then check if the list is iterable
         if(type(callback) === 'undefined') {
@@ -60,9 +73,9 @@ define([
                 }
             }
         }
-        else if(listType === 'array' || listType === 'string') {
+        else if(listType === 'array' || str) {
             for(key = 0; key < list.length; key += 1) {
-                callback(list[key], key);
+                callback((str) ? list.charAt(key) : list[key], key);
             }
         }
     }

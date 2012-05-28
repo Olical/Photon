@@ -9,9 +9,8 @@
     <body>
         <script type='text/javascript' src='lib/jasmine-1.2.0/jasmine.js'></script>
         <script type='text/javascript' src='lib/jasmine-1.2.0/jasmine-html.js'></script>
-        
-        <!-- include source files here... -->
         <script type='text/javascript' src='lib/require.js'></script>
+
         <script type='text/javascript'>
             require.config({
                 paths: {
@@ -19,8 +18,7 @@
                 }
             });
         </script>
-        
-        <!-- include spec files here... -->
+
         <script type='text/javascript' src='spec/core/type.js'></script>
         <script type='text/javascript' src='spec/core/contains.js'></script>
         <script type='text/javascript' src='spec/core/each.js'></script>
@@ -30,7 +28,7 @@
         <script type='text/javascript' src='spec/core/Class.js'></script>
         <script type='text/javascript' src='spec/core/parent.js'></script>
         <script type='text/javascript' src='spec/core/index.js'></script>
-        
+
         <script type='text/javascript'>
             ;(function() {
                 var jasmineEnv = jasmine.getEnv();
@@ -43,17 +41,15 @@
                 jasmineEnv.specFilter = function(spec) {
                     return htmlReporter.specFilter(spec);
                 };
-                
-                var currentWindowOnload = window.onload;
-                
-                window.onload = function() {
-                    if(currentWindowOnload) {
-                        currentWindowOnload();
-                    }
-                    execJasmine();
-                };
-                
-                function execJasmine() {
+
+                if(window.addEventListener) {
+                    window.addEventListener('load', ready, false);
+                }
+                else if(window.attachEvent) {
+                    window.attachEvent('onload', ready);
+                }
+
+                function ready() {
                     jasmineEnv.execute();
                 }
             }());
