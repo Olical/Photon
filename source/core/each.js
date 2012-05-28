@@ -27,6 +27,18 @@ define([
             console.log(key + ' is ' + value.age + ' years old.');
         });
         (end)
+
+        Be careful, if you pass an arguments array then it will break. This is because arguments is not really an array but an object with a length. If you need to pass it then please convert it to a real array like so.
+
+        (start code)
+        function someFunc() {
+            var safeArgs = Array.prototype.slice.call(arguments);
+
+            each(safeArgs, function() {
+                // ...
+            });
+        }
+        (end)
         
         Parameters:
         
