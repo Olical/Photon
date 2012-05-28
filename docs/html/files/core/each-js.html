@@ -25,7 +25,13 @@ var users = getUsers();
 each(users, function(value, key) {
     // Do stuff with it
     console.log(key + ' is ' + value.age + ' years old.');
-});</pre></blockquote><h4 class=CHeading>Parameters</h4><table border=0 cellspacing=0 cellpadding=0 class=CDescriptionList><tr><td class=CDLEntry>list</td><td class=CDLDescription>Object, string or array to loop over.</td></tr><tr><td class=CDLEntry>callback</td><td class=CDLDescription>Function for the value and key to be passed to.&nbsp; For an array the key would be the index.</td></tr></table><h4 class=CHeading>Returns</h4><p>If you only pass a list then true or false depending on whether it is iterable or not.</p><h4 class=CHeading>Requires</h4><ul><li><a href="type-js.html#type" class=LFunction id=link1 onMouseOver="ShowTip(event, 'tt1', 'link1')" onMouseOut="HideTip('tt1')">type</a></li></ul></div></div></div>
+});</pre></blockquote><p>Be careful, if you pass an arguments array then it will break.&nbsp; This is because arguments is not really an array but an object with a length.&nbsp; If you need to pass it then please convert it to a real array like so.</p><blockquote><pre class="prettyprint">function someFunc() {
+    var safeArgs = Array.prototype.slice.call(arguments);
+
+    each(safeArgs, function() {
+        // ...
+    });
+}</pre></blockquote><h4 class=CHeading>Parameters</h4><table border=0 cellspacing=0 cellpadding=0 class=CDescriptionList><tr><td class=CDLEntry>list</td><td class=CDLDescription>Object, string or array to loop over.</td></tr><tr><td class=CDLEntry>callback</td><td class=CDLDescription>Function for the value and key to be passed to.&nbsp; For an array the key would be the index.</td></tr></table><h4 class=CHeading>Returns</h4><p>If you only pass a list then true or false depending on whether it is iterable or not.</p><h4 class=CHeading>Requires</h4><ul><li><a href="type-js.html#type" class=LFunction id=link1 onMouseOver="ShowTip(event, 'tt1', 'link1')" onMouseOut="HideTip('tt1')">type</a></li></ul></div></div></div>
 
 </div><!--Content-->
 
