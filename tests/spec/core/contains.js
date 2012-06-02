@@ -1,4 +1,4 @@
-require(['photon/core/contains'], function(contains) {
+define(['photon/core/contains'], function(contains) {
     describe('photon/core/contains', function() {
         it('should find a string in an array that is present', function() {
             var a = ['foo', 'bar', 'baz'];

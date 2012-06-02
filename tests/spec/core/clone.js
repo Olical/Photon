@@ -1,4 +1,4 @@
-require(['photon/core/clone'], function(clone) {
+define(['photon/core/clone'], function(clone) {
     describe('photon/core/clone', function() {
         it('should clone an array', function() {
             var b = ['foo', 'bar', 'baz'];

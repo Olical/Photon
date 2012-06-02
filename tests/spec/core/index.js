@@ -1,4 +1,4 @@
-require(['photon/core/index'], function(index) {
+define(['photon/core/index'], function(index) {
     describe('photon/core/index', function() {
         it('should search strings', function() {
             var a = 'photon';

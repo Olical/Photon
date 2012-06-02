@@ -1,4 +1,4 @@
-require(['photon/core/scope'], function(scope) {
+define(['photon/core/scope'], function(scope) {
     describe('photon/core/scope', function() {
         it('should set the scope of a function', function() {
             function fn() {

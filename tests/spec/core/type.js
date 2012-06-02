@@ -1,4 +1,4 @@
-require(['photon/core/type'], function(type) {
+define(['photon/core/type'], function(type) {
     describe('photon/core/type', function() {
         it('should identify arrays', function() {
             var a = [];

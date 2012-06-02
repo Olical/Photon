@@ -1,4 +1,4 @@
-require(['photon/core/merge'], function(merge) {
+define(['photon/core/merge'], function(merge) {
     describe('photon/core/merge', function() {
         it('should merge two simple objects', function() {
             var c = {

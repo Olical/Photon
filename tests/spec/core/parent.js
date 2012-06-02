@@ -1,4 +1,4 @@
-require(['photon/core/Class', 'photon/core/parent'], function(Class, parent) {
+define(['photon/core/Class', 'photon/core/parent'], function(Class, parent) {
     describe('photon/core/parent', function() {
         it('should let you call a parent method', function() {
             var Test = new Class();

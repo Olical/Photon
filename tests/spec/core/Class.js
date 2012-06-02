@@ -1,4 +1,4 @@
-require(['photon/core/Class'], function(Class) {
+define(['photon/core/Class'], function(Class) {
     describe('photon/core/Class', function() {
         it('should create an instance', function() {
             var a = new Class();
