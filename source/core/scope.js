@@ -66,7 +66,7 @@ define([
     function scope(fn, scopeObj, recurse) {
         // Recurse if required
         if(each(fn)) {
-            var target = (recurse === true) ? fn : clone(fn);
+            var target = (recurse) ? fn : clone(fn);
 
             // Loop over all values in the fn iterable
             each(target, function(value, key) {
