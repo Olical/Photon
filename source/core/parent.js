@@ -21,10 +21,7 @@ define([
     */
     function parent(host, scopeObj) {
         // Recursively scope the object
-        var inherits = scope(host._inherits, scopeObj);
-        
-        // Return the scoped object
-        return inherits;
+        return scope(host._inherits, scopeObj);
     }
     
     return parent;
