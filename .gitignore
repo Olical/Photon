@@ -3,3 +3,4 @@
 /packages/
 /tests/Sauce-Connect.jar
 /sauce_connect.log
+/tunnel.sh
