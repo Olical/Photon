@@ -1,14 +1,41 @@
 /*
     File: Meta
 
-    Photon:
+    This module simply returns an object containing information about photon.
 
-        Version - 1.0.0
-        Repository - https://github.com/Wolfy87/Photon
-        Author - Oliver Caldwell (http://oli.me.uk)
-        License -  Creative Commons Attribution 3.0 Unported License (http://creativecommons.org/licenses/by/3.0/)
+    Within this object you will find a version string, repository URL, author array (containing names and URLs) and a license object (containing a type and URL).
+
+    Here is the current data.
+    
+    (start code)
+    {
+        version: '1.0.0',
+        repository: 'https://github.com/Wolfy87/Photon',
+        authors: [
+            {
+                name: 'Oliver Caldwell',
+                url: 'http://oli.me.uk/'
+            }
+        ],
+        license: {
+            type: 'Creative Commons Attribution 3.0 Unported License',
+            url: 'http://creativecommons.org/licenses/by/3.0/'
+        }
+    }
+    (end)
 */
 
 define({
-    version: '1.0.0'
+    version: '1.0.0',
+    repository: 'https://github.com/Wolfy87/Photon',
+    authors: [
+        {
+            name: 'Oliver Caldwell',
+            url: 'http://oli.me.uk/'
+        }
+    ],
+    license: {
+        type: 'Creative Commons Attribution 3.0 Unported License',
+        url: 'http://creativecommons.org/licenses/by/3.0/'
+    }
 });
