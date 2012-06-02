@@ -70,7 +70,7 @@ define([
                 return fn.apply(scopeObj, arguments);
             };
         }
-        
+
         // Recurse if required
         if(each(fn)) {
             var target = (recurse) ? fn : clone(fn);
