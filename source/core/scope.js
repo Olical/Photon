@@ -64,6 +64,13 @@ define([
             - <type>
     */
     function scope(fn, scopeObj, recurse) {
+        // If fn is a function the wrap it
+        if(type(fn) === 'function') {
+            return function() {
+                return fn.apply(scopeObj, arguments);
+            };
+        }
+        
         // Recurse if required
         if(each(fn)) {
             var target = (recurse) ? fn : clone(fn);
@@ -78,13 +85,6 @@ define([
 
             // Return the current variable
             return target;
-        }
-
-        // If fn is a function the wrap it
-        if(type(fn) === 'function') {
-            return function() {
-                return fn.apply(scopeObj, arguments);
-            };
         }
 
         // This is the catch all
