@@ -1,8 +1,7 @@
 define([
     './each',
-    './type',
     './clone'
-], function(each, type, clone) {
+], function(each, clone) {
     /*
         Function: scope
         
@@ -60,7 +59,6 @@ define([
         Requires:
 
             - <each>
-            - <type>
             - <clone>
     */
     function scope(fn, scopeObj, recurse) {
