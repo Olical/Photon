@@ -102,6 +102,14 @@ Now by altering your loading of RequireJS slightly you can load the fully concat
 
 All I have done is changed `scripts/main` to `scripts/main-built`.
 
+If you are specifying where Photon is located in your code then you will also need to do so in the build command.
+
+    r.js -o name=main out=main-built.js baseUrl=scripts paths.photon=./path/to/photon
+
+You can also include [Almond](https://github.com/jrburke/almond) in your build. If you do this you will not need to load `require.js` to load your code. Instead you have a standalone fully compiled script. That means one script on your page that contains only the parts of Photon you need.
+
+    r.js -o name=main out=main-built.js baseUrl=scripts paths.photon=./path/to/photon include=./almond/almond.js
+
 ## License
 
 [![Creative Commons License](http://i.creativecommons.org/l/by/3.0/88x31.png)](http://creativecommons.org/licenses/by/3.0/)
