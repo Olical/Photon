@@ -1,7 +1,8 @@
 define([
     './each',
-    './clone'
-], function(each, clone) {
+    './clone',
+    './type'
+], function(each, clone, type) {
     /*
         Function: scope
         
@@ -60,6 +61,7 @@ define([
 
             - <each>
             - <clone>
+            - <type>
     */
     function scope(fn, scopeObj, recurse) {
         // Recurse if required
@@ -78,9 +80,17 @@ define([
             return target;
         }
 
-        return function() {
-            return fn.apply(scopeObj, arguments);
-        };
+        // If fn is a function the wrap it
+        if(type(fn) === 'function') {
+            return function() {
+                return fn.apply(scopeObj, arguments);
+            };
+        }
+
+        // This is the catch all
+        // It is a string or something
+        // Just return it
+        return fn;
     }
     
     return scope;
