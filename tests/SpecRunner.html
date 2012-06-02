@@ -30,23 +30,19 @@
                     return htmlReporter.specFilter(spec);
                 };
 
-                window.onload = function() {
-                    require([
-                        'spec/core/type',
-                        'spec/core/contains',
-                        'spec/core/each',
-                        'spec/core/clone',
-                        'spec/core/merge',
-                        'spec/core/scope',
-                        'spec/core/Class',
-                        'spec/core/parent',
-                        'spec/core/index'
-                    ], function() {
-                        setTimeout(function() {
-                            jasmineEnv.execute();
-                        }, 100);
-                    });
-                };
+                require([
+                    'spec/core/type',
+                    'spec/core/contains',
+                    'spec/core/each',
+                    'spec/core/clone',
+                    'spec/core/merge',
+                    'spec/core/scope',
+                    'spec/core/Class',
+                    'spec/core/parent',
+                    'spec/core/index'
+                ], function() {
+                    jasmineEnv.execute();
+                });
             }());
         </script>
     </body>
