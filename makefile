@@ -14,5 +14,5 @@ package:
 
 # Runs a simple HTTP server for testing
 # Access with: http://localhost:8000/tests/SpecRunner.html
-sever:
+server:
 	python -m SimpleHTTPServer
