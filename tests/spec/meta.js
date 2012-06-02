@@ -1,7 +1,7 @@
-define(['photon/meta', 'photon/core/contains'], function(meta, contains) {
+define(['photon/meta', 'photon/core/type'], function(meta, type) {
     describe('photon/meta', function() {
         it('should contain a version number', function() {
-            expect(contains(meta.version, '.')).toEqual(true);
+            expect(type(meta.version)).toEqual('string');
         });
     });
 });
