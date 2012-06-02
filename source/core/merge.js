@@ -56,6 +56,10 @@ define([
         each(extraClone, function(value, key) {
             // If the value and base value are objects and shallow is not true then recurse down it
             if(shallow !== true && type(value) === 'object' && type(baseClone[key] === 'object')) {
+                // Initialise the current item as an object if required
+                baseClone[key] = baseClone[key] || {};
+
+                // Now perform the recursive merge
                 baseClone[key] = merge(baseClone[key], value);
             }
             else {
