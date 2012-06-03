@@ -31,7 +31,7 @@ define([
 
         some(good, checker); // true
         some(bad, checker); // false
-        (code)
+        (end)
 
         Parameters:
 
