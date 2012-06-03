@@ -31,7 +31,7 @@ define([
 
         every(good, checker); // true
         every(bad, checker); // false
-        (code)
+        (end)
 
         Parameters:
 
