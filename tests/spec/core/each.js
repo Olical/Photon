@@ -1,4 +1,4 @@
-require(['photon/core/each'], function(each) {
+define(['photon/core/each'], function(each) {
     describe('photon/core/each', function() {
         it('should pass all values from an array', function() {
             var b = ['a', 'b', 'c'];

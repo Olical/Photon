@@ -11,3 +11,8 @@ package:
 		cd source;\
 		zip -r ../packages/photon-${v}.zip *;\
 	fi;
+
+# Runs a simple HTTP server for testing
+# Access with: http://localhost:8000/tests/SpecRunner.html
+server:
+	python -m SimpleHTTPServer

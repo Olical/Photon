@@ -47,20 +47,23 @@ SubTitle: Lightweight, fast and modular JavaScript library
 
 Text: The following tree represents the structure for requiring modules. So to require Class you would load `photon/core/Class`.
 
-Group: core  {
+Group: photon  {
 
-   File: Class  (core/Class.js)
-   File: clone  (core/clone.js)
-   File: contains  (core/contains.js)
-   File: each  (core/each.js)
-   File: index  (core/index.js)
-   File: merge  (core/merge.js)
-   File: parent  (core/parent.js)
-   File: scope  (core/scope.js)
-   File: type  (core/type.js)
-   }  # Group: core
+   Group: core  {
 
-File: Meta  (meta.js)
+      File: Class  (core/Class.js)
+      File: clone  (core/clone.js)
+      File: contains  (core/contains.js)
+      File: each  (core/each.js)
+      File: index  (core/index.js)
+      File: merge  (core/merge.js)
+      File: parent  (core/parent.js)
+      File: scope  (core/scope.js)
+      File: type  (core/type.js)
+      }  # Group: core
+
+   File: Meta  (meta.js)
+   }  # Group: photon
 
 Group: Index  {
 

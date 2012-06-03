@@ -1,4 +1,4 @@
-require(['photon/core/type'], function(type) {
+define(['photon/core/type'], function(type) {
     describe('photon/core/type', function() {
         it('should identify arrays', function() {
             var a = [];
@@ -41,6 +41,11 @@ require(['photon/core/type'], function(type) {
             var b = function() {};
             var a = new b();
             expect(type(a)).toEqual('object');
+        });
+
+        it('should identify null', function() {
+            var a = null;
+            expect(type(a)).toEqual('null');
         });
     });
 });

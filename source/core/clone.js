@@ -1,8 +1,7 @@
 define([
     './type',
-    './contains',
     './each'
-], function(type, contains, each) {
+], function(type, each) {
     /*
         Function: clone
         
@@ -41,7 +40,6 @@ define([
         Requires:
 
             - <type>
-            - <contains>
             - <each>
     */
     function clone(orig, shallow) {

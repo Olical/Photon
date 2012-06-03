@@ -9,7 +9,7 @@ define([
 
         The base class that all other classes should be created with. It is very similar to the Python style of classes. It can also inherit normal JavaScript classes, they do not have to be an instance of Class.
 
-        You can use the <parent> function to call untouched methods from the inherited classes. This means you can call methods you have just overridden. Here is a little example.
+        You can use the inherits object to access untouched methods from the inherited classes. This means you can call methods you have just overridden. Here is a little example.
         
         (start code)
         var Foo = new Class();
@@ -24,7 +24,7 @@ define([
             ...
             
             // Execute the original code
-            parent(Bar, this).run();
+            Bar.inherits.run.apply(this);
         };
 
         var test = new Bar();
@@ -72,7 +72,7 @@ define([
         
         // And make a clone of inherits
         // This is for use by the parent function
-        cl._inherits = clone(inherits);
+        cl.inherits = clone(inherits);
         
         // Return the finished class
         // You can now add your own methods
