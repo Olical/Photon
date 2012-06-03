@@ -24,7 +24,7 @@ define([
         
             from - The beginning of the range.
             to - The end of the range.
-            gap - The gap between each value. Defaults to 1.
+            scale - The gap between each value. Defaults to 1.
         
         Returns:
         
@@ -33,7 +33,7 @@ define([
         Requires:
             - <type>
     */
-    function range(from, to, gap) {
+    function range(from, to, scale) {
         // First thing to do is work out the increment
         // This block also initialises some required variables
         var direction = ((from <= to) ? 1 : -1),
@@ -41,9 +41,9 @@ define([
             cur = from,
             list = [];
 
-        // If there is a gap then multiply the increment with it
-        if(type(gap) === 'number') {
-            increment = increment * gap;
+        // If there is a scale then multiply the increment with it
+        if(type(scale) === 'number') {
+            increment = increment * scale;
         }
 
         // Keep looping and adding to the list until we pass the end
