@@ -39,7 +39,7 @@ define([
         var direction = ((from <= to) ? 1 : -1),
             increment = direction,
             cur = from,
-            list = []; 
+            list = [];
 
         // If there is a gap then multiply the increment with it
         if(type(gap) === 'number') {
