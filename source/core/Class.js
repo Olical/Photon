@@ -24,7 +24,7 @@ define([
             ...
             
             // Execute the original code
-            this.inherits.run.apply(this);
+            Bar.inherits.run.apply(this);
         };
 
         var test = new Bar();
