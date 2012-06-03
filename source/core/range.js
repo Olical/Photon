@@ -24,7 +24,7 @@ define([
         
             from - The beginning of the range.
             to - The end of the range.
-            scale - The gap between each value. Defaults to 1.
+            scale - An optional scale between each value. Defaults to 1.
         
         Returns:
         
