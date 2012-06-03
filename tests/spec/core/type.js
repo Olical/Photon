@@ -42,5 +42,10 @@ define(['photon/core/type'], function(type) {
             var a = new b();
             expect(type(a)).toEqual('object');
         });
+
+        it('should identify null', function() {
+            var a = null;
+            expect(type(a)).toEqual('null');
+        });
     });
 });
