@@ -57,9 +57,8 @@ When you are all set up you can load and use any of Photon's modules by placing 
 After you have learnt how to [load RequireJS and Photon's modules](#loading) you can do anything you want. Here is a little example to give you an idea. This code would be placed in your main module as discussed in [the loading section](#loading).
 
     require([
-        'photon/core/Class',
-        'photon/core/parent'
-    ], function(Class, parent) {
+        'photon/core/Class'
+    ], function(Class) {
         // Create a base class
         var Animal = new Class();
 
@@ -74,7 +73,7 @@ After you have learnt how to [load RequireJS and Photon's modules](#loading) you
         // Override the method
         Dog.prototype.makeNoise = function() {
             // Call the original parent method
-            parent(Dog, this).makeNoise();
+            Dog.inherits.makeNoise.apply(this);
 
             // Add our own bit on the end
             alert('It was a bark.');
