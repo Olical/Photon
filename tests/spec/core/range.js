@@ -29,5 +29,10 @@ define(['photon/core/range'], function(range) {
             var a = range(-5, -1);
             expect(a).toEqual([-5, -4, -3, -2, -1]);
         });
+
+        it('should allow decimal ranges (like a baus)', function() {
+            var a = range(0, 1, 0.5);
+            expect(a).toEqual([0, 0.5, 1]);
+        });
     });
 });
