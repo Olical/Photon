@@ -7,7 +7,7 @@ define(['photon/core/some'], function(some) {
         return false;
     }
 
-    describe('photon/core/every', function() {
+    describe('photon/core/some', function() {
         it('should return false if none are correct', function() {
             var bad = [
                 'foo',
