@@ -72,5 +72,25 @@ define(['photon/core/Class'], function(Class) {
             var b = new Test();
             expect(a).toEqual(true);
         });
+
+        it('should allow inherited method calls', function() {
+            var Foo = new Class();
+            Foo.prototype.run = function() {
+                // Original code
+                expect(this.check).toEqual(true);
+            };
+
+            var Bar = new Class(Foo);
+            Bar.prototype.run = function() {
+                // Extra code
+                this.check = true;
+                
+                // Execute the original code
+                Bar.inherits.run.apply(this);
+            };
+
+            var test = new Bar();
+            test.run();
+        });
     });
 });
