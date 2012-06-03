@@ -1,8 +1,4 @@
-define([
-    './each',
-    './clone',
-    './type'
-], function(each, clone, type) {
+define(function() {
     /*
         Function: scope
         
@@ -25,72 +21,20 @@ define([
         // But the one with the specified scope will be true
         withScope(); // true
         (end)
-
-        If you pass an object or array as the third argument then it will set the scope recursively. It will return the object or array with all functions scoped correctly.
-
-        (start code)
-        var before = {
-            foo: function() {
-                return this.scoped;
-            },
-            bar: {
-                baz: function() {
-                    return this.scoped;
-                },
-                test: 'hello'
-            }
-        };
-
-        var after = scope(before, {scoped:true});
-
-        before.bar.baz(); // undefined
-        after.bar.baz(); // true
-        (end)
         
         Parameters:
         
-            fn - Function to wrap in a scope. If you pass an object then it will wrap any found functions recursively.
+            fn - Function to wrap in a scope.
             scopeObj - The scope object you wish to use. It will become `this` for the function.
-            recurse - Internal flag that stops multiple clones on recursion.
         
         Returns:
         
             A copy of the function with the set scope.
-
-        Requires:
-
-            - <each>
-            - <clone>
-            - <type>
     */
-    function scope(fn, scopeObj, recurse) {
-        // If fn is a function the wrap it
-        if(type(fn) === 'function') {
-            return function() {
-                return fn.apply(scopeObj, arguments);
-            };
-        }
-
-        // Recurse if required
-        if(each(fn)) {
-            var target = (recurse) ? fn : clone(fn);
-
-            // Loop over all values in the fn iterable
-            each(target, function(value, key) {
-                // Recurse
-                // Will either go deeper or wrap the function
-                // It all depends on what it is
-                target[key] = scope(value, scopeObj, true);
-            });
-
-            // Return the current variable
-            return target;
-        }
-
-        // This is the catch all
-        // It is a string or something
-        // Just return it
-        return fn;
+    function scope(fn, scopeObj) {
+        return function() {
+            return fn.apply(scopeObj, arguments);
+        };
     }
     
     return scope;
