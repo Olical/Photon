@@ -55,12 +55,23 @@ Group: photon  {
       File: clone  (core/clone.js)
       File: contains  (core/contains.js)
       File: each  (core/each.js)
+      File: every  (core/every.js)
       File: index  (core/index.js)
+      File: keys  (core/keys.js)
+      File: limit  (core/limit.js)
       File: merge  (core/merge.js)
-      File: parent  (core/parent.js)
+      File: pick  (core/pick.js)
+      File: random  (core/random.js)
+      File: range  (core/range.js)
       File: scope  (core/scope.js)
+      File: some  (core/some.js)
       File: type  (core/type.js)
       }  # Group: core
+
+   Group: dom  {
+
+      File: Element  (dom/Element.js)
+      }  # Group: dom
 
    File: Meta  (meta.js)
    }  # Group: photon
