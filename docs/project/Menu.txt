@@ -4,9 +4,7 @@ Format: 1.52
 Title: Photon API documentation
 SubTitle: Lightweight, fast and modular JavaScript library
 
-# You can add a footer to your documentation like this:
-# Footer: [text]
-# If you want to add a copyright notice, this would be the place to do it.
+Footer: Photon by Oliver Caldwell is licensed under a Creative Commons Attribution 3.0 Unported License.
 
 # You can add a timestamp to your documentation like one of these:
 # Timestamp: Generated on month day, year
@@ -55,10 +53,16 @@ Group: photon  {
       File: clone  (core/clone.js)
       File: contains  (core/contains.js)
       File: each  (core/each.js)
+      File: every  (core/every.js)
       File: index  (core/index.js)
+      File: keys  (core/keys.js)
+      File: limit  (core/limit.js)
       File: merge  (core/merge.js)
-      File: parent  (core/parent.js)
+      File: pick  (core/pick.js)
+      File: random  (core/random.js)
+      File: range  (core/range.js)
       File: scope  (core/scope.js)
+      File: some  (core/some.js)
       File: type  (core/type.js)
       }  # Group: core
 
