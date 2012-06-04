@@ -66,6 +66,11 @@ Group: photon  {
       File: type  (core/type.js)
       }  # Group: core
 
+   Group: dom  {
+
+      File: Element  (dom/Element.js)
+      }  # Group: dom
+
    File: Meta  (meta.js)
    }  # Group: photon
 
