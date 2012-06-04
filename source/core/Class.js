@@ -60,6 +60,11 @@ define([
             if(type(this.construct) === 'function') {
                 this.construct.apply(this, arguments);
             }
+
+            // Set the class attribute
+            // This contains a copy of the constructor class
+            // Can be used to tell what something is
+            this.class = cl;
         };
         
         // Merge all passed classes into one object
