@@ -42,7 +42,7 @@ define([
         };
 
         var test = new Foo();
-        if(test.class === Foo) {
+        if(test.instanceOf === Foo) {
             console.log('Test is an instance of foo.');
         }
         (end)
@@ -75,10 +75,10 @@ define([
                 this.construct.apply(this, arguments);
             }
 
-            // Set the class attribute
+            // Set the instanceOf attribute
             // This contains a copy of the constructor class
             // Can be used to tell what something is
-            this.class = cl;
+            this.instanceOf = cl;
         };
         
         // Merge all passed classes into one object
