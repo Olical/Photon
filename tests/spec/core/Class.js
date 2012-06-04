@@ -92,5 +92,20 @@ define(['photon/core/Class'], function(Class) {
             var test = new Bar();
             test.run();
         });
+
+        it('should allow you to check where it came from', function() {
+            var Foo = new Class();
+            Foo.prototype.baz = function() {
+                // Some code
+            };
+            var Bar = new Class();
+            Bar.prototype.baz = function() {
+                // Some code
+            };
+
+            var test = new Foo();
+            expect(test.parentClass).toEqual(Foo);
+            expect(test.parentClass).not.toEqual(Bar);
+        });
     });
 });
