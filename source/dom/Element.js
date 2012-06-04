@@ -6,6 +6,11 @@ define([
         Class: Element
         
         Base element class. It is a container for native DOM elements that provides a normalised API for the DOM.
+
+        Requires:
+
+            - <Class>
+            - <type>
     */
     var Element = new Class();
 
