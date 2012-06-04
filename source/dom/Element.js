@@ -8,5 +8,14 @@ define([
     */
     var Element = new Class();
 
+    /*
+        Function: construct
+
+        Called when you initialise a new Element.
+    */
+    Element.prototype.construct = function() {
+
+    };
+
     return Element;
 });
