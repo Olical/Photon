@@ -32,6 +32,20 @@ define([
         (end)
 
         As you can see, all methods are added via the prototype. This keeps with JavaScripts prototypical inheritance.
+
+        If you need to check what class your instance came from you can use the class attribute.
+
+        (start code)
+        var Foo = new Class();
+        Foo.prototype.bar = function() {
+            // Some code
+        };
+
+        var test = new Foo();
+        if(test.class === Foo) {
+            console.log('Test is an instance of foo.');
+        }
+        (end)
         
         Parameters:
         
