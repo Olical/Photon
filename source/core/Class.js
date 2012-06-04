@@ -32,6 +32,20 @@ define([
         (end)
 
         As you can see, all methods are added via the prototype. This keeps with JavaScripts prototypical inheritance.
+
+        If you need to check what class your instance came from you can use the parentClass attribute.
+
+        (start code)
+        var Foo = new Class();
+        Foo.prototype.bar = function() {
+            // Some code
+        };
+
+        var test = new Foo();
+        if(test.parentClass === Foo) {
+            console.log('Test is an instance of foo.');
+        }
+        (end)
         
         Parameters:
         
@@ -60,6 +74,11 @@ define([
             if(type(this.construct) === 'function') {
                 this.construct.apply(this, arguments);
             }
+
+            // Set the instanceOf attribute
+            // This contains a copy of the constructor class
+            // Can be used to tell what something is
+            this.parentClass = cl;
         };
         
         // Merge all passed classes into one object

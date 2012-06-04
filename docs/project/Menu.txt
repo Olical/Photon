@@ -4,9 +4,7 @@ Format: 1.52
 Title: Photon API documentation
 SubTitle: Lightweight, fast and modular JavaScript library
 
-# You can add a footer to your documentation like this:
-# Footer: [text]
-# If you want to add a copyright notice, this would be the place to do it.
+Footer: Photon by Oliver Caldwell is licensed under a Creative Commons Attribution 3.0 Unported License.
 
 # You can add a timestamp to your documentation like one of these:
 # Timestamp: Generated on month day, year
