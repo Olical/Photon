@@ -9,7 +9,7 @@
     
     (start code)
     {
-        version: '1.0.0',
+        version: '0.0.1',
         repository: 'https://github.com/Wolfy87/Photon',
         authors: [
             {
@@ -26,7 +26,7 @@
 */
 
 define({
-    version: '1.0.0',
+    version: '0.0.1',
     repository: 'https://github.com/Wolfy87/Photon',
     authors: [
         {
