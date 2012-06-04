@@ -2,5 +2,5 @@
 /docs/project/Data/
 /packages/
 /tests/Sauce-Connect.jar
-/sauce_connect.log
+/sauce_connect.log*
 /tunnel.sh
