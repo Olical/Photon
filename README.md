@@ -8,6 +8,10 @@ The library is still in development but some parts should be usable.
 
 My goal is to have Photon working perfectly in IE6+ as well as all modern browsers. I may also end up adding modules that only work in modern browsers, such as a canvas library, but those modules will be littered with warnings.
 
+### What about other JavaScript libraries?
+
+Because Photon is 100% AMD it does not pollute any global namespaces. This means that it will work with **any** other JavaScript library. The only time it would not would be if the JavaScript library broke `Array.prototype.push` or something that Photon relies on.
+
 ## Testing
 
 Every module is thoroughly tested using [Jasmine](http://pivotal.github.com/jasmine/). You can run the tests by opening `tests/SpecRunner.html` in a browser of your choice. You can also execute it via the version hosted on [GitHub pages](http://oli.me.uk/Photon/tests/SpecRunner.html).
