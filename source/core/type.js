@@ -32,27 +32,30 @@ define(function() {
             // First check if truthy
             if(item) {
                 // Now if it has a nodeName it is an element of some kind
-                // If not we check if it is an array
                 if(item.nodeName) {
                     // Depending on the node type it is a different type of element
                     if(item.nodeType === 1) {
-                        itemType = 'element';
+                        return 'element';
                     }
-                    else if(item.nodeType === 3) {
-                        itemType = (/\S/).test(item.nodeValue) ? 'textnode' : 'whitespace';
+
+                    if(item.nodeType === 3) {
+                        return (/\S/).test(item.nodeValue) ? 'textnode' : 'whitespace';
                     }
                 }
-                else if(Object.prototype.toString.call(item) === '[object Array]') {
-                    itemType = 'array';
+
+                // If not we check if it is an array
+                if(Object.prototype.toString.call(item) === '[object Array]') {
+                    return 'array';
                 }
             }
             else {
                 // It is a falsy object, therefore it is null
-                itemType = 'null';
+                return 'null';
             }
         }
 
-        // Return the correct type
+        // Return the native type
+        // This happens if nothing above matched and returned
         return itemType;
     }
     
