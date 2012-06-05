@@ -32,6 +32,7 @@
 
                 require([
                     'spec/meta',
+
                     'spec/core/type',
                     'spec/core/contains',
                     'spec/core/each',
@@ -46,7 +47,9 @@
                     'spec/core/every',
                     'spec/core/some',
                     'spec/core/pick',
-                    'spec/core/limit'
+                    'spec/core/limit',
+
+                    'spec/dom/Element'
                 ], function() {
                     jasmineEnv.execute();
                 });
