@@ -25,7 +25,7 @@ define([
         // Check what el is
         if(type(el) === 'string') {
             // If it is a string then create a new element
-            this._element = document.createElement(el);
+            this.element = document.createElement(el);
         }
         else {
             // It is not a string, must be an existing element
@@ -33,12 +33,12 @@ define([
             // Otherwise adopt el as it is
             if(el.parentClass === Element) {
                 // It is, adopt it
-                this._element = el._element;
+                this.element = el.element;
             }
             else {
                 // Otherwise it is a native DOM element
                 // Adopt it
-                this._element = el;
+                this.element = el;
             }
         }
     };
