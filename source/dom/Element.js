@@ -20,6 +20,10 @@ define([
         Called when you initialise a new Element. It will adopt the passed native DOM element as well as any passed instance of this class.
 
         If you pass a string then a new element will be created using the string as it's tag name.
+
+        Parameters:
+
+            el - Either a string to create an element with, an existing native DOM element or another instance of this class.
     */
     Element.prototype.construct = function(el) {
         // Check what el is
