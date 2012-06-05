@@ -31,9 +31,6 @@ define([
             // It is not a string, must be an existing element
             // If the element is an instance of the element class then adopt it's element
             // Otherwise adopt el as it is
-
-            // TODO: Check that the element is a native DOM element before adopting it - It is assumed at the moment
-            
             if(el.parentClass === Element) {
                 // It is, adopt it
                 this._element = el._element;
