@@ -2,22 +2,22 @@ define(['photon/dom/Element'], function(Element) {
     describe('photon/dom/Element', function() {
         it('should create elements', function() {
             var a = new Element('p');
-            expect(a.element.nodeType).toEqual(1);
-            expect(a.element.tagName).toEqual('P');
+            expect(a.type).toEqual(1);
+            expect(a.tag).toEqual('p');
         });
 
         it('should adopt Photon elements', function() {
             var b = new Element('a');
             var a = new Element(b);
-            expect(a.element.nodeType).toEqual(1);
-            expect(a.element.tagName).toEqual('A');
+            expect(a.type).toEqual(1);
+            expect(a.tag).toEqual('a');
         });
 
         it('should adopt native elements', function() {
             var b = new Element('div');
             var a = new Element(b.element);
-            expect(a.element.nodeType).toEqual(1);
-            expect(a.element.tagName).toEqual('DIV');
+            expect(a.type).toEqual(1);
+            expect(a.tag).toEqual('div');
         });
     });
 });
