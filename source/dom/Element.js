@@ -42,8 +42,9 @@ define([
             }
         }
 
-        // Store the tag name
+        // Store information about the element
         this.tag = this.element.tagName.toLowerCase();
+        this.type = this.element.nodeType;
     };
 
     return Element;
