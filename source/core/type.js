@@ -23,17 +23,23 @@ define(function() {
             A lowercase string of the variables type.
     */
     function type(item) {
+        // Get the base type using the native method
         var itemType = typeof item;
 
+        // If native says it is an object, it probably isn't
+        // Let's work out what it actually is
         if(itemType === 'object') {
+            // First check if truthy
             if(item) {
+                // Now if it has a nodeName it is an element of some kind
+                // If not we check if it is an array
                 if(item.nodeName) {
+                    // Depending on the node type it is a different type of element
                     if(item.nodeType === 1) {
-                        return 'element';
+                        itemType = 'element';
                     }
-
-                    if(item.nodeType === 3) {
-                        return (/\S/).test(item.nodeValue) ? 'textnode' : 'whitespace';
+                    else if(item.nodeType === 3) {
+                        itemType = (/\S/).test(item.nodeValue) ? 'textnode' : 'whitespace';
                     }
                 }
                 else if(Object.prototype.toString.call(item) === '[object Array]') {
@@ -41,10 +47,12 @@ define(function() {
                 }
             }
             else {
+                // It is a falsy object, therefore it is null
                 itemType = 'null';
             }
         }
 
+        // Return the correct type
         return itemType;
     }
     
