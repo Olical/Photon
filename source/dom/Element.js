@@ -41,6 +41,9 @@ define([
                 this.element = el;
             }
         }
+
+        // Store the tag name
+        this.tag = this.element.tagName.toLowerCase();
     };
 
     return Element;
