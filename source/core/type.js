@@ -31,19 +31,7 @@ define(function() {
         if(itemType === 'object') {
             // First check if truthy
             if(item) {
-                // Now if it has a nodeName it is an element of some kind
-                if(item.nodeName) {
-                    // Depending on the node type it is a different type of element
-                    if(item.nodeType === 1) {
-                        return 'element';
-                    }
-
-                    if(item.nodeType === 3) {
-                        return (/\S/).test(item.nodeValue) ? 'textnode' : 'whitespace';
-                    }
-                }
-
-                // If not we check if it is an array
+                // Check if it is an array
                 if(Object.prototype.toString.call(item) === '[object Array]') {
                     return 'array';
                 }
