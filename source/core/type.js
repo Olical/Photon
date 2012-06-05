@@ -27,7 +27,16 @@ define(function() {
 
         if(itemType === 'object') {
             if(item) {
-                if(Object.prototype.toString.call(item) === '[object Array]') {
+                if(item.nodeName) {
+                    if(item.nodeType === 1) {
+                        return 'element';
+                    }
+
+                    if(item.nodeType === 3) {
+                        return (/\S/).test(item.nodeValue) ? 'textnode' : 'whitespace';
+                    }
+                }
+                else if(Object.prototype.toString.call(item) === '[object Array]') {
                     itemType = 'array';
                 }
             }
