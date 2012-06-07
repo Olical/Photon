@@ -111,6 +111,39 @@ define([
     };
 
     /*
+        Function: get
+
+        Retrieves the named value from the element. If no key is passed then all attributes will be returned in an object.
+
+        Parameters:
+
+            key - The name of the value you wish to retrieve, such as `title`. If not passed then you will be given all attributes in an object.
+
+        Returns:
+
+            The found value or null if there was none. If there is no key then an object will be returned containing all of the attributes.
+
+            If there are no attributes a blank object will be returned.
+    */
+    Element.prototype.get = function(key) {
+        // Check for the key
+        if(key) {
+            // We have one, check if it exits
+            if(this.has(key)) {
+                // It does, return it
+                return this.element.getAttribute(key);
+            }
+        }
+        else {
+            // There is no key, return the attribute object
+            return this.element.attributes;
+        }
+
+        // Default to null, this will only happen if a key was passed and no value was found
+        return null;
+    };
+
+    /*
         Function: getParent
         
         Retrieves the parent of the current element.
