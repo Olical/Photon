@@ -157,7 +157,7 @@ define([
         var parent = this.element.parentElement || this.element.parentNode;
 
         // If it is truthy then return the element, otherwise return null
-        if(parent) {
+        if(parent && parent !== document) {
             return new Element(parent);
         }
 
