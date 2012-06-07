@@ -7,6 +7,8 @@ define([
         
         Base element class. It is a container for native DOM elements that provides a normalised API for the DOM.
 
+        All methods that should be passed an element can either be passed a native DOM element or an instance of this class.
+
         Requires:
 
             - <Class>
@@ -49,6 +51,19 @@ define([
         // Store information about the element
         this.tag = this.element.tagName.toLowerCase();
         this.type = this.element.nodeType;
+    };
+
+    /*
+        Function: getParent
+        
+        Retrieves the parent of the current element.
+
+        Returns:
+
+            The parent of the current element.
+    */
+    Element.prototype.getParent = function() {
+        return this.element.parentElement || this.element.parentNode;
     };
 
     return Element;
