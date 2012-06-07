@@ -1,7 +1,8 @@
 define([
     '../core/Class',
-    '../core/type'
-], function(Class, type) {
+    '../core/type',
+    '../core/each'
+], function(Class, type, each) {
     /*
         Class: Element
         
@@ -13,6 +14,7 @@ define([
 
             - <Class>
             - <type>
+            - <each>
     */
     var Element = new Class();
 
@@ -51,6 +53,38 @@ define([
         // Store information about the element
         this.tag = this.element.tagName.toLowerCase();
         this.type = this.element.nodeType;
+    };
+
+    /*
+        Function: set
+
+        Sets the specified attribute to the specified value. Also accepts an object of keys and values.
+
+        Parameters:
+
+            key - Either the attribute key as a string or an object of keys and values.
+            value - If the key is a string then this string will be set as the attributes value.
+
+        Returns:
+
+            The current element.
+    */
+    Element.prototype.set = function(key, value) {
+        // Initialise variables
+        var self = this;
+
+        // If the key is an object then set each one
+        if(type(key) === 'object') {
+            each(key, function(value, key) {
+                self.set(key, value);
+            });
+        }
+        else {
+            // If it is not an object then simply set the attribute
+            self.element.setAttribute(key, value);
+        }
+
+        return this;
     };
 
     /*
@@ -105,6 +139,10 @@ define([
         Parameters:
 
             el - The element to insert the current element before.
+
+        Returns:
+
+            The current element.
     */
     Element.prototype.before = function(el) {
         var target = new Element(el);
@@ -112,7 +150,6 @@ define([
         // Insert this element before the passed one
         target.getParent().element.insertBefore(this.element, target.element);
 
-        // Return the current element
         return this;
     };
 
