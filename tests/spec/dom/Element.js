@@ -1,4 +1,7 @@
 define(['photon/dom/Element'], function(Element) {
+    var elParent = document.getElementById('test-el-parent'),
+        el = document.getElementById('test-el');
+
     describe('photon/dom/Element', function() {
         it('should create elements', function() {
             var a = new Element('p');
@@ -18,6 +21,12 @@ define(['photon/dom/Element'], function(Element) {
             var a = new Element(b.element);
             expect(a.type).toEqual(1);
             expect(a.tag).toEqual('div');
+        });
+
+        it('should access parent elements', function() {
+            var a = new Element(el);
+            expect(a.getParent().element).toEqual(elParent);
+            expect(a.getParent().getParent().getParent().getParent()).toEqual(null);
         });
     });
 });
