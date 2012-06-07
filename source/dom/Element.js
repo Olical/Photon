@@ -97,5 +97,24 @@ define([
         return parents;
     };
 
+    /*
+        Function: before
+
+        Inserts the element before the specified element.
+
+        Parameters:
+
+            el - The element to insert the current element before.
+    */
+    Element.prototype.before = function(el) {
+        var target = new Element(el);
+
+        // Insert this element before the passed one
+        target.getParent().element.insertBefore(this.element, target.element);
+
+        // Return the current element
+        return this;
+    };
+
     return Element;
 });
