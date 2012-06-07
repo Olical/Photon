@@ -94,18 +94,18 @@ define([
 
         Returns:
 
-            The parent of the current element. If there is no parent then it will return false.
+            The parent of the current element. If there is no parent then it will return null.
     */
     Element.prototype.getParent = function() {
         // Get the parent
         var parent = this.element.parentElement || this.element.parentNode;
 
-        // If it is truthy then return the element, otherwise return false
+        // If it is truthy then return the element, otherwise return null
         if(parent) {
             return new Element(parent);
         }
 
-        return false;
+        return null;
     };
 
     /*
@@ -122,7 +122,7 @@ define([
         var parents = [],
             parent = null;
 
-        // Keep looping up the tree getting parents until it is false
+        // Keep looping up the tree getting parents until it is null
         while((parent = parent.getParent())) {
             parents.push(parent);
         }
