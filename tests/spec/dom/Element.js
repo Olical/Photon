@@ -28,5 +28,12 @@ define(['photon/dom/Element'], function(Element) {
             expect(a.getParent().element).toEqual(elParent);
             expect(a.getParent().getParent().getParent().getParent()).toEqual(null);
         });
+
+        it('should access an elements parents', function() {
+            var a = new Element(el);
+            var parents = a.getParents();
+            expect(parents.length).toEqual(3);
+            expect(parents[0].getParents().length).toEqual(2);
+        });
     });
 });
