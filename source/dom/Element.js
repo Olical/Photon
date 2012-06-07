@@ -60,10 +60,41 @@ define([
 
         Returns:
 
-            The parent of the current element.
+            The parent of the current element. If there is no parent then it will return false.
     */
     Element.prototype.getParent = function() {
-        return new Element(this.element.parentElement || this.element.parentNode);
+        // Get the parent
+        var parent = this.element.parentElement || this.element.parentNode;
+
+        // If it is truthy then return the element, otherwise return false
+        if(parent) {
+            return new Element(parent);
+        }
+
+        return false;
+    };
+
+    /*
+        Function: getParents
+
+        Retrieves all parents of the current element by recursing up the DOM tree.
+
+        Returns:
+
+            An array of parent elements for the current element. The first is the first parent, the last is the last parent, this should be the html tag in most cases.
+    */
+    Element.prototype.getParents = function() {
+        // Set up the variables
+        var parents = [],
+            parent = null;
+
+        // Keep looping up the tree getting parents until it is false
+        while((parent = parent.getParent())) {
+            parents.push(parent);
+        }
+
+        // Return the list
+        return parents;
     };
 
     return Element;
