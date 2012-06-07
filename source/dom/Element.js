@@ -176,7 +176,7 @@ define([
     Element.prototype.getParents = function() {
         // Set up the variables
         var parents = [],
-            parent = null;
+            parent = this;
 
         // Keep looping up the tree getting parents until it is null
         while((parent = parent.getParent())) {
