@@ -294,5 +294,77 @@ define([
 
     };
 
+    Element.prototype.replace = function() {
+
+    };
+
+    Element.prototype.remove = function() {
+
+    };
+
+    Element.prototype.clone = function() {
+
+    };
+
+    Element.prototype.getChildren = function() {
+
+    };
+
+    Element.prototype.getAllNext = function() {
+
+    };
+
+    Element.prototype.matches = function() {
+
+    };
+
+    Element.prototype.getAllPrevious = function() {
+
+    };
+
+    Element.prototype.getSiblings = function() {
+
+    };
+
+    Element.prototype.addClass = function() {
+
+    };
+
+    Element.prototype.removeClass = function() {
+
+    };
+
+    Element.prototype.hasClass = function() {
+
+    };
+
+    Element.prototype.toggleClass = function() {
+
+    };
+
+    Element.prototype.setStyle = function() {
+
+    };
+
+    Element.prototype.getStyle = function() {
+
+    };
+
+    Element.prototype.setHtml = function() {
+
+    };
+
+    Element.prototype.getHtml = function() {
+
+    };
+
+    Element.prototype.setText = function() {
+
+    };
+
+    Element.prototype.getText = function() {
+
+    };
+
     return Element;
 });
