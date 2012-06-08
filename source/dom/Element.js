@@ -76,7 +76,7 @@ define([
         // If the key is an object then set each one
         if(type(key) === 'object') {
             each(key, function(value, key) {
-                self.set(key, value);
+                self.setAttribute(key, value);
             });
         }
         else {
@@ -141,6 +141,37 @@ define([
 
         // Default to null, this will only happen if a key was passed and no value was found
         return null;
+    };
+
+    /*
+        Function: removeAttribute
+        
+        Removes the specified attribute or array of attributes.
+
+        Parameters:
+
+            key - The name of the attribute to remove or an array of names to remove.
+
+        Returns:
+
+            The current element.
+    */
+    Element.prototype.removeAttribute = function(key) {
+        // Initialise variables
+        var self = this;
+
+        // If the key is an object then remove each one
+        if(type(key) === 'object') {
+            each(key, function(value) {
+                self.removeAttribute(value);
+            });
+        }
+        else {
+            // If it is not an object then simply remove the attribute
+            self.element.removeAttribute(key);
+        }
+
+        return self;
     };
 
     /*
