@@ -219,7 +219,7 @@ define([
     };
 
     /*
-        Function: before
+        Function: insertBefore
 
         Inserts the element before the specified element.
 
@@ -231,7 +231,7 @@ define([
 
             The current element.
     */
-    Element.prototype.before = function(el) {
+    Element.prototype.insertBefore = function(el) {
         var target = new Element(el);
 
         // Insert this element before the passed one
