@@ -282,5 +282,17 @@ define([
         return this;
     };
 
+    Element.prototype.insertAfter = function() {
+
+    };
+
+    Element.prototype.insertFirst = function() {
+
+    };
+
+    Element.prototype.insertLast = function() {
+
+    };
+
     return Element;
 });
