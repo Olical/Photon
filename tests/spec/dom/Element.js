@@ -1,5 +1,6 @@
 define(['photon/dom/Element'], function(Element) {
     var elParent = document.getElementById('test-el-parent'),
+        elOutside = document.getElementById('test-el-outside'),
         el = document.getElementById('test-el');
 
     describe('photon/dom/Element', function() {
@@ -50,6 +51,13 @@ define(['photon/dom/Element'], function(Element) {
 
             expect(a.getPrevious()).toEqual(null);
             expect(b.getPrevious().tag).toEqual('ul');
+        });
+
+        it('should allow adding elements before another', function() {
+            var a = new Element(elOutside);
+            var b = new Element('ol');
+            b.insertBefore(a);
+            expect(a.getPrevious().tag).toEqual('ol');
         });
     });
 });
