@@ -74,5 +74,13 @@ define(['photon/dom/Element'], function(Element) {
             expect(a.hasAttribute('data-exists')).toEqual(true);
             expect(a.hasAttribute('data-does-not-exist')).toEqual(false);
         });
+
+        it('should remove attributes', function() {
+            var a = new Element('div');
+            a.setAttribute('data-test', 'foo');
+            expect(a.getAttribute('data-test')).toEqual('foo');
+            a.removeAttribute('data-test');
+            expect(a.getAttribute('data-test')).toEqual(null);
+        });
     });
 });
