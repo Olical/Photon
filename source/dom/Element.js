@@ -129,8 +129,14 @@ define([
             }
         }
         else {
-            // There is no key, return the attribute object
-            return this.element.attributes;
+            // There is no key, build and return the attribute object
+            var attrs = {};
+
+            each(this.element.attributes, function(value) {
+                attrs[value.name] = value.value;
+            });
+
+            return attrs;
         }
 
         // Default to null, this will only happen if a key was passed and no value was found
