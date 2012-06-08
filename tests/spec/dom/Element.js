@@ -35,5 +35,21 @@ define(['photon/dom/Element'], function(Element) {
             expect(parents.length).toEqual(3);
             expect(parents[0].getParents().length).toEqual(2);
         });
+
+        it('should get the next element', function() {
+            var a = new Element(el);
+            var b = new Element(elParent);
+
+            expect(a.getNext()).toEqual(null);
+            expect(b.getNext().tag).toEqual('p');
+        });
+
+        it('should get the previous element', function() {
+            var a = new Element(el);
+            var b = new Element(elParent);
+
+            expect(a.getPrevious()).toEqual(null);
+            expect(b.getPrevious().tag).toEqual('ul');
+        });
     });
 });
