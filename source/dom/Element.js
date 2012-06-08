@@ -219,6 +219,32 @@ define([
     };
 
     /*
+        Function: getNext
+
+        Gets the next sibling element of this element.
+
+        Returns:
+
+            The next sibling element. If there is no next element then it will return null.
+    */
+    Element.prototype.getNext = function() {
+        return this.element.nextElementSibling;
+    };
+
+    /*
+        Function: getPrevious
+
+        Gets the previous sibling element of this element.
+
+        Returns:
+
+            The previous sibling element. If there is no previous element then it will return null.
+    */
+    Element.prototype.getPrevious = function() {
+        return this.element.previousElementSibling;
+    };
+
+    /*
         Function: insertBefore
 
         Inserts the element before the specified element.
