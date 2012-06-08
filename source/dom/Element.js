@@ -56,7 +56,7 @@ define([
     };
 
     /*
-        Function: set
+        Function: setAttribute
 
         Sets the specified attribute to the specified value. Also accepts an object of keys and values.
 
@@ -69,7 +69,7 @@ define([
 
             The current element.
     */
-    Element.prototype.set = function(key, value) {
+    Element.prototype.setAttribute = function(key, value) {
         // Initialise variables
         var self = this;
 
@@ -88,7 +88,7 @@ define([
     };
 
     /*
-        Function: has
+        Function: hasAttribute
         
         Checks if the element has the specified attribute. If no attribute is passed then it will check if the element has any attributes.
 
@@ -100,7 +100,7 @@ define([
 
             Either true or false. If you pass a key then it will return true when found. If you do not pass a key then it will return true if the element has any attributes.
     */
-    Element.prototype.has = function(key) {
+    Element.prototype.hasAttribute = function(key) {
         // If there is a key then check for it
         if(key) {
             return this.element.hasAttribute(key);
@@ -111,9 +111,9 @@ define([
     };
 
     /*
-        Function: get
+        Function: getAttribute
 
-        Retrieves the named value from the element. If no key is passed then all attributes will be returned in an object.
+        Retrieves the named attribute from the element. If no key is passed then all attributes will be returned in an object.
 
         Parameters:
 
@@ -125,11 +125,11 @@ define([
 
             If there are no attributes a blank object will be returned.
     */
-    Element.prototype.get = function(key) {
+    Element.prototype.getAttribute = function(key) {
         // Check for the key
         if(key) {
             // We have one, check if it exits
-            if(this.has(key)) {
+            if(this.hasAttribute(key)) {
                 // It does, return it
                 return this.element.getAttribute(key);
             }
