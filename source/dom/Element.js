@@ -160,14 +160,14 @@ define([
         // Initialise variables
         var self = this;
 
-        // If the key is an object then remove each one
-        if(type(key) === 'object') {
+        // If the key is an array then remove each one
+        if(type(key) === 'array') {
             each(key, function(value) {
                 self.removeAttribute(value);
             });
         }
         else {
-            // If it is not an object then simply remove the attribute
+            // If it is not an array then simply remove the attribute
             self.element.removeAttribute(key);
         }
 
