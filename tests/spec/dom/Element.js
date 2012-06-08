@@ -59,5 +59,20 @@ define(['photon/dom/Element'], function(Element) {
             b.insertBefore(a);
             expect(a.getPrevious().tag).toEqual('ol');
         });
+
+        it('should set and get attributes', function() {
+            var a = new Element(el);
+            a.setAttribute('title', 'Photon element');
+            expect(a.getAttribute('title')).toEqual('Photon element');
+            expect(a.getAttribute().title).toEqual('Photon element');
+            expect(a.getAttribute('foo')).toEqual(null);
+        });
+
+        it('should check for an attributes existence', function() {
+            var a = new Element(el);
+            a.setAttribute('data-exists', 'test');
+            expect(a.hasAttribute('data-exists')).toEqual(true);
+            expect(a.hasAttribute('data-does-not-exist')).toEqual(false);
+        });
     });
 });
