@@ -228,7 +228,7 @@ define([
             The next sibling element. If there is no next element then it will return null.
     */
     Element.prototype.getNext = function() {
-        return this.element.nextElementSibling;
+        return new Element(this.element.nextElementSibling);
     };
 
     /*
@@ -241,7 +241,7 @@ define([
             The previous sibling element. If there is no previous element then it will return null.
     */
     Element.prototype.getPrevious = function() {
-        return this.element.previousElementSibling;
+        return new Element(this.element.previousElementSibling);
     };
 
     /*
