@@ -90,24 +90,18 @@ define([
     /*
         Function: hasAttribute
         
-        Checks if the element has the specified attribute. If no attribute is passed then it will check if the element has any attributes.
+        Checks if the element has the specified attribute.
 
         Parameters:
 
-            key - The name of the attribute to check for. Optional. If not passed then it will check for any attributes at all.
+            key - The name of the attribute to check for.
 
         Returns:
 
-            Either true or false. If you pass a key then it will return true when found. If you do not pass a key then it will return true if the element has any attributes.
+            Either true or false. It will return true if the element has the attribute and false if not.
     */
     Element.prototype.hasAttribute = function(key) {
-        // If there is a key then check for it
-        if(key) {
-            return this.element.hasAttribute(key);
-        }
-
-        // Otherwise check if there are any attributes at all
-        return this.element.hasAttributes();
+        return this.element.hasAttribute(key);
     };
 
     /*
