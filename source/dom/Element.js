@@ -239,11 +239,21 @@ define([
             The next sibling element. If there is no next element then it will return null.
     */
     Element.prototype.getNext = function() {
-        var res = this.element.nextElementSibling;
+        var res = this.element.nextSibling,
+            el = null;
 
         // Return the wrapped version if not null
         if(res) {
-            return new Element(res);
+            el = new Element(res);
+
+            // Before we do this we check if it is a real element
+            if(el.type !== 1) {
+                // Not a real element
+                // Recurse
+                return el.getNext();
+            }
+
+            return el;
         }
 
         // If not, default to null
