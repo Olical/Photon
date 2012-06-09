@@ -694,8 +694,30 @@ define([
         return contains(classes || this.getClasses(), cl);
     };
 
-    Element.prototype.addClass = function() {
+    /*
+        Function: addClass
 
+        Adds your specified class to the element if it is not already there.
+
+        Parameters:
+
+            cl - The class to add if not already present.
+
+        Returns:
+
+            The current element.
+    */
+    Element.prototype.addClass = function(cl) {
+        // Get the current list of classes
+        var classes = this.getClasses();
+
+        // If it does not currently contain this class then add it to the array and write it back
+        if(!this.hasClass(cl, classes)) {
+            classes.push(cl);
+            this.element.className = classes.join(' ');
+        }
+
+        return this;
     };
 
     Element.prototype.removeClass = function() {
