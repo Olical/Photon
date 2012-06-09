@@ -327,7 +327,12 @@ define([
             The current element.
     */
     Element.prototype.insertLast = function(el) {
+        var target = new Element(el);
 
+        // Append this as the child
+        el.element.appendChild(this.element);
+
+        return this;
     };
 
     Element.prototype.insertAfter = function() {
