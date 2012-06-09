@@ -335,8 +335,33 @@ define([
         return this;
     };
 
-    Element.prototype.insertAfter = function() {
+    /*
+        Function: insertAfter
 
+        Inserts this element after the one specified.
+
+        Parameters:
+
+            el - The element to insert the current element after.
+
+        Returns:
+
+            The current element.
+    */
+    Element.prototype.insertAfter = function(el) {
+        var target = new Element(el),
+            next = target.getNext();
+
+        // If there is a next element then insert before it
+        // If not then add to the bottom it's parent
+        if(next) {
+            this.insertBefore(next);
+        }
+        else {
+            this.insertLast(target.getParent());
+        }
+
+        return this;
     };
 
     Element.prototype.insertFirst = function() {
