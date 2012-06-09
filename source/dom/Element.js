@@ -270,11 +270,21 @@ define([
             The previous sibling element. If there is no previous element then it will return null.
     */
     Element.prototype.getPrevious = function() {
-        var res = this.element.previousElementSibling;
+        var res = this.element.previousSibling,
+            el = null;
 
         // Return the wrapped version if not null
         if(res) {
-            return new Element(res);
+            el = new Element(res);
+
+            // Before we do this we check if it is a real element
+            if(el.type !== 1) {
+                // Not a real element
+                // Recurse
+                return el.getPrevious();
+            }
+
+            return el;
         }
 
         // If not, default to null
