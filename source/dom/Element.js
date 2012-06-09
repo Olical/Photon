@@ -733,7 +733,7 @@ define([
 
         Parameters:
 
-            cl - The class to add if not already present.
+            cl - The class to add if not already present. If you pass an array of classes then all will be added.
             classes - An array of classes to check. Useful if you have already run getClasses and you don't want to run the regex twice.
 
         Returns:
@@ -744,10 +744,22 @@ define([
         // Get the current list of classes
         var cls = classes || this.getClasses();
 
-        // If it does not currently contain this class then add it to the array and write it back
-        if(!this.hasClass(cl, cls)) {
-            cls.push(cl);
-            this.setClasses(cls);
+        // Allow for an array of classes
+        if(type(cl) === 'array') {
+            // Add every class
+            each(cl, function(cur) {
+                this.addClass(cl, cls);
+
+                // Also have to add to cls to stop duplicates
+                cls.push(cl);
+            });
+        }
+        else {
+            // If it does not currently contain this class then add it to the array and write it back
+            if(!this.hasClass(cl, cls)) {
+                cls.push(cl);
+                this.setClasses(cls);
+            }
         }
 
         return this;
