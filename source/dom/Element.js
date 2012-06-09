@@ -101,7 +101,18 @@ define([
             Either true or false. It will return true if the element has the attribute and false if not.
     */
     Element.prototype.hasAttribute = function(key) {
-        return this.element.hasAttribute(key);
+        var res = null;
+
+        // Use hasAttribute if possible
+        if(hasAttribute) {
+            res = this.element.hasAttribute(key);
+        }
+        else {
+            // Otherwise use getAttribute with a null check
+            res = (this.element.getAttribute('key') !== null);
+        }
+
+        return res;
     };
 
     /*
