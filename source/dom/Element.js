@@ -294,6 +294,10 @@ define([
 
     };
 
+    Element.prototype.insertAt = function() {
+
+    };
+
     Element.prototype.replace = function() {
 
     };
