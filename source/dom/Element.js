@@ -749,9 +749,6 @@ define([
             // Add every class
             each(cl, function(cur) {
                 this.addClass(cl, cls);
-
-                // Also have to add to cls to stop duplicates
-                cls.push(cl);
             });
         }
         else {
@@ -772,7 +769,7 @@ define([
 
         Parameters:
 
-            cl - The class to remove.
+            cl - The class to remove. If you pass an array of classes then all of them will be removed.
             classes - An array of classes to check. Useful if you have already run getClasses and you don't want to run the regex twice.
 
         Returns:
@@ -784,13 +781,22 @@ define([
         var cls = classes || this.getClasses(),
             pos = null;
 
-        // Get the index of the class in the class list
-        pos = index(cls, cl);
+        // Allow for an array of classes
+        if(type(cl) === 'array') {
+            // Remove every class
+            each(cl, function(cur) {
+                this.removeClass(cl, cls);
+            });
+        }
+        else {
+            // Get the index of the class in the class list
+            pos = index(cls, cl);
 
-        // If it was found then remove it and write back
-        if(pos !== -1) {
-            cls.splice(pos, 1);
-            this.setClasses(cls);
+            // If it was found then remove it and write back
+            if(pos !== -1) {
+                cls.splice(pos, 1);
+                this.setClasses(cls);
+            }
         }
 
         return this;
