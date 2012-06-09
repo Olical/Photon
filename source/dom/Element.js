@@ -754,8 +754,33 @@ define([
         return this;
     };
 
-    Element.prototype.toggleClass = function() {
+    /*
+        Function: toggleClass
 
+        If the passed class is found on the element then it will be removed. If it is not found then it will be added.
+
+        Parameters:
+
+            cl - The class to add or remove.
+            classes - An array of classes to check. Useful if you have already run getClasses and you don't want to run the regex twice.
+
+        Returns:
+
+            The current element.
+    */
+    Element.prototype.toggleClass = function(cl, classes) {
+        // Get the current list of classes
+        var cls = classes || this.getClasses();
+
+        // If found then remove, if not then add
+        if(this.hasClass(cl, cls)) {
+            this.removeClass(cl, cls);
+        }
+        else {
+            this.addClass(cl, cls);
+        }
+
+        return this;
     };
 
     Element.prototype.setStyle = function() {
