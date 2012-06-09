@@ -27,14 +27,14 @@ define(['photon/dom/Element'], function(Element) {
         it('should access an elements parent', function() {
             var a = new Element(el);
             expect(a.getParent().element).toEqual(elParent);
-            expect(a.getParent().getParent().getParent().getParent()).toEqual(null);
+            expect(a.getParent().getParent().getParent().getParent().getParent()).toEqual(null);
         });
 
         it('should access an elements parents', function() {
             var a = new Element(el);
             var parents = a.getParents();
-            expect(parents.length).toEqual(3);
-            expect(parents[0].getParents().length).toEqual(2);
+            expect(parents.length).toEqual(4);
+            expect(parents[0].getParents().length).toEqual(3);
         });
 
         it('should get the next element', function() {
