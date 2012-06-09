@@ -1,8 +1,9 @@
 define([
     '../core/Class',
     '../core/type',
-    '../core/each'
-], function(Class, type, each) {
+    '../core/each',
+    '../core/contains'
+], function(Class, type, each, contains) {
     /*
         Class: Element
         
@@ -15,6 +16,7 @@ define([
             - <Class>
             - <type>
             - <each>
+            - <contains>
     */
     var Element = new Class();
 
@@ -661,15 +663,41 @@ define([
         return res;
     };
 
+    /*
+        Function: getClasses
+
+        Gets all of an elements classes.
+
+        Returns:
+
+            An array of CSS classes.
+    */
+    Element.prototype.getClasses = function() {
+        return this.element.className.split(/\s*/);
+    };
+
+    /*
+        Function: hasClass
+
+        Checks if the element has the specified class or not.
+
+        Parameters:
+
+            cl - The class to check for.
+
+        Returns:
+
+            True if the class is found, false if not.
+    */
+    Element.prototype.hasClass = function(cl) {
+        return contains(this.getClasses(), cl);
+    };
+
     Element.prototype.addClass = function() {
 
     };
 
     Element.prototype.removeClass = function() {
-
-    };
-
-    Element.prototype.hasClass = function() {
 
     };
 
