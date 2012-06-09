@@ -702,19 +702,20 @@ define([
         Parameters:
 
             cl - The class to add if not already present.
+            classes - An array of classes to check. Useful if you have already run getClasses and you don't want to run the regex twice.
 
         Returns:
 
             The current element.
     */
-    Element.prototype.addClass = function(cl) {
+    Element.prototype.addClass = function(cl, classes) {
         // Get the current list of classes
-        var classes = this.getClasses();
+        var cls = classes || this.getClasses();
 
         // If it does not currently contain this class then add it to the array and write it back
-        if(!this.hasClass(cl, classes)) {
-            classes.push(cl);
-            this.element.className = classes.join(' ');
+        if(!this.hasClass(cl, cls)) {
+            cls.push(cl);
+            this.element.className = cls.join(' ');
         }
 
         return this;
