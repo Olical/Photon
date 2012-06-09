@@ -445,8 +445,26 @@ define([
         return this;
     };
 
-    Element.prototype.replace = function() {
+    /*
+        Function: replace
 
+        Replaces the provided element with the current one.
+
+        Parameters:
+
+            el - The element to replace.
+
+        Returns:
+
+            The current element.
+    */
+    Element.prototype.replace = function(el) {
+        var target = new Element(el);
+
+        // Replace the target
+        target.getParent().element.replaceChild(this.element, el);
+
+        return this;
     };
 
     Element.prototype.remove = function() {
