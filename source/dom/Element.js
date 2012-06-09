@@ -684,13 +684,14 @@ define([
         Parameters:
 
             cl - The class to check for.
+            classes - An array of classes to check. Useful if you have already run getClasses and you don't want to run the regex twice.
 
         Returns:
 
             True if the class is found, false if not.
     */
-    Element.prototype.hasClass = function(cl) {
-        return contains(this.getClasses(), cl);
+    Element.prototype.hasClass = function(cl, classes) {
+        return contains(classes || this.getClasses(), cl);
     };
 
     Element.prototype.addClass = function() {
