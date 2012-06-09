@@ -482,8 +482,21 @@ define([
         return this;
     };
 
-    Element.prototype.clone = function() {
+    /*
+        Function: clone
 
+        Creates a clone of the current element.
+
+        Parameters:
+
+            recursive - If true then the node as well as it's whole tree below it will be cloned. If false only this actual element will be cloned.
+
+        Returns:
+
+            The cloned version of this element.
+    */
+    Element.prototype.clone = function(recursive) {
+        return new Element(this.element.cloneNode(recursive || false));
     };
 
     Element.prototype.getChildren = function() {
