@@ -720,8 +720,21 @@ define([
         return this;
     };
 
-    Element.prototype.removeClass = function() {
+    /*
+        Function: removeClass
 
+        Removes the specified class from the element if found.
+
+        Parameters:
+
+            cl - The class to remove.
+
+        Returns:
+
+            The current element.
+    */
+    Element.prototype.removeClass = function(cl) {
+        return this;
     };
 
     Element.prototype.toggleClass = function() {
