@@ -3,8 +3,9 @@ define([
     '../core/type',
     '../core/each',
     '../core/contains',
-    '../core/index'
-], function(Class, type, each, contains, index) {
+    '../core/index',
+    '../core/every'
+], function(Class, type, each, contains, index, every) {
     /*
         Class: Element
         
@@ -19,6 +20,7 @@ define([
             - <each>
             - <contains>
             - <index>
+            - <every>
     */
     var Element = new Class();
 
@@ -703,7 +705,7 @@ define([
 
         Parameters:
 
-            cl - The class to check for.
+            cl - The class to check for. You can also pass an array of classes, it will then check if it has all of them.
             classes - An array of classes to check. Useful if you have already run getClasses and you don't want to run the regex twice.
 
         Returns:
@@ -711,7 +713,17 @@ define([
             True if the class is found, false if not.
     */
     Element.prototype.hasClass = function(cl, classes) {
-        return contains(classes || this.getClasses(), cl);
+        // Get the current list of classes
+        var cls = classes || this.getClasses();
+
+        // Allow for an array of classes
+        if(type(cl) === 'array') {
+            return every(cl, function(cur) {
+                return contains(cls, cur);
+            });
+        }
+
+        return contains(cls, cl);
     };
 
     /*
