@@ -742,24 +742,25 @@ define([
     */
     Element.prototype.addClass = function(cl, classes) {
         // Get the current list of classes
-        var cls = classes || this.getClasses();
+        var self = this,
+            cls = classes || self.getClasses();
 
         // Allow for an array of classes
         if(type(cl) === 'array') {
             // Add every class
             each(cl, function(cur) {
-                this.addClass(cl, cls);
+                self.addClass(cur, cls);
             });
         }
         else {
             // If it does not currently contain this class then add it to the array and write it back
-            if(!this.hasClass(cl, cls)) {
+            if(!self.hasClass(cl, cls)) {
                 cls.push(cl);
-                this.setClasses(cls);
+                self.setClasses(cls);
             }
         }
 
-        return this;
+        return self;
     };
 
     /*
@@ -778,14 +779,15 @@ define([
     */
     Element.prototype.removeClass = function(cl, classes) {
         // Get the current list of classes and initialise any required variables
-        var cls = classes || this.getClasses(),
+        var self = this,
+            cls = classes || self.getClasses(),
             pos = null;
 
         // Allow for an array of classes
         if(type(cl) === 'array') {
             // Remove every class
             each(cl, function(cur) {
-                this.removeClass(cl, cls);
+                self.removeClass(cur, cls);
             });
         }
         else {
@@ -795,11 +797,11 @@ define([
             // If it was found then remove it and write back
             if(pos !== -1) {
                 cls.splice(pos, 1);
-                this.setClasses(cls);
+                self.setClasses(cls);
             }
         }
 
-        return this;
+        return self;
     };
 
     /*
@@ -818,26 +820,27 @@ define([
     */
     Element.prototype.toggleClass = function(cl, classes) {
         // Get the current list of classes
-        var cls = classes || this.getClasses();
+        var self = this,
+            cls = classes || self.getClasses();
 
         // Allow for an array of classes
         if(type(cl) === 'array') {
             // Toggle every class
             each(cl, function(cur) {
-                this.toggleClass(cl, cls);
+                self.toggleClass(cur, cls);
             });
         }
         else {
             // If found then remove, if not then add
-            if(this.hasClass(cl, cls)) {
-                this.removeClass(cl, cls);
+            if(self.hasClass(cl, cls)) {
+                self.removeClass(cl, cls);
             }
             else {
-                this.addClass(cl, cls);
+                self.addClass(cl, cls);
             }
         }
 
-        return this;
+        return self;
     };
 
     Element.prototype.setStyle = function() {
