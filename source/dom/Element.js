@@ -51,7 +51,7 @@ define([
         }
 
         // Store information about the element
-        this.tag = this.element.tagName.toLowerCase();
+        this.tag = this.element.nodeName.toLowerCase();
         this.type = this.element.nodeType;
     };
 
@@ -296,7 +296,7 @@ define([
             The current element.
     */
     Element.prototype.insertLast = function(el) {
-        
+
     };
 
     Element.prototype.insertAfter = function() {
