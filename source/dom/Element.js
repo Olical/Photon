@@ -467,8 +467,19 @@ define([
         return this;
     };
 
-    Element.prototype.remove = function() {
+    /*
+        Function: remove
 
+        Removes the current element from it's parent.
+
+        Returns:
+
+            The current element.
+    */
+    Element.prototype.remove = function() {
+        this.getParent().element.removeChild(this.element);
+
+        return this;
     };
 
     Element.prototype.clone = function() {
