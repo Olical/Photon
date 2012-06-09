@@ -26,7 +26,7 @@ define(['photon/dom/Element'], function(Element) {
 
         it('should access an elements parent', function() {
             var a = new Element(el);
-            expect(a.getParent().element).toEqual(elParent);
+            expect(a.getParent().matches(elParent)).toEqual(true);
             expect(a.getParent().getParent().getParent().getParent().getParent()).toEqual(null);
         });
 
