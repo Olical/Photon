@@ -364,6 +364,34 @@ define([
         return this;
     };
 
+    /*
+        Function: getFirst
+
+        Gets the first direct child of this element.
+
+        Returns:
+
+            The first child element. If there is no first child then it will return null.
+    */
+    Element.prototype.getFirst = function() {
+        // Get the first node
+        var firstEl = this.element.firstChild,
+            first = null;
+
+        // Make sure there is an element there
+        if(firstEl) {
+            // Convert it to a Photon element
+            first = new Element(firstEl);
+
+            // If it is not a full element then return the next real element
+            if(first.type !== 1) {
+                return first.getNext();
+            }
+        }
+
+        return first;
+    };
+
     Element.prototype.insertFirst = function() {
 
     };
