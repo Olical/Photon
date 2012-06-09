@@ -602,8 +602,17 @@ define([
         return sibs;
     };
 
-    Element.prototype.getSiblings = function() {
+    /*
+        Function: getSiblings
 
+        Gets all siblings of this element.
+
+        Returns:
+
+            An array of the elements siblings. This does not include the current element.
+    */
+    Element.prototype.getSiblings = function() {
+        return this.getAllPrevious().concat(this.getAllNext());
     };
 
     Element.prototype.matches = function() {
