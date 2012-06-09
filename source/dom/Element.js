@@ -489,7 +489,7 @@ define([
 
         Parameters:
 
-            recursive - If true then the node as well as it's whole tree below it will be cloned. If false only this actual element will be cloned.
+            recursive - Defaults to false. If true then the node, as well as it's whole tree below it, will be cloned. If false, only this actual element will be cloned.
 
         Returns:
 
