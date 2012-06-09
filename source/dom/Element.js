@@ -213,7 +213,7 @@ define([
 
         Returns:
 
-            An array of parent elements for the current element. The first is the first parent, the last is the last parent, this should be the html tag in most cases.
+            An array of parent elements for the current element. The first is the first parent, the last is the last parent.
     */
     Element.prototype.getParents = function() {
         // Set up the variables
