@@ -843,16 +843,22 @@ define([
         return self;
     };
 
-    Element.prototype.setStyle = function() {
+    /*
+        Function: setHtml
 
-    };
+        Sets the inner HTML for the element.
 
-    Element.prototype.getStyle = function() {
+        Parameters:
 
-    };
+            content - The string to set the HTML to.
 
-    Element.prototype.setHtml = function() {
+        Returns:
 
+            The current element.
+    */
+    Element.prototype.setHtml = function(content) {
+        this.element.innerHTML = content;
+        return this;
     };
 
     Element.prototype.getHtml = function() {
@@ -864,6 +870,14 @@ define([
     };
 
     Element.prototype.getText = function() {
+
+    };
+
+    Element.prototype.setStyle = function() {
+
+    };
+
+    Element.prototype.getStyle = function() {
 
     };
 
