@@ -580,15 +580,15 @@ define([
         return sibs;
     };
 
-    Element.prototype.matches = function() {
-
-    };
-
     Element.prototype.getAllPrevious = function() {
 
     };
 
     Element.prototype.getSiblings = function() {
+
+    };
+
+    Element.prototype.matches = function() {
 
     };
 
