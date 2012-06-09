@@ -420,8 +420,29 @@ define([
         return last;
     };
 
-    Element.prototype.insertFirst = function() {
+    /*
+        Function: insertFirst
 
+        Inserts this element as the first child of the one provided.
+
+        Parameters:
+
+            el - The element to insert into.
+
+        Returns:
+
+            The current element.
+    */
+    Element.prototype.insertFirst = function(el) {
+        // Attempt to to get the first element
+        var first = new Element(el).getFirst();
+
+        // If there is a first, insert before it
+        if(first) {
+            this.insertBefore(first);
+        }
+
+        return this;
     };
 
     Element.prototype.insertAt = function() {
