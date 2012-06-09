@@ -59,6 +59,7 @@ define([
         // Store information about the element
         this.tag = this.element.nodeName.toLowerCase();
         this.type = this.element.nodeType;
+        this.textAttribute = (type(this.element.textContent) === 'function') ? 'textContent' : 'innerText';
     };
 
     /*
@@ -874,12 +875,35 @@ define([
         return this.element.innerHTML;
     };
 
-    Element.prototype.setText = function() {
+    /*
+        Function: setText
 
+        Sets the inner text for the element.
+
+        Parameters:
+
+            content - The string to set the text to.
+
+        Returns:
+
+            The current element.
+    */
+    Element.prototype.setText = function(content) {
+        this.element[this.textAttribute] = content;
+        return this;
     };
 
-    Element.prototype.getText = function() {
+    /*
+        Function: getText
 
+        Gets the current inner text for the element.
+
+        Returns:
+
+            The elements current inner text string.
+    */
+    Element.prototype.getText = function() {
+        return this.element[this.textAttribute];
     };
 
     Element.prototype.setStyle = function() {
