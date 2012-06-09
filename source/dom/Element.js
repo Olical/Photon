@@ -104,7 +104,7 @@ define([
         var res = null;
 
         // Use hasAttribute if possible
-        if(hasAttribute) {
+        if(this.element.hasAttribute) {
             res = this.element.hasAttribute(key);
         }
         else {
