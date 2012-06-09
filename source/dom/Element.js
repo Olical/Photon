@@ -522,8 +522,38 @@ define([
         return children;
     };
 
-    Element.prototype.getDescendants = function() {
+    /*
+        Function: getDescendants
 
+        Recursively fetches all children of the current element and returns them in one flat array.
+
+        Parameters:
+
+            current - You do not need to touch this. An array of children to loop and recurse with. Used internally when recursing.
+
+        Returns:
+
+            An array containing all descendants of the current element.
+    */
+    Element.prototype.getDescendants = function(current) {
+        // Initialise the variables
+        var descendants = [],
+            cur = current || false;
+
+        // If there is no current then set it to the first level of children
+        // Also store this first level
+        if(!cur) {
+            descendants.push(cur = this.getChildren());
+        }
+
+        // Loop over them recursively
+        each(cur, function(el) {
+            descendants.push(el.getChildren());
+        });
+
+        // Return all of the arrays concatenated together
+        // I am so proud of this line...
+        return Array.prototype.concat.apply([], descendants);
     };
 
     Element.prototype.getAllNext = function() {
