@@ -558,8 +558,26 @@ define([
         return Array.prototype.concat.apply([], descendants);
     };
 
-    Element.prototype.getAllNext = function() {
+    /*
+        Function: getAllNext
 
+        Finds all siblings that come after this element.
+
+        Returns:
+
+            An array of the next siblings.
+    */
+    Element.prototype.getAllNext = function() {
+        // Initialise the variables
+        var sibs = [],
+            cur = this;
+
+        // Keep adding the next siblings until we hit a null
+        while((cur = cur.getNext())) {
+            sibs.push(cur);
+        }
+
+        return sibs;
     };
 
     Element.prototype.matches = function() {
