@@ -729,12 +729,16 @@ define([
         Parameters:
 
             cl - The class to remove.
+            classes - An array of classes to check. Useful if you have already run getClasses and you don't want to run the regex twice.
 
         Returns:
 
             The current element.
     */
     Element.prototype.removeClass = function(cl) {
+        // Get the current list of classes
+        var cls = classes || this.getClasses();
+        
         return this;
     };
 
