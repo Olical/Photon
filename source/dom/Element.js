@@ -529,7 +529,7 @@ define([
 
         Parameters:
 
-            current - You do not need to touch this. An array of children to loop and recurse with. Used internally when recursing.
+            current - You do not need to touch this. The current element in the recursive tree. Used internally.
 
         Returns:
 
@@ -538,17 +538,19 @@ define([
     Element.prototype.getDescendants = function(current) {
         // Initialise the variables
         var descendants = [],
-            cur = current || false;
+            direct = null;
 
-        // If there is no current then set it to the first level of children
-        // Also store this first level
-        if(!cur) {
-            descendants.push(cur = this.getChildren());
+        // If there is no current then set it to this
+        if(!current) {
+            current = this;
         }
 
-        // Loop over them recursively
-        each(cur, function(el) {
-            descendants.push(el.getChildren());
+        // Get the direct children and push them to the descendants array
+        descendants.push(direct = current.getChildren());
+
+        // Loop over the current items children recursively
+        each(direct, function(el) {
+            descendants.push(el.getDescendants());
         });
 
         // Return all of the arrays concatenated together
