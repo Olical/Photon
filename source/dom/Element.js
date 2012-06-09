@@ -634,6 +634,33 @@ define([
         return this.element === target.element;
     };
 
+    /*
+        Function: contains
+
+        Checks if this element contains the passed element anywhere in it's descendants.
+
+        Parameters:
+
+            el - The element to look for.
+
+        Returns:
+
+            True if the element is found, false if not.
+    */
+    Element.prototype.contains = function(el) {
+        // Loop over all of the descendants looking for the element
+        // Set the result to true if found
+        var res = false;
+
+        each(this.getDescendants(), function(desc) {
+            if(desc.matches(el)) {
+                res = true;
+            }
+        });
+
+        return res;
+    };
+
     Element.prototype.addClass = function() {
 
     };
