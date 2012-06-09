@@ -679,6 +679,24 @@ define([
     };
 
     /*
+        Function: setClasses
+
+        Writes an array of classes back to the elements className attribute. This will override all present classes.
+
+        Parameters:
+
+            cls - An array of classes to write.
+
+        Returns:
+
+            The current element.
+    */
+    Element.prototype.setClasses = function(cls) {
+        this.element.className = cls.join(' ');
+        return this;
+    };
+
+    /*
         Function: hasClass
 
         Checks if the element has the specified class or not.
