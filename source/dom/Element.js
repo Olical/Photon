@@ -392,6 +392,34 @@ define([
         return first;
     };
 
+    /*
+        Function: getLast
+
+        Gets the last direct child of this element.
+
+        Returns:
+
+            The last child element. If there is no last child then it will return null.
+    */
+    Element.prototype.getLast = function() {
+        // Get the last node
+        var lastEl = this.element.firstChild,
+            last = null;
+
+        // Make sure there is an element there
+        if(lastEl) {
+            // Convert it to a Photon element
+            last = new Element(lastEl);
+
+            // If it is not a full element then return the previous real element
+            if(last.type !== 1) {
+                return last.getPrevious();
+            }
+        }
+
+        return last;
+    };
+
     Element.prototype.insertFirst = function() {
 
     };
