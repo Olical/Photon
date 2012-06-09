@@ -580,8 +580,26 @@ define([
         return sibs;
     };
 
-    Element.prototype.getAllPrevious = function() {
+    /*
+        Function: getAllPrevious
 
+        Finds all siblings that come before this element.
+
+        Returns:
+
+            An array of the previous siblings.
+    */
+    Element.prototype.getAllPrevious = function() {
+        // Initialise the variables
+        var sibs = [],
+            cur = this;
+
+        // Keep adding the previous siblings until we hit a null
+        while((cur = cur.getPrevious())) {
+            sibs.push(cur);
+        }
+
+        return sibs;
     };
 
     Element.prototype.getSiblings = function() {
