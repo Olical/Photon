@@ -809,7 +809,7 @@ define([
 
         Parameters:
 
-            cl - The class to add or remove.
+            cl - The class to add or remove. If you pass an array of classes then all of them will be toggled.
             classes - An array of classes to check. Useful if you have already run getClasses and you don't want to run the regex twice.
 
         Returns:
@@ -820,12 +820,21 @@ define([
         // Get the current list of classes
         var cls = classes || this.getClasses();
 
-        // If found then remove, if not then add
-        if(this.hasClass(cl, cls)) {
-            this.removeClass(cl, cls);
+        // Allow for an array of classes
+        if(type(cl) === 'array') {
+            // Toggle every class
+            each(cl, function(cur) {
+                this.toggleClass(cl, cls);
+            });
         }
         else {
-            this.addClass(cl, cls);
+            // If found then remove, if not then add
+            if(this.hasClass(cl, cls)) {
+                this.removeClass(cl, cls);
+            }
+            else {
+                this.addClass(cl, cls);
+            }
         }
 
         return this;
