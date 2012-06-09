@@ -503,6 +503,10 @@ define([
 
     };
 
+    Element.prototype.getDescendants = function() {
+
+    };
+
     Element.prototype.getAllNext = function() {
 
     };
