@@ -2,8 +2,9 @@ define([
     '../core/Class',
     '../core/type',
     '../core/each',
-    '../core/contains'
-], function(Class, type, each, contains) {
+    '../core/contains',
+    '../core/index'
+], function(Class, type, each, contains, index) {
     /*
         Class: Element
         
@@ -17,6 +18,7 @@ define([
             - <type>
             - <each>
             - <contains>
+            - <index>
     */
     var Element = new Class();
 
@@ -735,10 +737,20 @@ define([
 
             The current element.
     */
-    Element.prototype.removeClass = function(cl) {
-        // Get the current list of classes
-        var cls = classes || this.getClasses();
-        
+    Element.prototype.removeClass = function(cl, classes) {
+        // Get the current list of classes and initialise any required variables
+        var cls = classes || this.getClasses(),
+            pos = null;
+
+        // Get the index of the class in the class list
+        pos = index(cls, cl);
+
+        // If it was found then remove it and write back
+        if(pos !== -1) {
+            cls.splice(pos, 1);
+            this.element.className = cls.join(' ');
+        }
+
         return this;
     };
 
