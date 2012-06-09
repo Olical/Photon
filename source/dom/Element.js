@@ -499,8 +499,27 @@ define([
         return new Element(this.element.cloneNode(recursive || false));
     };
 
-    Element.prototype.getChildren = function() {
+    /*
+        Function: getChildren
 
+        Fetches this elements direct children.
+
+        Returns:
+
+            An array of child elements.
+    */
+    Element.prototype.getChildren = function() {
+        // Initialise the variables
+        var children = [];
+
+        // Loop over the raw elements storing ones that are real elements
+        each(this.element.childNodes, function(el) {
+            if(el.nodeType === 1) {
+                children.push(new Element(el));
+            }
+        });
+
+        return children;
     };
 
     Element.prototype.getDescendants = function() {
