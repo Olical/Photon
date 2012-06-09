@@ -330,7 +330,7 @@ define([
         var target = new Element(el);
 
         // Append this as the child
-        el.element.appendChild(this.element);
+        target.element.appendChild(this.element);
 
         return this;
     };
