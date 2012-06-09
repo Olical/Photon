@@ -615,8 +615,23 @@ define([
         return this.getAllPrevious().concat(this.getAllNext());
     };
 
-    Element.prototype.matches = function() {
+    /*
+        Function: matches
 
+        Compares this element to another.
+
+        Parameters:
+
+            el - The element to compare to.
+
+        Returns:
+
+            True if this and the passed element match, false if not.
+    */
+    Element.prototype.matches = function(el) {
+        var target = new Element(el);
+
+        return this.element === target.element;
     };
 
     Element.prototype.addClass = function() {
