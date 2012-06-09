@@ -196,7 +196,7 @@ define([
     */
     Element.prototype.getParent = function() {
         // Get the parent
-        var parent = this.element.parentElement || this.element.parentNode;
+        var parent = this.element.parentNode;
 
         // If it is truthy then return the element, otherwise return null
         if(parent && parent !== document) {
