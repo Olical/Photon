@@ -59,7 +59,7 @@ define([
         // Store information about the element
         this.tag = this.element.nodeName.toLowerCase();
         this.type = this.element.nodeType;
-        this.textAttribute = (type(this.element.textContent) === 'function') ? 'textContent' : 'innerText';
+        this.textAttribute = (type(this.element.textContent) === 'string') ? 'textContent' : 'innerText';
     };
 
     /*
