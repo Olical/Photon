@@ -735,7 +735,7 @@ define([
         // If it does not currently contain this class then add it to the array and write it back
         if(!this.hasClass(cl, cls)) {
             cls.push(cl);
-            this.element.className = cls.join(' ');
+            this.setClasses(cls);
         }
 
         return this;
@@ -766,7 +766,7 @@ define([
         // If it was found then remove it and write back
         if(pos !== -1) {
             cls.splice(pos, 1);
-            this.element.className = cls.join(' ');
+            this.setClasses(cls);
         }
 
         return this;
