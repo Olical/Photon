@@ -282,15 +282,28 @@ define([
         return this;
     };
 
+    /*
+        Function: insertLast
+
+        Inserts this element into the passed one. It will be inserted as the last element.
+
+        Parameters:
+
+            el - The element to insert into.
+
+        Returns:
+
+            The current element.
+    */
+    Element.prototype.insertLast = function(el) {
+        
+    };
+
     Element.prototype.insertAfter = function() {
 
     };
 
     Element.prototype.insertFirst = function() {
-
-    };
-
-    Element.prototype.insertLast = function() {
 
     };
 
