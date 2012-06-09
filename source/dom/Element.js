@@ -861,8 +861,17 @@ define([
         return this;
     };
 
-    Element.prototype.getHtml = function() {
+    /*
+        Function: getHtml
 
+        Gets the current inner HTML for the element.
+
+        Returns:
+
+            The elements current inner HTML string.
+    */
+    Element.prototype.getHtml = function() {
+        return this.element.innerHTML;
     };
 
     Element.prototype.setText = function() {
