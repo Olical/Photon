@@ -174,5 +174,19 @@ define(['photon/dom/Element'], function(Element) {
             expect(c.getAllNext().length).toEqual(1);
             expect(b.getAllNext().length).toEqual(2);
         });
+
+        it('should get all previous', function() {
+            var a = new Element('div');
+            var b = new Element('p');
+            var c = new Element('p');
+            var d = new Element('p');
+            b.insertLast(a);
+            c.insertLast(a);
+            d.insertLast(a);
+
+            expect(d.getAllPrevious().length).toEqual(2);
+            expect(c.getAllPrevious().length).toEqual(1);
+            expect(b.getAllPrevious().length).toEqual(0);
+        });
     });
 });
