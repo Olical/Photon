@@ -294,7 +294,6 @@ define(['photon/dom/Element'], function(Element) {
             expect(a.getText()).toEqual('');
             a.setText('<p>Hello.</p>');
             expect(a.getText()).toEqual('<p>Hello.</p>');
-            console.log(a);
             a.setText('');
             expect(a.getText()).toEqual('');
         });
