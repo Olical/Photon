@@ -719,7 +719,7 @@ define([
             An array of CSS classes.
     */
     Element.prototype.getClasses = function() {
-        return this.element.className.split(/\s+/);
+        return (this.element.className) ? this.element.className.split(/\s+/) : [];
     };
 
     /*
