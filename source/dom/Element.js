@@ -166,39 +166,24 @@ define([
     /*
         Function: getAttribute
 
-        Retrieves the named attribute from the element. If no key is passed then all attributes will be returned in an object.
+        Retrieves the named attribute from the element.
 
         Parameters:
 
-            key - The name of the value you wish to retrieve, such as `title`. If not passed then you will be given all attributes in an object.
+            key - The name of the value you wish to retrieve, such as `title`.
 
         Returns:
 
-            The found value or null if there was none. If there is no key then an object will be returned containing all of the attributes.
-
-            If there are no attributes a blank object will be returned.
+            The found value or null if there was none.
     */
     Element.prototype.getAttribute = function(key) {
-        // Check for the key
-        if(key) {
-            // We have one, check if it exits
-            if(this.hasAttribute(key)) {
-                // It does, return it
-                return this.element.getAttribute(key);
-            }
-        }
-        else {
-            // There is no key, build and return the attribute object
-            var attrs = {};
-
-            each(this.element.attributes, function(value) {
-                attrs[value.name] = value.value;
-            });
-
-            return attrs;
+        // We have one, check if it exits
+        if(this.hasAttribute(key)) {
+            // It does, return it
+            return this.element.getAttribute(key);
         }
 
-        // Default to null, this will only happen if a key was passed and no value was found
+        // Default to null, this will only happen if no value was found
         return null;
     };
 
