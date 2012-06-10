@@ -160,5 +160,19 @@ define(['photon/dom/Element'], function(Element) {
             c.remove();
             expect(a.getChildren().length).toEqual(0);
         });
+
+        it('should get all next', function() {
+            var a = new Element('div');
+            var b = new Element('p');
+            var c = new Element('p');
+            var d = new Element('p');
+            b.insertLast(a);
+            c.insertLast(a);
+            d.insertLast(a);
+
+            expect(d.getAllNext().length).toEqual(0);
+            expect(c.getAllNext().length).toEqual(1);
+            expect(b.getAllNext().length).toEqual(2);
+        });
     });
 });
