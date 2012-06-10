@@ -59,6 +59,12 @@ define([
         // Store information about the element
 
         /*
+            Variable: element
+
+            The native DOM element.
+        */
+
+        /*
             Variable: tag
 
             The current element's tag name as a lower case string.
