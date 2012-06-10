@@ -157,7 +157,7 @@ define([
         }
         else {
             // Otherwise use getAttribute with a null check
-            res = (this.element.getAttribute('key') !== null);
+            res = (this.element.getAttribute('key') !== '');
         }
 
         return res;
