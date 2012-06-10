@@ -510,7 +510,7 @@ define([
         var target = new Element(el);
 
         // Replace the target
-        target.getParent().element.replaceChild(this.element, el);
+        target.getParent().element.replaceChild(this.element, el.element);
 
         return this;
     };
