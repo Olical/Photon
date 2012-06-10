@@ -58,6 +58,7 @@ define(['photon/dom/Element'], function(Element) {
             var b = new Element('ol');
             b.insertBefore(a);
             expect(a.getPrevious().tag).toEqual('ol');
+            b.remove();
         });
 
         it('should set and get attributes', function() {
@@ -81,6 +82,54 @@ define(['photon/dom/Element'], function(Element) {
             expect(a.getAttribute('data-test')).toEqual('foo');
             a.removeAttribute('data-test');
             expect(a.getAttribute('data-test')).toEqual(null);
+        });
+
+        it('should insert after elements', function() {
+            var a = new Element('strong');
+            a.insertAfter(elOutside);
+            expect(a.getPrevious().matches(elOutside)).toEqual(true);
+            a.remove();
+        });
+
+        it('should insert first', function() {
+            var a = new Element('strong');
+            a.insertFirst(document.body);
+            expect(a.getParent().matches(document.body)).toEqual(true);
+            expect(a.getPrevious()).toEqual(null);
+            expect(a.getNext()).not.toEqual(null);
+            a.remove();
+        });
+
+        it('should insert last', function() {
+            var a = new Element('strong');
+            a.insertLast(document.body);
+            expect(a.getParent().matches(document.body)).toEqual(true);
+            expect(a.getNext()).toEqual(null);
+            expect(a.getPrevious()).not.toEqual(null);
+            a.remove();
+        });
+
+        it('should replace elements', function() {
+            var a = new Element('strong');
+            var b = new Element('em');
+            var body = new Element(document.body);
+            a.insertFirst(body);
+            expect(body.getChildren()[0].matches(a)).toEqual(true);
+            expect(a.getParent()).not.toEqual(null);
+            expect(b.getParent()).toEqual(null);
+            b.replace(a);
+            expect(body.getChildren()[0].matches(b)).toEqual(true);
+            expect(a.getParent()).toEqual(null);
+            expect(b.getParent()).not.toEqual(null);
+            b.remove();
+        });
+
+        it('should remove elements', function() {
+            var a = new Element('strong');
+            a.insertFirst(document.body);
+            expect(a.getParent().matches(document.body)).toEqual(true);
+            a.remove();
+            expect(a.getParent()).toEqual(null);
         });
     });
 });
