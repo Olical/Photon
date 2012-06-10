@@ -57,8 +57,43 @@ define([
         }
 
         // Store information about the element
+
+        /*
+            Variable: tag
+
+            The current element's tag name as a lower case string.
+        */
         this.tag = this.element.nodeName.toLowerCase();
+
+        /*
+            Variable: type
+
+            The current element's node type.
+
+            Values:
+
+                ELEMENT_NODE - 1
+                ATTRIBUTE_NODE - 2
+                TEXT_NODE - 3
+                CDATA_SECTION_NODE - 4
+                ENTITY_REFERENCE_NODE - 5
+                ENTITY_NODE - 6
+                PROCESSING_INSTRUCTION_NODE - 7
+                COMMENT_NODE - 8
+                DOCUMENT_NODE - 9
+                DOCUMENT_TYPE_NODE - 10
+                DOCUMENT_FRAGMENT_NODE - 11
+                NOTATION_NODE - 12
+        */
         this.type = this.element.nodeType;
+
+        /*
+            Variable: textAttribute
+
+            The key to be used when accessing the elements text. This can either be textContent or innerText.
+
+            This is used internally by the <getText> and <setText> methods.
+        */
         this.textAttribute = (type(this.element.textContent) === 'string') ? 'textContent' : 'innerText';
     };
 
@@ -707,7 +742,7 @@ define([
         Parameters:
 
             cl - The class to check for. You can also pass an array of classes, it will then check if it has all of them.
-            classes - An array of classes to check. Useful if you have already run getClasses and you don't want to run the regex twice.
+            classes - An array of classes to check. Useful if you have already run <getClasses> and you don't want to run the regex twice.
 
         Returns:
 
@@ -735,7 +770,7 @@ define([
         Parameters:
 
             cl - The class to add if not already present. If you pass an array of classes then all will be added.
-            classes - An array of classes to check. Useful if you have already run getClasses and you don't want to run the regex twice.
+            classes - An array of classes to check. Useful if you have already run <getClasses> and you don't want to run the regex twice.
 
         Returns:
 
@@ -772,7 +807,7 @@ define([
         Parameters:
 
             cl - The class to remove. If you pass an array of classes then all of them will be removed.
-            classes - An array of classes to check. Useful if you have already run getClasses and you don't want to run the regex twice.
+            classes - An array of classes to check. Useful if you have already run <getClasses> and you don't want to run the regex twice.
 
         Returns:
 
@@ -813,7 +848,7 @@ define([
         Parameters:
 
             cl - The class to add or remove. If you pass an array of classes then all of them will be toggled.
-            classes - An array of classes to check. Useful if you have already run getClasses and you don't want to run the regex twice.
+            classes - An array of classes to check. Useful if you have already run <getClasses> and you don't want to run the regex twice.
 
         Returns:
 

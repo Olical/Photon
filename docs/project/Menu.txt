@@ -80,5 +80,6 @@ Group: Index  {
    Class Index: Classes
    Function Index: Functions
    File Index: Files
+   Variable Index: Variables
    }  # Group: Index
 
