@@ -1,13 +1,13 @@
 define(['photon/core/index'], function(index) {
     describe('photon/core/index', function() {
-        it('should search strings', function() {
+        it('search strings', function() {
             var a = 'photon';
             expect(index(a, 'ton')).toEqual(3);
             expect(index(a, 'pho')).toEqual(0);
             expect(index(a, 'foo')).toEqual(-1);
         });
 
-        it('should search arrays', function() {
+        it('search arrays', function() {
             var a = [
                 'foo',
                 'bar',
@@ -18,7 +18,7 @@ define(['photon/core/index'], function(index) {
             expect(index(a, 'gone')).toEqual(-1);
         });
 
-        it('should check if a list is indexable', function() {
+        it('check if a list is indexable', function() {
             expect(index('')).toEqual(true);
             expect(index([])).toEqual(true);
             expect(index(arguments)).toEqual(false);

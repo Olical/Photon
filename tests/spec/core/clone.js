@@ -1,6 +1,6 @@
 define(['photon/core/clone'], function(clone) {
     describe('photon/core/clone', function() {
-        it('should clone an array', function() {
+        it('clone an array', function() {
             var b = ['foo', 'bar', 'baz'];
             var a = clone(b);
             a[1] = 'rab';
@@ -8,7 +8,7 @@ define(['photon/core/clone'], function(clone) {
             expect(b[1]).toEqual('bar');
         });
         
-        it('should clone a nested array', function() {
+        it('clone a nested array', function() {
             var b = ['foo', ['boo', 'bar'], 'baz'];
             var a = clone(b);
             a[1][1] = 'rab';
@@ -16,7 +16,7 @@ define(['photon/core/clone'], function(clone) {
             expect(b[1][1]).toEqual('bar');
         });
         
-        it('should clone a object', function() {
+        it('clone a object', function() {
             var b = {
                 'one': 'foo',
                 'two': 'bar',
@@ -28,7 +28,7 @@ define(['photon/core/clone'], function(clone) {
             expect(b.two).toEqual('bar');
         });
         
-        it('should clone a nested object', function() {
+        it('clone a nested object', function() {
             var b = {
                 'one': 'foo',
                 'two': {
@@ -43,7 +43,7 @@ define(['photon/core/clone'], function(clone) {
             expect(b.two.n2).toEqual('bar');
         });
         
-        it('should fail without using it', function() {
+        it('fail without using it', function() {
             var b = ['foo', 'bar', 'baz'];
             var a = b;
             a[1] = 'rab';
@@ -51,7 +51,7 @@ define(['photon/core/clone'], function(clone) {
             expect(b[1]).toEqual('rab');
         });
         
-        it('should clone a mix of object, array and variable', function() {
+        it('clone a mix of object, array and variable', function() {
             var b = {
                 'one': 'foo',
                 'two': {

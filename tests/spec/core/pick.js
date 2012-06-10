@@ -1,6 +1,6 @@
 define(['photon/core/pick'], function(pick) {
     describe('photon/core/pick', function() {
-        it('should return an array of items that passed the checker', function() {
+        it('return an array of items that passed the checker', function() {
             var list = [
                 'foo',
                 'foo',

@@ -8,7 +8,7 @@ define(['photon/core/some'], function(some) {
     }
 
     describe('photon/core/some', function() {
-        it('should return false if none are correct', function() {
+        it('return false if none are correct', function() {
             var bad = [
                 'foo',
                 'bar',
@@ -19,7 +19,7 @@ define(['photon/core/some'], function(some) {
             expect(some(bad, checker)).toEqual(false);
         });
 
-        it('should return true if one is correct', function() {
+        it('return true if one is correct', function() {
             var good = [
                 'foo',
                 'bar',

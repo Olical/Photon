@@ -1,11 +1,11 @@
 define(['photon/core/Class'], function(Class) {
     describe('photon/core/Class', function() {
-        it('should create an instance', function() {
+        it('create an instance', function() {
             var a = new Class();
             expect(a).toBeTruthy();
         });
         
-        it('should allow methods', function() {
+        it('allow methods', function() {
             var Test = new Class();
             Test.prototype.foo = function() {
                 return true;
@@ -14,7 +14,7 @@ define(['photon/core/Class'], function(Class) {
             expect(a.foo()).toEqual(true);
         });
         
-        it('should allow extension of normal classes', function() {
+        it('allow extension of normal classes', function() {
             function Vanilla() {}
             Vanilla.prototype.foo = function() {
                 return 'this is foo';
@@ -30,7 +30,7 @@ define(['photon/core/Class'], function(Class) {
             expect(a.bar()).toEqual('this is bar');
         });
         
-        it('should allow extension', function() {
+        it('allow extension', function() {
             var Test = new Class();
             Test.prototype.foo = function() {
                 return true;
@@ -63,7 +63,7 @@ define(['photon/core/Class'], function(Class) {
             expect(b.bar()).toEqual(false);
         });
         
-        it('should run the constructor', function() {
+        it('run the constructor', function() {
             var a = false;
             var Test = new Class();
             Test.prototype.construct = function() {
@@ -73,7 +73,7 @@ define(['photon/core/Class'], function(Class) {
             expect(a).toEqual(true);
         });
 
-        it('should allow inherited method calls', function() {
+        it('allow inherited method calls', function() {
             var Foo = new Class();
             Foo.prototype.run = function() {
                 // Original code
@@ -93,7 +93,7 @@ define(['photon/core/Class'], function(Class) {
             test.run();
         });
 
-        it('should allow you to check where it came from', function() {
+        it('allow you to check where it came from', function() {
             var Foo = new Class();
             Foo.prototype.baz = function() {
                 // Some code

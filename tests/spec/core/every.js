@@ -8,7 +8,7 @@ define(['photon/core/every'], function(every) {
     }
 
     describe('photon/core/every', function() {
-        it('should return true if all are correct', function() {
+        it('return true if all are correct', function() {
             var good = [
                 'foo',
                 'bar',
@@ -19,7 +19,7 @@ define(['photon/core/every'], function(every) {
             expect(every(good, checker)).toEqual(true);
         });
 
-        it('should return false if all are wrong', function() {
+        it('return false if all are wrong', function() {
             var bad = [
                 'foo',
                 'bar',

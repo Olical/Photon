@@ -1,6 +1,6 @@
 define(['photon/core/merge'], function(merge) {
     describe('photon/core/merge', function() {
-        it('should merge two simple objects', function() {
+        it('merge two simple objects', function() {
             var c = {
                 one: 'foo'
             };
@@ -14,7 +14,7 @@ define(['photon/core/merge'], function(merge) {
             expect(b.one).toBeUndefined();
         });
         
-        it('should merge two deeper objects', function() {
+        it('merge two deeper objects', function() {
             var c = {
                 one: {
                     one: 'foo'
@@ -32,7 +32,7 @@ define(['photon/core/merge'], function(merge) {
             expect(b.one.one).toBeUndefined();
         });
         
-        it('should override arrays', function() {
+        it('override arrays', function() {
             var c = {
                 one: ['a', 'b']
             };

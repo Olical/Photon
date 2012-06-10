@@ -1,6 +1,6 @@
 define(['photon/core/each'], function(each) {
     describe('photon/core/each', function() {
-        it('should pass all values from an array', function() {
+        it('pass all values from an array', function() {
             var b = ['a', 'b', 'c'];
             var a = '';
             each(b, function(value) {
@@ -9,7 +9,7 @@ define(['photon/core/each'], function(each) {
             expect(a).toEqual('abc');
         });
         
-        it('should pass all values from an object', function() {
+        it('pass all values from an object', function() {
             var b = {
                 'one': 'a',
                 'two': 'b',
@@ -22,7 +22,7 @@ define(['photon/core/each'], function(each) {
             expect(a).toEqual('abc');
         });
         
-        it('should pass all keys from an array', function() {
+        it('pass all keys from an array', function() {
             var b = ['a', 'b', 'c'];
             var a = '';
             each(b, function(value, key) {
@@ -31,7 +31,7 @@ define(['photon/core/each'], function(each) {
             expect(a).toEqual('012');
         });
         
-        it('should pass all keys from an object (not always the same order)', function() {
+        it('pass all keys from an object (not always the same order)', function() {
             var b = {
                 'x': 'a',
                 'y': 'b',
@@ -46,7 +46,7 @@ define(['photon/core/each'], function(each) {
             expect(a).toContain('z');
         });
         
-        it('should pass all characters from a string', function() {
+        it('pass all characters from a string', function() {
             var b = 'abc';
             var a = '';
             each(b, function(value) {
@@ -55,7 +55,7 @@ define(['photon/core/each'], function(each) {
             expect(a).toEqual('a-b-c-');
         });
 
-        it('should check if a list is iterable', function() {
+        it('check if a list is iterable', function() {
             expect(each('')).toEqual(false);
             expect(each([])).toEqual(true);
             expect(each(arguments)).toEqual(true);
