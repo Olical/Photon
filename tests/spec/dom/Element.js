@@ -65,7 +65,6 @@ define(['photon/dom/Element'], function(Element) {
             var a = new Element(el);
             a.setAttribute('title', 'Photon element');
             expect(a.getAttribute('title')).toEqual('Photon element');
-            expect(a.getAttribute().title).toEqual('Photon element');
             expect(a.getAttribute('foo')).toEqual(null);
         });
 
