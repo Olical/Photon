@@ -451,7 +451,7 @@ define([
     */
     Element.prototype.getLast = function() {
         // Get the last node
-        var lastEl = this.element.firstChild,
+        var lastEl = this.element.lastChild,
             last = null;
 
         // Make sure there is an element there
