@@ -283,7 +283,7 @@ define(['photon/dom/Element'], function(Element) {
             var a = new Element('div');
             expect(a.getHtml()).toEqual('');
             a.setHtml('<p>Hello.</p>');
-            expect(a.getHtml()).toEqual('<p>Hello.</p>');
+            expect(a.getHtml().toLowerCase()).toEqual('<p>hello.</p>');
             expect(a.getChildren()[0].getHtml()).toEqual('Hello.');
             a.setHtml('');
             expect(a.getHtml()).toEqual('');
