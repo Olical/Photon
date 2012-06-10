@@ -131,5 +131,34 @@ define(['photon/dom/Element'], function(Element) {
             a.remove();
             expect(a.getParent()).toEqual(null);
         });
+
+        it('should clone elements', function() {
+            var a = new Element('strong');
+            var ins = new Element('em');
+            ins.insertLast(a);
+            expect(a.contains(ins)).toEqual(true);
+            expect(a.matches(a)).toEqual(true);
+            var b = a.clone();
+            expect(b.getChildren().length).toEqual(0);
+            expect(a.matches(b)).toEqual(false);
+            var c = a.clone(true);
+            expect(c.getChildren().length).toEqual(1);
+            expect(a.tag).toEqual(b.tag);
+        });
+
+        it('should get children', function() {
+            var a = new Element('div');
+            var b = new Element('strong');
+            var c = new Element('em');
+            expect(a.getChildren().length).toEqual(0);
+            b.insertLast(a);
+            expect(a.getChildren().length).toEqual(1);
+            c.insertLast(a);
+            expect(a.getChildren().length).toEqual(2);
+            b.remove();
+            expect(a.getChildren().length).toEqual(1);
+            c.remove();
+            expect(a.getChildren().length).toEqual(0);
+        });
     });
 });
