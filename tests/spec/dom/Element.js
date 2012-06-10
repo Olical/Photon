@@ -161,7 +161,7 @@ define(['photon/dom/Element'], function(Element) {
             expect(a.getChildren().length).toEqual(0);
         });
 
-        it('should get all next', function() {
+        it('get all next', function() {
             var a = new Element('div');
             var b = new Element('p');
             var c = new Element('p');
@@ -175,7 +175,7 @@ define(['photon/dom/Element'], function(Element) {
             expect(b.getAllNext().length).toEqual(2);
         });
 
-        it('should get all previous', function() {
+        it('get all previous', function() {
             var a = new Element('div');
             var b = new Element('p');
             var c = new Element('p');
@@ -189,7 +189,7 @@ define(['photon/dom/Element'], function(Element) {
             expect(b.getAllPrevious().length).toEqual(0);
         });
 
-        it('should match elements', function() {
+        it('match elements', function() {
             var a = new Element('strong');
             var b = new Element('em');
 
@@ -197,6 +197,178 @@ define(['photon/dom/Element'], function(Element) {
             expect(a.matches(a)).toEqual(true);
             expect(a.matches(a.element)).toEqual(true);
             expect(a.matches(a.clone())).toEqual(false);
+        });
+
+        it('get all siblings', function() {
+            var a = new Element('div');
+            var b = new Element('p');
+            var c = new Element('p');
+            var d = new Element('p');
+
+            expect(b.getSiblings().length).toEqual(0);
+
+            b.insertLast(a);
+
+            expect(b.getSiblings().length).toEqual(0);
+
+            c.insertLast(a);
+
+            expect(b.getSiblings().length).toEqual(1);
+
+            d.insertLast(a);
+
+            expect(b.getSiblings().length).toEqual(2);
+        });
+
+        it('allow the setting and getting of class arrays', function() {
+            var a = new Element('div');
+            var cls = ['foo', 'bar', 'baz'];
+            expect(a.getClasses()).toEqual([]);
+            a.setClasses(cls);
+            expect(a.getClasses()).toEqual(cls);
+        });
+
+        it('add classes', function() {
+            var a = new Element('div');
+
+            a.addClass('foo');
+            expect(a.getClasses()).toEqual(['foo']);
+
+            a.addClass('bar');
+            expect(a.getClasses()).toEqual(['foo', 'bar']);
+
+            a.addClass('baz');
+            expect(a.getClasses()).toEqual(['foo', 'bar', 'baz']);
+
+            a.addClass(['x', 'y']);
+            expect(a.getClasses()).toEqual(['foo', 'bar', 'baz', 'x', 'y']);
+        });
+
+        it('remove classes', function() {
+            var a = new Element('div');
+            a.addClass(['foo', 'bar', 'baz', 'x', 'y']);
+            expect(a.getClasses()).toEqual(['foo', 'bar', 'baz', 'x', 'y']);
+            a.removeClass('bar');
+            expect(a.getClasses()).toEqual(['foo', 'baz', 'x', 'y']);
+            a.removeClass(['baz', 'y']);
+            expect(a.getClasses()).toEqual(['foo', 'x']);
+            a.removeClass(['foo', 'x']);
+            expect(a.getClasses()).toEqual([]);
+        });
+
+        it('check for classes', function() {
+            var a = new Element('div');
+            expect(a.hasClass('foo')).toEqual(false);
+            a.addClass(['foo', 'bar', 'baz']);
+            expect(a.hasClass('x')).toEqual(false);
+            expect(a.hasClass('bar')).toEqual(true);
+            expect(a.hasClass(['baz', 'x'])).toEqual(false);
+            expect(a.hasClass(['bar', 'baz'])).toEqual(true);
+        });
+
+        it('toggle classes', function() {
+            var a = new Element('div');
+            expect(a.hasClass('foo')).toEqual(false);
+            a.toggleClass('foo');
+            expect(a.hasClass('foo')).toEqual(true);
+            a.toggleClass('bar');
+            expect(a.hasClass(['foo', 'bar'])).toEqual(true);
+            a.toggleClass('foo');
+            expect(a.hasClass('foo')).toEqual(false);
+            a.toggleClass(['foo', 'baz']);
+            expect(a.hasClass(['foo', 'bar', 'baz'])).toEqual(true);
+        });
+
+        it('manipulate inner html', function() {
+            var a = new Element('div');
+            expect(a.getHtml()).toEqual('');
+            a.setHtml('<p>Hello.</p>');
+            expect(a.getHtml()).toEqual('<p>Hello.</p>');
+            expect(a.getChildren()[0].getHtml()).toEqual('Hello.');
+            a.setHtml('');
+            expect(a.getHtml()).toEqual('');
+        });
+
+        it('manipulate inner text', function() {
+            var a = new Element('div');
+            expect(a.getText()).toEqual('');
+            a.setText('<p>Hello.</p>');
+            expect(a.getText()).toEqual('<p>Hello.</p>');
+            console.log(a);
+            a.setText('');
+            expect(a.getText()).toEqual('');
+        });
+
+        it('get the first element', function() {
+            var a = new Element('div');
+            var b = new Element('p');
+            var c = new Element('p');
+            var d = new Element('p');
+
+            b.insertLast(a);
+            c.insertLast(a);
+            d.insertLast(a);
+
+            expect(a.getFirst().matches(b)).toEqual(true);
+            expect(a.getFirst().matches(c)).toEqual(false);
+            expect(a.getFirst().matches(d)).toEqual(false);
+        });
+
+        it('get the last element', function() {
+            var a = new Element('div');
+            var b = new Element('p');
+            var c = new Element('p');
+            var d = new Element('p');
+
+            b.insertLast(a);
+            c.insertLast(a);
+            d.insertLast(a);
+
+            expect(a.getLast().matches(b)).toEqual(false);
+            expect(a.getLast().matches(c)).toEqual(false);
+            expect(a.getLast().matches(d)).toEqual(true);
+        });
+
+        it('get all descendants', function() {
+            var a = new Element('div');
+            var b = new Element('p');
+            var c = new Element('p');
+            var d = new Element('p');
+            var e = new Element('strong');
+
+            expect(a.getDescendants()).toEqual([]);
+
+            b.insertLast(a);
+            c.insertLast(a);
+            d.insertLast(a);
+
+            expect(a.getDescendants()).toEqual([b, c, d]);
+
+            e.insertLast(d);
+
+            expect(a.getDescendants()).toEqual([b, c, d, e]);
+        });
+
+        it('contains another element', function() {
+            var a = new Element('div');
+            var b = new Element('p');
+            var c = new Element('p');
+            var d = new Element('p');
+            var e = new Element('strong');
+
+            b.insertLast(a);
+            c.insertLast(a);
+
+            expect(a.contains(d)).toEqual(false);
+
+            d.insertLast(a);
+
+            expect(a.contains(d)).toEqual(true);
+            expect(a.contains(e)).toEqual(false);
+
+            e.insertLast(d);
+
+            expect(a.contains(e)).toEqual(true);
         });
     });
 });
