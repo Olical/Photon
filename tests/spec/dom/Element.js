@@ -4,40 +4,40 @@ define(['photon/dom/Element'], function(Element) {
         el = document.getElementById('test-el');
 
     describe('photon/dom/Element', function() {
-        it('should create elements', function() {
+        it('create elements', function() {
             var a = new Element('p');
             expect(a.type).toEqual(1);
             expect(a.tag).toEqual('p');
         });
 
-        it('should adopt Photon elements', function() {
+        it('adopt Photon elements', function() {
             var b = new Element('a');
             var a = new Element(b);
             expect(a.type).toEqual(1);
             expect(a.tag).toEqual('a');
         });
 
-        it('should adopt native elements', function() {
+        it('adopt native elements', function() {
             var b = new Element('div');
             var a = new Element(b.element);
             expect(a.type).toEqual(1);
             expect(a.tag).toEqual('div');
         });
 
-        it('should access an elements parent', function() {
+        it('access an elements parent', function() {
             var a = new Element(el);
             expect(a.getParent().matches(elParent)).toEqual(true);
             expect(a.getParent().getParent().getParent().getParent().getParent()).toEqual(null);
         });
 
-        it('should access an elements parents', function() {
+        it('access an elements parents', function() {
             var a = new Element(el);
             var parents = a.getParents();
             expect(parents.length).toEqual(4);
             expect(parents[0].getParents().length).toEqual(3);
         });
 
-        it('should get the next element', function() {
+        it('get the next element', function() {
             var a = new Element(el);
             var b = new Element(elParent);
 
@@ -45,7 +45,7 @@ define(['photon/dom/Element'], function(Element) {
             expect(b.getNext().tag).toEqual('p');
         });
 
-        it('should get the previous element', function() {
+        it('get the previous element', function() {
             var a = new Element(el);
             var b = new Element(elParent);
 
@@ -53,7 +53,7 @@ define(['photon/dom/Element'], function(Element) {
             expect(b.getPrevious().tag).toEqual('ul');
         });
 
-        it('should allow adding elements before another', function() {
+        it('allow adding elements before another', function() {
             var a = new Element(elOutside);
             var b = new Element('ol');
             b.insertBefore(a);
@@ -61,7 +61,7 @@ define(['photon/dom/Element'], function(Element) {
             b.remove();
         });
 
-        it('should set and get attributes', function() {
+        it('set and get attributes', function() {
             var a = new Element(el);
             a.setAttribute('title', 'Photon element');
             expect(a.getAttribute('title')).toEqual('Photon element');
@@ -69,14 +69,14 @@ define(['photon/dom/Element'], function(Element) {
             expect(a.getAttribute('foo')).toEqual(null);
         });
 
-        it('should check for an attributes existence', function() {
+        it('check for an attributes existence', function() {
             var a = new Element(el);
             a.setAttribute('data-exists', 'test');
             expect(a.hasAttribute('data-exists')).toEqual(true);
             expect(a.hasAttribute('data-does-not-exist')).toEqual(false);
         });
 
-        it('should remove attributes', function() {
+        it('remove attributes', function() {
             var a = new Element('div');
             a.setAttribute('data-test', 'foo');
             expect(a.getAttribute('data-test')).toEqual('foo');
@@ -84,14 +84,14 @@ define(['photon/dom/Element'], function(Element) {
             expect(a.getAttribute('data-test')).toEqual(null);
         });
 
-        it('should insert after elements', function() {
+        it('insert after elements', function() {
             var a = new Element('strong');
             a.insertAfter(elOutside);
             expect(a.getPrevious().matches(elOutside)).toEqual(true);
             a.remove();
         });
 
-        it('should insert first', function() {
+        it('insert first', function() {
             var a = new Element('strong');
             a.insertFirst(document.body);
             expect(a.getParent().matches(document.body)).toEqual(true);
@@ -100,7 +100,7 @@ define(['photon/dom/Element'], function(Element) {
             a.remove();
         });
 
-        it('should insert last', function() {
+        it('insert last', function() {
             var a = new Element('strong');
             a.insertLast(document.body);
             expect(a.getParent().matches(document.body)).toEqual(true);
@@ -109,7 +109,7 @@ define(['photon/dom/Element'], function(Element) {
             a.remove();
         });
 
-        it('should replace elements', function() {
+        it('replace elements', function() {
             var a = new Element('strong');
             var b = new Element('em');
             var body = new Element(document.body);
@@ -124,7 +124,7 @@ define(['photon/dom/Element'], function(Element) {
             b.remove();
         });
 
-        it('should remove elements', function() {
+        it('remove elements', function() {
             var a = new Element('strong');
             a.insertFirst(document.body);
             expect(a.getParent().matches(document.body)).toEqual(true);
@@ -132,7 +132,7 @@ define(['photon/dom/Element'], function(Element) {
             expect(a.getParent()).toEqual(null);
         });
 
-        it('should clone elements', function() {
+        it('clone elements', function() {
             var a = new Element('strong');
             var ins = new Element('em');
             ins.insertLast(a);
@@ -146,7 +146,7 @@ define(['photon/dom/Element'], function(Element) {
             expect(a.tag).toEqual(b.tag);
         });
 
-        it('should get children', function() {
+        it('get children', function() {
             var a = new Element('div');
             var b = new Element('strong');
             var c = new Element('em');
