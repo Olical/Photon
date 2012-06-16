@@ -386,7 +386,7 @@ define(['photon/dom/Element'], function(Element) {
 
             expect(a.getStyle('width')).toEqual('10px');
             expect(a.getStyle('height')).toEqual('20px');
-            expect(a.getStyle('margin')).toEqual('30px');
+            expect(a.getStyle('margin')).toContain('30px');
         });
     });
 });
