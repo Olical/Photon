@@ -62,5 +62,38 @@ define(['photon/core/each'], function(each) {
             expect(each({})).toEqual(true);
             expect(each(function(){})).toEqual(false);
         });
+
+        it('pass the iteration', function() {
+            var a = [
+                'foo',
+                'bar',
+                'baz'
+            ];
+            each(a, function(value, key, iteration) {
+                expect(key).toEqual(iteration);
+            });
+
+            var b = {
+                '1': true,
+                '2': true,
+                '3': true
+            };
+            each(a, function(value, key, iteration) {
+                expect(parseInt(key, 10)).toEqual(iteration);
+            });
+        });
+
+        it('allow breaking out with a return', function() {
+            var a = [
+                'foo',
+                'bar',
+                'baz'
+            ];
+            expect(each(a, function(value, key, iteration) {
+                if(value === 'bar') {
+                    return iteration;
+                }
+            })).toEqual(1);
+        });
     });
 });
