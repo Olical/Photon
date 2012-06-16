@@ -1039,7 +1039,7 @@ define([
 
         // Use getComputedStyle if available.
         if(window.getComputedStyle) {
-            return document.defaultView.getComputedStyle(this.element, null).getPropertyValue(style);
+            return document.defaultView.getComputedStyle(this.element, null)[style];
         }
 
         // There is no getComputedStyle, fall back to currentStyle
