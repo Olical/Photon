@@ -82,7 +82,7 @@ define([
         };
         
         // Merge all passed classes into one object
-        each(Array.prototype.slice.call(arguments), function(value, key) {
+        each(arguments, function(value, key) {
             inherits = merge(inherits, value.prototype);
         });
         

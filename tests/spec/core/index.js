@@ -21,7 +21,7 @@ define(['photon/core/index'], function(index) {
         it('check if a list is indexable', function() {
             expect(index('')).toEqual(true);
             expect(index([])).toEqual(true);
-            expect(index(arguments)).toEqual(false);
+            expect(index(arguments)).toEqual(true);
             expect(index({})).toEqual(false);
         });
     });

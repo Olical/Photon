@@ -32,7 +32,9 @@ define(function() {
             // First check if truthy
             if(item) {
                 // Check if it is an array
-                if(Object.prototype.toString.call(item) === '[object Array]') {
+                // This may seem dirty but it also picks up array like objects
+                // So things like NodeLists will count as arrays
+                if(typeof item.length === 'number') {
                     return 'array';
                 }
             }
