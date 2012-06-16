@@ -26,7 +26,7 @@ To load any of Photon's modules you will need [RequireJS](http://requirejs.org/)
 
 ### Setting up
 
-The following code is making some assumptions as to where your your main source file and `require.js` is located, but you get the idea.
+The following code is making some assumptions as to where your main source file and `require.js` is located, but you get the idea.
 
     <script type='text/javascript' src='scripts/require.js' data-main='scripts/main'></script>
 
