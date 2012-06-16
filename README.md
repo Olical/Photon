@@ -2,9 +2,21 @@
 
 Photon is a JavaScript library made up of [AMD modules](https://github.com/amdjs/amdjs-api/wiki/AMD) that are geared towards frontend web development. It includes a robust class system that attempts to mimic [Python](http://docs.python.org/tutorial/classes.html). It is thoroughly tested and documented and is written under the standards laid down by [JSHint](http://www.jshint.com/).
 
+## Key features
+
+ * AMD.
+ * Well tested across many browsers.
+ * Well documented.
+ * No globals.
+ * No editing of native prototypes.
+ * Can be built into one file with only the modules you use.
+ * Not reliant on any specific AMD loader.
+ * Inspired by excellent libraries such as MooTools, Dojo and Django.
+ * Not jQuery.
+
 ## Compatibility
 
-My goal is to have Photon working perfectly in IE6+ as well as all modern browsers. I may also end up adding modules that only work in modern browsers, such as a canvas library, but those modules will be littered with warnings.
+Photon should work in just about everything. I test with every available browser in [BrowserStack](http://www.browserstack.com/) which includes IE6+. It should also work on [node.js](http://nodejs.org/) as long as you only use modules that do not utilise the DOM.
 
 ### What about other JavaScript libraries?
 
@@ -12,11 +24,15 @@ Because Photon is 100% AMD it does not pollute any global namespaces. This means
 
 ## Testing
 
-Every module is thoroughly tested using [Jasmine](http://pivotal.github.com/jasmine/). You can run the tests by opening `tests/SpecRunner.html` in a browser of your choice. You can also execute it via the version hosted on [GitHub pages](http://oli.me.uk/Photon/tests/SpecRunner.html).
+[The current versions tests.](http://oli.me.uk/Photon/tests/SpecRunner.html).
+
+Every module is thoroughly tested using [Jasmine](http://pivotal.github.com/jasmine/). You can run the tests locally by opening `tests/SpecRunner.html` in a browser of your choice.
 
 ## Documentation
 
-I have provided large comments in the source matching the [NaturalDocs](http://www.naturaldocs.org/) format. The documentation site can be generated from these comments by running `make documentation`. Once done you can open `docs/html/index.html` in your browser to see every modules documentation. You can also load the documentation from the [GitHub pages site](http://oli.me.uk/Photon/docs/html/files/core/Class-js.html).
+[The current versions documentation.](http://oli.me.uk/Photon/docs/html/)
+
+I have provided large comments in the source matching the [NaturalDocs](http://www.naturaldocs.org/) format. The documentation site can be generated from these comments by running `make documentation`. Once done you can open `docs/html/index.html` in your browser to see every modules documentation.
 
 ## Loading
 
