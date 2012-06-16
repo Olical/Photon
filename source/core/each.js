@@ -4,7 +4,7 @@ define([
     /*
         Function: each
         
-        Loops over the passed object, string or array and passes each value and key to the callback.
+        Loops over the passed object, string or array and passes each value, key and iteration count to the callback.
         
         If you only pass a list and no callback then it will return true or false depending on whether the list is iterable. A string is actually iterable, as in you can pass it to each. But the iterable check will deny strings.
         
@@ -22,9 +22,9 @@ define([
         // }
         
         // Loop over the data
-        each(users, function(value, key) {
+        each(users, function(value, key, iteration) {
             // Do stuff with it
-            console.log(key + ' is ' + value.age + ' years old.');
+            console.log(key + ' is ' + value.age + ' years old. Iteration: ' + iteration);
         });
         (end)
 
@@ -33,7 +33,7 @@ define([
         Parameters:
         
             list - Object, string or array to loop over.
-            callback - Function for the value and key to be passed to. For an array the key would be the index.
+            callback - Function for the value, key and iteration to be passed to. For an array the key would be the same as the iteration.
 
         Returns:
 
@@ -48,7 +48,8 @@ define([
         var key = null,
             listType = type(list),
             str = listType === 'string',
-            res = null;
+            res = null,
+            iter = 0;
         
         // If the item is undefined then check if the list is iterable
         if(type(callback) === 'undefined') {
@@ -60,7 +61,8 @@ define([
             for(key in list) {
                 // Make sure it is not from the prototype
                 if(list.hasOwnProperty(key)) {
-                    res = callback(list[key], key);
+                    res = callback(list[key], key, iter);
+                    iter += 1;
 
                     if(type(res) !== 'undefined') {
                         return res;
@@ -70,7 +72,7 @@ define([
         }
         else if(listType === 'array' || str) {
             for(key = 0; key < list.length; key += 1) {
-                res = callback((str) ? list.charAt(key) : list[key], key);
+                res = callback((str) ? list.charAt(key) : list[key], key, key);
 
                 if(type(res) !== 'undefined') {
                     return res;
