@@ -1000,11 +1000,10 @@ define([
     */
     Element.prototype.setStyle = function(key, value) {
         // Initialise variables
-        var self = this,
-            keyType = type(key);
+        var self = this;
 
         // If the key is an object then loop over them
-        if(keyType === 'object') {
+        if(type(key) === 'object') {
             each(key, function(value, key) {
                 self.setStyle(key, value);
             });
@@ -1012,7 +1011,7 @@ define([
         else {
             // Otherwise, just set the value
             // If the value is a number then it is converted to pixels
-            this.element.style[this.getStyleKey(key)] = (keyType === 'number') ? value + 'px' : value;
+            this.element.style[this.getStyleKey(key)] = (type(value) === 'number') ? value + 'px' : value;
         }
 
         return self;
@@ -1035,7 +1034,13 @@ define([
     */
     Element.prototype.getStyle = function(key) {
         // Get the correct key
-        var style = this.getStyleKey(key);
+        var style = this.getStyleKey(key),
+            inline = this.element.style[style];
+
+        // Try element.style first
+        if(inline) {
+            return inline;
+        }
 
         // Use getComputedStyle if available.
         if(window.getComputedStyle) {
