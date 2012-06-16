@@ -31,11 +31,36 @@ define([
 
         If you pass a string then a new element will be created using the string as it's tag name.
 
+        You can also pass an object as the second argument to be set when the element is initialised. Here is an example of what you can set.
+
+        (start code)
+        var el = new Element('div', {
+            text: 'Set the text',
+            html: 'Set the HTML',
+            style: {
+                color: '#FF0000'
+            },
+            attributes: {
+                title: 'Some title attribute',
+                href: 'Some href attribute'
+            },
+            classes: ['foo', 'bar'],
+
+            // Only set one of the following...
+            replace: target,
+            insertAfter: target,
+            insertBefore: target,
+            insertFirst: target,
+            insertLast: target
+        });
+        (end)
+
         Parameters:
 
             el - Either a string to create an element with, an existing native DOM element or another instance of this class.
+            config - Optional object of settings to be set on creation. The possible values can be found above.
     */
-    Element.prototype.construct = function(el) {
+    Element.prototype.construct = function(el, config) {
         // Check what el is
         if(type(el) === 'string') {
             // If it is a string then create a new element
@@ -101,6 +126,45 @@ define([
             This is used internally by the <getText> and <setText> methods.
         */
         this.textAttribute = (type(this.element.textContent) === 'string') ? 'textContent' : 'innerText';
+
+        // Now everything is set up we can apply any passed config
+        if(config) {
+            if(config.text) {
+                this.setText(config.text);
+            }
+
+            if(config.html) {
+                this.setHtml(config.html);
+            }
+
+            if(config.style) {
+                this.setStyle(config.style);
+            }
+
+            if(config.attributes) {
+                this.setAttribute(config.attributes);
+            }
+
+            if(config.classes) {
+                this.addClass(config.classes);
+            }
+
+            if(config.replace) {
+                this.replace(config.replace);
+            }
+            else if(config.insertAfter) {
+                this.insertAfter(config.insertAfter);
+            }
+            else if(config.insertBefore) {
+                this.insertBefore(config.insertBefore);
+            }
+            else if(config.insertFirst) {
+                this.insertFirst(config.insertFirst);
+            }
+            else if(config.insertLast) {
+                this.insertLast(config.insertLast);
+            }
+        }
     };
 
     /*
