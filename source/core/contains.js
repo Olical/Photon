@@ -48,14 +48,12 @@ define([
         }
         
         // This means it is an object, so do it the manual way
-        each(list, function(value, key) {
-            if(value === item) {
-                res = true;
-            }
-        });
-        
         // Return the result which will default to false
-        return res;
+        return each(list, function(value, key) {
+            if(value === item) {
+                return true;
+            }
+        }) || false;
     }
     
     return contains;
