@@ -27,6 +27,8 @@ define([
             console.log(key + ' is ' + value.age + ' years old.');
         });
         (end)
+
+        If an iteration returns something other than false then each will break out of the loop and return that value.
         
         Parameters:
         
@@ -45,7 +47,8 @@ define([
         // Initialise variables
         var key = null,
             listType = type(list),
-            str = listType === 'string';
+            str = listType === 'string',
+            res = null;
         
         // If the item is undefined then check if the list is iterable
         if(type(callback) === 'undefined') {
@@ -57,13 +60,21 @@ define([
             for(key in list) {
                 // Make sure it is not from the prototype
                 if(list.hasOwnProperty(key)) {
-                    callback(list[key], key);
+                    res = callback(list[key], key);
+
+                    if(type(res) !== 'undefined') {
+                        return res;
+                    }
                 }
             }
         }
         else if(listType === 'array' || str) {
             for(key = 0; key < list.length; key += 1) {
-                callback((str) ? list.charAt(key) : list[key], key);
+                res = callback((str) ? list.charAt(key) : list[key], key);
+
+                if(type(res) !== 'undefined') {
+                    return res;
+                }
             }
         }
     }
