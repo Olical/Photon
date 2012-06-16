@@ -388,5 +388,32 @@ define(['photon/dom/Element'], function(Element) {
             expect(a.getStyle('height')).toEqual('20px');
             expect(a.getStyle('margin')).toContain('30px');
         });
+
+        it('allow passing of a config object', function() {
+            var a = new Element('div', {
+                text: 'foo-text',
+                html: 'foo-html',
+                style: {
+                    color: '#FF0000'
+                },
+                attributes: {
+                    title: 'bar-title',
+                    href: '#bar-href'
+                },
+                classes: ['foo', 'bar'],
+                insertLast: document.body
+            });
+
+            expect(a.getText()).toEqual('foo-html');
+            expect(a.getHtml()).toEqual('foo-html');
+            expect(typeof a.getStyle('color')).toEqual('string');
+            expect(a.getStyle('color').length > 0).toEqual(true);
+            expect(a.getAttribute('title')).toEqual('bar-title');
+            expect(a.getAttribute('href')).toEqual('#bar-href');
+            expect(a.hasClass('bar')).toEqual(true);
+            expect(a.getParent().matches(document.body)).toEqual(true);
+
+            a.remove();
+        });
     });
 });
