@@ -368,5 +368,25 @@ define(['photon/dom/Element'], function(Element) {
 
             expect(a.contains(e)).toEqual(true);
         });
+
+        it('normalize style key', function() {
+            var a = new Element('div');
+            expect(a.getStyleKey('color')).toEqual('color');
+            expect(a.getStyleKey('border-width')).toEqual('borderWidth');
+            expect(a.getStyleKey('background-color')).toEqual('backgroundColor');
+        });
+
+        it('set and get styles', function() {
+            var a = new Element('div');
+            a.setStyle('width', 10);
+            a.setStyle({
+                height: '20px',
+                margin: '30px'
+            });
+
+            expect(a.getStyle('width')).toEqual('10px');
+            expect(a.getStyle('height')).toEqual('20px');
+            expect(a.getStyle('margin')).toEqual('30px');
+        });
     });
 });
