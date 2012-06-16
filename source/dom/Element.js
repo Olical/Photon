@@ -987,6 +987,8 @@ define([
 
         Sets style attributes for the element. This can either be a key and value as two separate arguments or an object of key value pairs.
 
+        The key is passed through <getStyleKey>.
+
         Parameters:
 
             key - Either the style to set (camel case or hyphenated) or an object of key value pairs.
@@ -1016,8 +1018,32 @@ define([
         return self;
     };
 
-    Element.prototype.getStyle = function() {
+    /*
+        Function: getStyle
 
+        Fetches the current style for the passed key.
+
+        The key is passed through <getStyleKey>.
+
+        Parameters:
+
+            key - The style you wish to retrieve.
+
+        Returns:
+
+            The current value for the style.
+    */
+    Element.prototype.getStyle = function(key) {
+        // Get the correct key
+        var style = this.getStyleKey(key);
+
+        // Use getComputedStyle if available.
+        if(window.getComputedStyle) {
+            return document.defaultView.getComputedStyle(this.element, null).getPropertyValue(style);
+        }
+
+        // There is no getComputedStyle, fall back to currentStyle
+        return this.element.currentStyle[style];
     };
 
     return Element;
