@@ -2,8 +2,6 @@
 
 Photon is a JavaScript library made up of [AMD modules](https://github.com/amdjs/amdjs-api/wiki/AMD) that are geared towards frontend web development. It includes a robust class system that attempts to mimic [Python](http://docs.python.org/tutorial/classes.html). It is thoroughly tested and documented and is written under the standards laid down by [JSHint](http://www.jshint.com/).
 
-The library is still in development but some parts should be usable.
-
 ## Compatibility
 
 My goal is to have Photon working perfectly in IE6+ as well as all modern browsers. I may also end up adding modules that only work in modern browsers, such as a canvas library, but those modules will be littered with warnings.
