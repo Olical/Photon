@@ -47,18 +47,14 @@ define([
             - <each>
     */
     function some(list, checker) {
-        // Set up the flag to return
-        var pass = false;
-
         // Loop over all in the list
-        each(list, function(value, key) {
-            // If the checker returns true, the pass flag is now true
+        // Return the result and default to false
+        return each(list, function(value, key) {
+            // If the checker returns true then break out with true
             if(checker(value, key)) {
-                pass = true;
+                return true;
             }
-        });
-
-        return pass;
+        }) || false;
     }
 
     return some;
