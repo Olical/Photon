@@ -232,7 +232,8 @@ define([
         var parent = this.element.parentNode;
 
         // If it is truthy then return the element, otherwise return null
-        if(parent) {
+        // Also make sure it is not a document fragment, which is what IE sets when there is none after removal
+        if(parent && parent.nodeType !== 11) {
             return new Element(parent);
         }
 
