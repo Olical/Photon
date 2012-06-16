@@ -544,10 +544,26 @@ define([
     */
     Element.prototype.getChildren = function() {
         // Initialise the variables
-        var children = [];
+        var children = [],
+            rawChildren = this.element.childNodes,
+            nodes = null,
+            i = null;
+
+        // Fix for Safari. If the value returned by childNodes is a function then build an array.
+        // Otherwise use the returned value in all other browsers.
+        // http://reference.sitepoint.com/javascript/Node/childNodes
+        if(type(rawChildren) === 'function') {
+            nodes = [];
+            for(i = 0; i < rawChildren.length; i += 1) {
+                nodes.push(rawChildren[i]);
+            }
+        }
+        else {
+            nodes = rawChildren;
+        }
 
         // Loop over the raw elements storing ones that are real elements
-        each(this.element.childNodes, function(el) {
+        each(nodes, function(el) {
             if(el.nodeType === 1) {
                 children.push(new Element(el));
             }
