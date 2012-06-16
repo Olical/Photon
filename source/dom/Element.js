@@ -949,8 +949,69 @@ define([
         return this.element[this.textAttribute];
     };
 
-    Element.prototype.setStyle = function() {
+    /*
+        Function: getStyleKey
 
+        Normalizes passed keys into the camel case format. So if you pass "border-radius" you will get "borderRadius".
+
+        It will also check for a vendor prefixed version of the style and return that instead if found.
+
+        Parameters:
+
+            key - The key to convert to camel case and return the potentially vendor prefixed version of.
+
+        Returns:
+
+            The camel case version of the key with the potential to have a vendor prefix.
+    */
+    Element.prototype.getStyleKey = function(key) {
+        // Convert to camel case and create the variables
+        var camel = key.replace(/-([a-z])/g, function(str, ch) {
+                return ch.toUpperCase();
+            }),
+            check = new RegExp('^[A-Z][a-z]*' + camel.charAt(0).toUpperCase() + camel.slice(1) + '$'),
+            i = null;
+
+        // Return the prefixed version if there is one
+        for(i in this.element.style) {
+            if(i.match(check)) {
+                return i;
+            }
+        }
+
+        return camel;
+    };
+
+    /*
+        Function: setStyle
+
+        Sets style attributes for the element. This can either be a key and value as two separate arguments or an object of key value pairs.
+
+        Parameters:
+
+            key - Either the style to set (camel case or hyphenated) or an object of key value pairs.
+            value - If the key is a string then this value will be assigned to the attribute named in the key. This is not needed if you pass an object as a key.
+
+        Returns:
+
+            The current element.
+    */
+    Element.prototype.setStyle = function(key, value) {
+        // Initialise variables
+        var self = this;
+
+        // If the key is an object then loop over them
+        if(type(key) === 'object') {
+            each(key, function(value, key) {
+                self.setStyle(key, value);
+            });
+        }
+        else {
+            // Otherwise, just set the value
+            this.element.style[this.getStyleKey(key)] = value;
+        }
+
+        return self;
     };
 
     Element.prototype.getStyle = function() {
