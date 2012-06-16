@@ -998,17 +998,19 @@ define([
     */
     Element.prototype.setStyle = function(key, value) {
         // Initialise variables
-        var self = this;
+        var self = this,
+            keyType = type(key);
 
         // If the key is an object then loop over them
-        if(type(key) === 'object') {
+        if(keyType === 'object') {
             each(key, function(value, key) {
                 self.setStyle(key, value);
             });
         }
         else {
             // Otherwise, just set the value
-            this.element.style[this.getStyleKey(key)] = value;
+            // If the value is a number then it is converted to pixels
+            this.element.style[this.getStyleKey(key)] = (keyType === 'number') ? value + 'px' : value;
         }
 
         return self;
