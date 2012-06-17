@@ -59,7 +59,8 @@ define([
         // Wrap every element in an instance of Element and dump it in the storage array
         // Only add if it is not already in
         if(els) {
-            each(els, function(el) {
+            // If els is an ElementList then it will extract it's elements
+            each((els.parentClass === ElementList) ? els.items : els, function(el) {
                 if(!self.matches(el)) {
                     self.items.push(new Element(el));
                 }
