@@ -2,7 +2,7 @@ Format: 1.52
 
 
 Title: Photon API documentation
-SubTitle: Lightweight, fast and modular JavaScript library
+SubTitle: AMD based JavaScript library
 
 Footer: Photon by Oliver Caldwell is licensed under a Creative Commons Attribution 3.0 Unported License.
 

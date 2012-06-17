@@ -1,4 +1,4 @@
-# Photon - AMD JavaScript library
+# Photon - AMD based JavaScript library
 
 Photon is a JavaScript library made up of [AMD modules](https://github.com/amdjs/amdjs-api/wiki/AMD) that are geared towards frontend web development. It includes a robust class system that attempts to mimic [Python](http://docs.python.org/tutorial/classes.html). It is thoroughly tested and documented and is written under the standards laid down by [JSHint](http://www.jshint.com/).
 
