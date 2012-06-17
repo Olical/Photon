@@ -30,7 +30,7 @@ define([
 
         All elements within this array are instances of <Element>.
 
-        An element list has one main method, matches. It checks if any elements in the list match the passed element. As well as this there are mappings to run many of the element method on all elements in the list, the available methods are as follows.
+        An element list has one main method, <matches>. It checks if any elements in the list match the passed element. As well as this there are mappings to run many of the element methods on all elements in the list, the available methods are as follows.
 
             - <Element.setAttribute>
             - <Element.removeAttribute>
@@ -46,6 +46,8 @@ define([
             - <Element.setHtml>
             - <Element.setText>
             - <Element.setStyle>
+
+        Obviously substitute "Element" with your list variable. These link to the method it will call in the <Element> class.
 
         Requires:
 
