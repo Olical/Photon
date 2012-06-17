@@ -69,6 +69,8 @@ Group: photon  {
    Group: dom  {
 
       File: Element  (dom/Element.js)
+      File: ElementList  (dom/ElementList.js)
+      File: getById  (dom/getById.js)
       }  # Group: dom
 
    File: Meta  (meta.js)
