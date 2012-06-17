@@ -1,7 +1,8 @@
 define([
     '../core/Class',
+    '../core/each',
     './Element'
-], function(Class, Element) {
+], function(Class, each, Element) {
     /*
         Class: ElementList
 
@@ -31,6 +32,7 @@ define([
         Requires:
 
             - <Class>
+            - <each>
             - <Element>
     */
     var ElementList = new Class();
@@ -45,6 +47,22 @@ define([
             els - An array of native DOM elements or instances of <Element>. You do not have to pass it. You can add more later with: `yourList.items.push(...)`.
     */
     ElementList.prototype.construct = function(els) {
+        // Create a reference to this to be used in the loop
+        var self = this;
+
+        // Initialise the storage array
+        self.items = [];
+
+        // If any elements were passed then loop over them
+        // Wrap every element in an instance of Element and dump it in the storage array
+        if(els) {
+            each(els, function(el) {
+
+            });
+        }
+    };
+
+    ElementList.prototype.contains = function() {
 
     };
 
