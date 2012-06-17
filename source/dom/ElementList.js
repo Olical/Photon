@@ -55,15 +55,36 @@ define([
 
         // If any elements were passed then loop over them
         // Wrap every element in an instance of Element and dump it in the storage array
+        // Only add if it is not already in
         if(els) {
             each(els, function(el) {
-
+                if(!self.matches(el)) {
+                    self.items.push(new Element(el));
+                }
             });
         }
     };
 
-    ElementList.prototype.contains = function() {
+    /*
+        Function: matches
 
+        Returns true if any of the stored elements match the passed one.
+
+        Parameters:
+
+            el - The element to look for.
+
+        Returns:
+
+            True if any matched, false if not.
+    */
+    ElementList.prototype.matches = function(el) {
+        var target = new Element(el);
+        return each(this.items, function(value) {
+            if(target.matches(value)) {
+                return true;
+            }
+        }) || false;
     };
 
     return ElementList;
