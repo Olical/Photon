@@ -117,7 +117,7 @@ define([
 
                 // Call the matched method with all arguments and the scope set to each element
                 each(this.items, function(item) {
-                    fn.apply(fn, args);
+                    fn.apply(item, args);
                 });
 
                 // Return the list
