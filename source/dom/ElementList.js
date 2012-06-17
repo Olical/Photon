@@ -1,8 +1,9 @@
 define([
     '../core/Class',
     '../core/each',
+    '../core/contains',
     './Element'
-], function(Class, each, Element) {
+], function(Class, each, contains, Element) {
     /*
         Class: ElementList
 
@@ -33,6 +34,7 @@ define([
 
             - <Class>
             - <each>
+            - <contains>
             - <Element>
     */
     var ElementList = new Class();
@@ -86,6 +88,42 @@ define([
             }
         }) || false;
     };
+
+    // Add all basic looping methods
+    var methods = [
+        'setAttribute',
+        'removeAttribute',
+        'insertBefore',
+        'insertLast',
+        'insertAfter',
+        'insertFirst',
+        'remove',
+        'setClasses',
+        'addClass',
+        'removeClass',
+        'toggleClass',
+        'setHtml',
+        'setText',
+        'setStyle'
+    ];
+    each(Element.prototype, function(fn, key) {
+        // If the function is found in the array
+        if(contains(methods, key)) {
+            // Add a new method to the list prototype under the same name
+            ElementList.prototype[key] = function() {
+                // Put the arguments in scope
+                var args = arguments;
+
+                // Call the matched method with all arguments and the scope set to each element
+                each(this.items, function(item) {
+                    fn.apply(fn, args);
+                });
+
+                // Return the list
+                return this;
+            };
+        }
+    });
 
     return ElementList;
 });
