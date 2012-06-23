@@ -103,6 +103,17 @@ define(['photon/manage/Events', 'photon/core/Class'], function(Events, Class) {
 
             expect(res1).toEqual([]);
             expect(res2).toEqual([true, false]);
+
+            a.addEvent('foo', t1);
+            a.addEvent('bar', t2);
+
+            a.fireEvent({
+                foo: [1, 2],
+                bar: [3, 4]
+            });
+
+            expect(res1).toEqual([1, 2]);
+            expect(res2).toEqual([3, 4]);
         });
     });
 });
