@@ -1176,9 +1176,9 @@ define([
     /*
         Function: getStyle
 
-        Fetches the current style for the passed key.
+        Fetches the current style for the passed key. The key is passed through <getStyleKey>.
 
-        The key is passed through <getStyleKey>.
+        You can also pass multiple keys as separate arguments and have them all returned in one object.
 
         Parameters:
 
@@ -1186,25 +1186,73 @@ define([
 
         Returns:
 
-            The current value for the style.
+            The current value for the style. If multiple keys were passed then it will return an object of values.
     */
     Element.fn.getStyle = function(key) {
         // Get the correct key
-        var style = this.getStyleKey(key),
-            inline = this.element.style[style];
+        var self = this,
+            style = self.getStyleKey(key),
+            inline = self.element.style[style],
+            computed = null,
+            directions = null,
+            results = {};
+
+        // If there are multiple keys then recurse and get all of them
+        if(arguments.length > 1) {
+            each(arguments, function(key) {
+                results[key] = self.getStyle(key);
+            });
+
+            return results;
+        }
 
         // Try element.style first
         if(inline) {
             return inline;
         }
 
+        // Okay, there is no inline value
+        // Fetch the computed version
+
         // Use getComputedStyle if available.
         if(window.getComputedStyle) {
-            return document.defaultView.getComputedStyle(this.element, null)[style];
+            computed = document.defaultView.getComputedStyle(self.element, null)[style];
+        }
+        else {
+            // There is no getComputedStyle, fall back to currentStyle
+            computed = self.element.currentStyle[style];
         }
 
-        // There is no getComputedStyle, fall back to currentStyle
-        return this.element.currentStyle[style];
+        // If there is a computed value then return it
+        if(computed) {
+            return computed;
+        }
+
+        // If it reaches this point it still hasn't found anything, great
+        // Now if the key is margin or padding we should try it's directional values
+        // If all four directions are the same, return one
+        // If not return all four combined with a default of 0px
+        if(key === 'margin' || key === 'padding') {
+            // Get all directions in an object
+            directions = self.getStyle('top', 'right', 'bottom', 'left');
+
+            // If all are the same and top is truthy then return it
+            if(directions.top && every(directions, function(dir) {
+                return dir === directions.top;
+            })) {
+                return directions.top;
+            }
+
+            // Otherwise build a string from all four which defaults to 0px
+            computed = [];
+            each(directions, function(dir) {
+                computed.push(dir || '0px');
+            });
+            return computed.join(' ');
+        }
+
+        // Fall back to null
+        return null;
     };
 
     return Element;
