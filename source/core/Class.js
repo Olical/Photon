@@ -54,7 +54,7 @@ define([
 
         Returns:
 
-            Your built class for you to instantiate.
+            Your built class for you to instantiate. If your construct method returns a value other than undefined then that value will be returned instead.
 
         Requires:
 
@@ -68,7 +68,12 @@ define([
         var cl = function() {
                 // Call the construct method if there is one
                 if(type(this.construct) === 'function') {
-                    this.construct.apply(this, arguments);
+                    var res = this.construct.apply(this, arguments);
+
+                    // If the constructor returned something other than undefined then return it
+                    if(type(res) !== 'undefined') {
+                        return res;
+                    }
                 }
             },
             protos = [];
