@@ -67,7 +67,7 @@ define([
 
             els - An array of native DOM elements or instances of <Element>. You do not have to pass it. You can add more later with: `yourList.items.push(...)`.
     */
-    ElementList.prototype.construct = function(els) {
+    ElementList.fn.construct = function(els) {
         // Create a reference to this to be used in the loop
         var self = this;
 
@@ -100,7 +100,7 @@ define([
 
             True if any matched, false if not.
     */
-    ElementList.prototype.matches = function(el) {
+    ElementList.fn.matches = function(el) {
         var target = new Element(el);
         return each(this.items, function(value) {
             if(target.matches(value)) {
@@ -126,11 +126,11 @@ define([
         'setText',
         'setStyle'
     ];
-    each(Element.prototype, function(fn, key) {
+    each(Element.fn, function(fn, key) {
         // If the function is found in the array
         if(contains(methods, key)) {
             // Add a new method to the list prototype under the same name
-            ElementList.prototype[key] = function() {
+            ElementList.fn[key] = function() {
                 // Put the arguments in scope
                 var args = arguments;
 
