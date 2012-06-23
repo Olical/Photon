@@ -60,7 +60,7 @@ define([
             el - Either a string to create an element with, an existing native DOM element or another instance of this class.
             config - Optional object of settings to be set on creation. The possible values can be found above.
     */
-    Element.prototype.construct = function(el, config) {
+    Element.fn.construct = function(el, config) {
         // Check what el is
         if(type(el) === 'string') {
             // If it is a string then create a new element
@@ -181,7 +181,7 @@ define([
 
             The current element.
     */
-    Element.prototype.setAttribute = function(key, value) {
+    Element.fn.setAttribute = function(key, value) {
         // Initialise variables
         var self = this;
 
@@ -212,7 +212,7 @@ define([
 
             Either true or false. It will return true if the element has the attribute and false if not.
     */
-    Element.prototype.hasAttribute = function(key) {
+    Element.fn.hasAttribute = function(key) {
         var res = null;
 
         // Use hasAttribute if possible
@@ -240,7 +240,7 @@ define([
 
             The found value or null if there was none.
     */
-    Element.prototype.getAttribute = function(key) {
+    Element.fn.getAttribute = function(key) {
         // We have one, check if it exits
         if(this.hasAttribute(key)) {
             // It does, return it
@@ -264,7 +264,7 @@ define([
 
             The current element.
     */
-    Element.prototype.removeAttribute = function(key) {
+    Element.fn.removeAttribute = function(key) {
         // Initialise variables
         var self = this;
 
@@ -291,7 +291,7 @@ define([
 
             The parent of the current element. If there is no parent then it will return null.
     */
-    Element.prototype.getParent = function() {
+    Element.fn.getParent = function() {
         // Get the parent
         var parent = this.element.parentNode;
 
@@ -313,7 +313,7 @@ define([
 
             An array of parent elements for the current element. The first is the first parent, the last is the last parent.
     */
-    Element.prototype.getParents = function() {
+    Element.fn.getParents = function() {
         // Set up the variables
         var parents = [],
             parent = this;
@@ -336,7 +336,7 @@ define([
 
             The next sibling element. If there is no next element then it will return null.
     */
-    Element.prototype.getNext = function() {
+    Element.fn.getNext = function() {
         var res = this.element.nextSibling,
             el = null;
 
@@ -367,7 +367,7 @@ define([
 
             The previous sibling element. If there is no previous element then it will return null.
     */
-    Element.prototype.getPrevious = function() {
+    Element.fn.getPrevious = function() {
         var res = this.element.previousSibling,
             el = null;
 
@@ -402,7 +402,7 @@ define([
 
             The current element.
     */
-    Element.prototype.insertBefore = function(el) {
+    Element.fn.insertBefore = function(el) {
         var target = new Element(el);
 
         // Insert this element before the passed one
@@ -424,7 +424,7 @@ define([
 
             The current element.
     */
-    Element.prototype.insertLast = function(el) {
+    Element.fn.insertLast = function(el) {
         var target = new Element(el);
 
         // Append this as the child
@@ -446,7 +446,7 @@ define([
 
             The current element.
     */
-    Element.prototype.insertAfter = function(el) {
+    Element.fn.insertAfter = function(el) {
         var target = new Element(el),
             next = target.getNext();
 
@@ -471,7 +471,7 @@ define([
 
             The first child element. If there is no first child then it will return null.
     */
-    Element.prototype.getFirst = function() {
+    Element.fn.getFirst = function() {
         // Get the first node
         var firstEl = this.element.firstChild,
             first = null;
@@ -499,7 +499,7 @@ define([
 
             The last child element. If there is no last child then it will return null.
     */
-    Element.prototype.getLast = function() {
+    Element.fn.getLast = function() {
         // Get the last node
         var lastEl = this.element.lastChild,
             last = null;
@@ -531,7 +531,7 @@ define([
 
             The current element.
     */
-    Element.prototype.insertFirst = function(el) {
+    Element.fn.insertFirst = function(el) {
         // Attempt to to get the first element
         var first = new Element(el).getFirst();
 
@@ -556,7 +556,7 @@ define([
 
             The current element.
     */
-    Element.prototype.replace = function(el) {
+    Element.fn.replace = function(el) {
         var target = new Element(el);
 
         // Replace the target
@@ -574,7 +574,7 @@ define([
 
             The current element.
     */
-    Element.prototype.remove = function() {
+    Element.fn.remove = function() {
         this.getParent().element.removeChild(this.element);
 
         return this;
@@ -593,7 +593,7 @@ define([
 
             The cloned version of this element.
     */
-    Element.prototype.clone = function(recursive) {
+    Element.fn.clone = function(recursive) {
         return new Element(this.element.cloneNode(recursive || false));
     };
 
@@ -606,7 +606,7 @@ define([
 
             An array of child elements.
     */
-    Element.prototype.getChildren = function() {
+    Element.fn.getChildren = function() {
         // Initialise the variables
         var children = [],
             rawChildren = this.element.childNodes,
@@ -649,7 +649,7 @@ define([
 
             An array containing all descendants of the current element.
     */
-    Element.prototype.getDescendants = function(current) {
+    Element.fn.getDescendants = function(current) {
         // Initialise the variables
         var descendants = [],
             direct = null;
@@ -681,7 +681,7 @@ define([
 
             An array of the next siblings.
     */
-    Element.prototype.getAllNext = function() {
+    Element.fn.getAllNext = function() {
         // Initialise the variables
         var sibs = [],
             cur = this;
@@ -703,7 +703,7 @@ define([
 
             An array of the previous siblings.
     */
-    Element.prototype.getAllPrevious = function() {
+    Element.fn.getAllPrevious = function() {
         // Initialise the variables
         var sibs = [],
             cur = this;
@@ -725,7 +725,7 @@ define([
 
             An array of the elements siblings. This does not include the current element.
     */
-    Element.prototype.getSiblings = function() {
+    Element.fn.getSiblings = function() {
         return this.getAllPrevious().concat(this.getAllNext());
     };
 
@@ -742,7 +742,7 @@ define([
 
             True if this and the passed element match, false if not.
     */
-    Element.prototype.matches = function(el) {
+    Element.fn.matches = function(el) {
         var target = new Element(el);
 
         return this.element === target.element;
@@ -761,7 +761,7 @@ define([
 
             True if the element is found, false if not.
     */
-    Element.prototype.contains = function(el) {
+    Element.fn.contains = function(el) {
         // Loop over all of the descendants looking for the element
         // Set the result to true if found
         var res = false;
@@ -784,7 +784,7 @@ define([
 
             An array of CSS classes.
     */
-    Element.prototype.getClasses = function() {
+    Element.fn.getClasses = function() {
         return (this.element.className) ? this.element.className.split(/\s+/) : [];
     };
 
@@ -801,7 +801,7 @@ define([
 
             The current element.
     */
-    Element.prototype.setClasses = function(cls) {
+    Element.fn.setClasses = function(cls) {
         this.element.className = cls.join(' ');
         return this;
     };
@@ -820,7 +820,7 @@ define([
 
             True if the class is found, false if not.
     */
-    Element.prototype.hasClass = function(cl, classes) {
+    Element.fn.hasClass = function(cl, classes) {
         // Get the current list of classes
         var cls = classes || this.getClasses();
 
@@ -848,7 +848,7 @@ define([
 
             The current element.
     */
-    Element.prototype.addClass = function(cl, classes) {
+    Element.fn.addClass = function(cl, classes) {
         // Get the current list of classes
         var self = this,
             cls = classes || self.getClasses();
@@ -885,7 +885,7 @@ define([
 
             The current element.
     */
-    Element.prototype.removeClass = function(cl, classes) {
+    Element.fn.removeClass = function(cl, classes) {
         // Get the current list of classes and initialise any required variables
         var self = this,
             cls = classes || self.getClasses(),
@@ -926,7 +926,7 @@ define([
 
             The current element.
     */
-    Element.prototype.toggleClass = function(cl, classes) {
+    Element.fn.toggleClass = function(cl, classes) {
         // Get the current list of classes
         var self = this,
             cls = classes || self.getClasses();
@@ -964,7 +964,7 @@ define([
 
             The current element.
     */
-    Element.prototype.setHtml = function(content) {
+    Element.fn.setHtml = function(content) {
         this.element.innerHTML = content;
         return this;
     };
@@ -978,7 +978,7 @@ define([
 
             The elements current inner HTML string.
     */
-    Element.prototype.getHtml = function() {
+    Element.fn.getHtml = function() {
         return this.element.innerHTML;
     };
 
@@ -995,7 +995,7 @@ define([
 
             The current element.
     */
-    Element.prototype.setText = function(content) {
+    Element.fn.setText = function(content) {
         this.element[this.textAttribute] = content;
         return this;
     };
@@ -1009,7 +1009,7 @@ define([
 
             The elements current inner text string.
     */
-    Element.prototype.getText = function() {
+    Element.fn.getText = function() {
         return this.element[this.textAttribute];
     };
 
@@ -1028,7 +1028,7 @@ define([
 
             The camel case version of the key with the potential to have a vendor prefix.
     */
-    Element.prototype.getStyleKey = function(key) {
+    Element.fn.getStyleKey = function(key) {
         // Convert to camel case and create the variables
         var camel = key.replace(/-([a-z])/g, function(str, ch) {
                 return ch.toUpperCase();
@@ -1062,7 +1062,7 @@ define([
 
             The current element.
     */
-    Element.prototype.setStyle = function(key, value) {
+    Element.fn.setStyle = function(key, value) {
         // Initialise variables
         var self = this;
 
@@ -1096,7 +1096,7 @@ define([
 
             The current value for the style.
     */
-    Element.prototype.getStyle = function(key) {
+    Element.fn.getStyle = function(key) {
         // Get the correct key
         var style = this.getStyleKey(key),
             inline = this.element.style[style];
