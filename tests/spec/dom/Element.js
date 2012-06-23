@@ -433,6 +433,9 @@ define(['photon/dom/Element'], function(Element) {
 
             children.setText('Photon rocks');
             expect(children[2].getText()).toEqual('Photon rocks');
+
+            expect(children.contains(children[1])).toEqual(true);
+            expect(children.contains(a)).toEqual(false);
         });
     });
 });
