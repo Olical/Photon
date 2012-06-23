@@ -1197,15 +1197,15 @@ define([
 
             // These map short cuts to their full style to get
             directionsStyles = [
-                'Top',
-                'Right',
-                'Bottom',
-                'Left'
+                '$Top',
+                '$Right',
+                '$Bottom',
+                '$Left'
             ],
             borderStyles = [
-                'Width',
-                'Style',
-                'Color'
+                '$Width',
+                '$Style',
+                '$Color'
             ],
             getters = {
                 margin: directionsStyles,
@@ -1235,7 +1235,7 @@ define([
         if(getters[style]) {
             // Apply the prefix to the getters
             each(getters[style], function(getter) {
-                prefixedGetters.push(style + getter);
+                prefixedGetters.push(getter.replace('$', style));
             });
 
             // Make the call for the values
