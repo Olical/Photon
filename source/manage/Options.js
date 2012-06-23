@@ -5,7 +5,7 @@ define([
     /*
         Class: Options
 
-        A class you can extend to add options to your class. It stores it's options in the options object. You can merge more options with the options object by calling setOptions.
+        A class you can extend to add options to your class. It stores it's options in the options object. You can merge more options with the options object by calling <setOptions>.
 
         (start code)
         // Create your class that extends Options
@@ -41,6 +41,20 @@ define([
             - <merge>
     */
     var Options = Class();
+
+    /*
+        Function: construct
+
+        Run on initialisation. It will try to initialise the options object. It does not matter if you override this because it is created when you first run <setOptions>. This is here because you might not have a construct method, in which case you probably won't be calling <setOptions> very soon. So it tries to do it before you try to access an undefined variable.
+
+        You can override it and ignore it, or you can override and apply it in your constructor, whatever you want.
+    */
+    Options.fn.construct = function() {
+        // Create the options object if not already
+        if(!this.options) {
+            this.options = {};
+        }
+    };
 
     /*
         Function: setOptions
