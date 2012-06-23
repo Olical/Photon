@@ -28,7 +28,7 @@ define([
         });
         (end)
 
-        If an iteration returns something other than false then each will break out of the loop and return that value.
+        If an iteration returns something other than undefined then each will break out of the loop and return that value.
         
         Parameters:
         
@@ -37,7 +37,7 @@ define([
 
         Returns:
 
-            If you only pass a list then true or false depending on whether it is iterable or not.
+            If you only pass a list then true or false depending on whether it is iterable or not. If your iterator returns something other than undefined then it will return that value and break out of the loop.
 
         Requires:
 
