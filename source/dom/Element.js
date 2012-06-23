@@ -671,6 +671,23 @@ define([
     };
 
     /*
+        Function: empty
+
+        Removes all of an elements children from the DOM.
+
+        Returns:
+
+            The current element.
+    */
+    Element.fn.empty = function() {
+        each(this.getChildren(), function(child) {
+            child.remove();
+        });
+
+        return this;
+    };
+
+    /*
         Function: clone
 
         Creates a clone of the current element.
