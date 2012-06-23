@@ -29,6 +29,7 @@ define([
 
             list - Your object or array to loop over.
             checker - Your function that all values and keys should be passed to. This function should return either true or a falsy value. This can be either false or nothing at all.
+            thisArg - An optional object that the this keyword should be set to within the loop.
 
         Returns:
 
@@ -38,7 +39,7 @@ define([
 
             - <each>
     */
-    function pick(list, checker) {
+    function pick(list, checker, thisArg) {
         // Set up the array to return
         var picked = [];
 
@@ -48,7 +49,7 @@ define([
             if(checker(value, key)) {
                 picked.push(value);
             }
-        });
+        }, thisArg);
 
         return picked;
     }

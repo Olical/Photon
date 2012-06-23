@@ -37,6 +37,7 @@ define([
 
             list - Your object or array to check.
             checker - Your function that all values and keys should be passed to. This function should return either true or a falsy value. This can be either false or nothing at all.
+            thisArg - An optional object that the this keyword should be set to within the loop.
 
         Returns:
 
@@ -46,7 +47,7 @@ define([
 
             - <each>
     */
-    function every(list, checker) {
+    function every(list, checker, thisArg) {
         // Set up the flag to return
         var pass = true;
 
@@ -56,7 +57,7 @@ define([
             if(!checker(value, key)) {
                 pass = false;
             }
-        });
+        }, thisArg);
 
         return pass;
     }

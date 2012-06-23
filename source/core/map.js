@@ -21,6 +21,7 @@ define([
         
             list - An array or object to run over.
             mapper - The method to pass each value to. It will be passed the value, key and index. Just like <each>.
+            thisArg - An optional object that the this keyword should be set to within the loop.
         
         Returns:
         
@@ -31,7 +32,7 @@ define([
             - <each>
             - <type>
     */
-    function map(list, mapper) {
+    function map(list, mapper, thisArg) {
         // Set up the value to return
         // It's type copies the lists type
         var isArray = type(list) === 'array';
@@ -50,7 +51,7 @@ define([
             else {
                 mapped[key] = result;
             }
-        });
+        }, thisArg);
 
         return mapped;
     }

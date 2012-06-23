@@ -37,6 +37,7 @@ define([
 
             list - Your object or array to check.
             checker - Your function that all values and keys should be passed to. This function should return either true or a falsy value. This can be either false or nothing at all.
+            thisArg - An optional object that the this keyword should be set to within the loop.
 
         Returns:
 
@@ -46,7 +47,7 @@ define([
 
             - <each>
     */
-    function some(list, checker) {
+    function some(list, checker, thisArg) {
         // Loop over all in the list
         // Return the result and default to false
         return each(list, function(value, key) {
@@ -54,7 +55,7 @@ define([
             if(checker(value, key)) {
                 return true;
             }
-        }) || false;
+        }, thisArg) || false;
     }
 
     return some;
