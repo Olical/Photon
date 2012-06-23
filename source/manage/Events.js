@@ -155,7 +155,7 @@ define([
                 eventList = self.getEvents(key);
 
                 // Get the index of the event
-                toDelete = index(eventList);
+                toDelete = index(eventList, fn);
 
                 // If it was found then splice it out
                 if(toDelete !== -1) {
@@ -197,7 +197,7 @@ define([
     */
     Events.fn.fireEvent = function(key, args) {
         // Loop over all of the listeners
-        each(self.getEvents(key), function(e) {
+        each(this.getEvents(key), function(e) {
             // Execute the listener
             e.apply(null, args);
         });
