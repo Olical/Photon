@@ -49,15 +49,26 @@ define([
     function merge() {
         // Initialise variables
         var merged = {},
-            previous = null;
+            previous = null,
+            args = null;
+
+        // If the first argument is true then we have already cloned
+        // Tear off the first argument and drop the result into args
+        if(arguments[0] === true) {
+            args = Array.prototype.slice.call(arguments, 1);
+        }
+        else {
+            // The arguments have not been cloned yet, clone them
+            args = clone(arguments);
+        }
 
         // Loop over all passed objects
-        each(arguments, function(obj) {
+        each(args, function(obj) {
             // Loop over all values found in this object
-            each(clone(obj), function(value, key) {
+            each(obj, function(value, key) {
                 // If this and the previous objects version are both objects then recurse
                 if(type(value) === 'object' && previous && type(previous[key]) === 'object') {
-                    merged[key] = merge(value, previous[key]);
+                    merged[key] = merge(true, value, previous[key]);
                 }
                 else {
                     // Otherwise, just dump it in
