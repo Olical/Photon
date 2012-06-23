@@ -1229,10 +1229,10 @@ define([
         }
 
         // If it reaches this point it still hasn't found anything, great
-        // Now if the key is margin or padding we should try it's directional values
+        // Now if the key is margin, border or padding we should try it's directional values
         // If all four directions are the same, return one
         // If not return all four combined with a default of 0px
-        if(key === 'margin' || key === 'padding') {
+        if(key === 'margin' || key === 'padding' || key === 'border') {
             // Get all directions in an object
             directions = self.getStyle('top', 'right', 'bottom', 'left');
 
