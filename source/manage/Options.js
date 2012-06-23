@@ -43,20 +43,6 @@ define([
     var Options = Class();
 
     /*
-        Function: construct
-
-        Run on initialisation. It will try to initialise the options object. It does not matter if you override this because it is created when you first run <setOptions>. This is here because you might not have a construct method, in which case you probably won't be calling <setOptions> very soon. So it tries to do it before you try to access an undefined variable.
-
-        You can override it and ignore it, or you can override and apply it in your constructor, whatever you want.
-    */
-    Options.fn.construct = function() {
-        // Create the options object if not already
-        if(!this.options) {
-            this.options = {};
-        }
-    };
-
-    /*
         Function: setOptions
 
         Merges the passed options object with this.options. It will create the options object if it is not already there.
