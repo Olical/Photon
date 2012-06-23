@@ -453,5 +453,19 @@ define(['photon/dom/Element'], function(Element) {
 
             expect(styles.array.length).toEqual(2);
         });
+
+        it('get from the selected shorthand values', function() {
+            var a = new Element('div', {
+                style: {
+                    border: '2px solid #000000',
+                    margin: '10px',
+                    padding: '20px 30px'
+                }
+            });
+
+            expect(a.getStyle('border').indexOf('2px solid ')).toEqual(0); // Colours vary between browsers at the moment
+            expect(a.getStyle('margin')).toEqual('10px');
+            expect(a.getStyle('padding')).toEqual('20px 30px 20px 30px');
+        });
     });
 });
