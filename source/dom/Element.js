@@ -22,7 +22,7 @@ define([
             - <index>
             - <every>
     */
-    var Element = new Class();
+    var Element = Class();
 
     /*
         Function: construct
