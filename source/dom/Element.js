@@ -1178,7 +1178,7 @@ define([
 
         Fetches the current style for the passed key. The key is passed through <getStyleKey>.
 
-        You can also pass multiple keys as separate arguments and have them all returned in one array in the same order they went in.
+        You can also pass multiple keys as separate arguments and have them all returned in one object. The object also contains an array attribute which is an array version of the results in the order you requested them. Never trust the order of an object. Chrome is the first browser to do it, but it sorts your object's items without you asking it to.
 
         Parameters:
 
@@ -1186,14 +1186,14 @@ define([
 
         Returns:
 
-            The current value for the style. If multiple keys were passed then it will return an array of values.
+            The current value for the style. If multiple keys were passed then it will return an object of values.
     */
     Element.fn.getStyle = function(key) {
         // Get the correct key
         var self = this,
             style = self.getStyleKey(key),
             inline = self.element.style[style],
-            results = [],
+            results = {},
 
             // These map short cuts to their full style to get
             directionsStyles = [
@@ -1220,8 +1220,10 @@ define([
 
         // If there are multiple keys then recurse and get all of them
         if(arguments.length > 1) {
+            results.array = [];
             each(arguments, function(key) {
-                results.push(self.getStyle(key));
+                results[key] = self.getStyle(key);
+                results.array.push(results[key]);
             });
 
             return results;
@@ -1237,7 +1239,7 @@ define([
             });
 
             // Make the call for the values
-            results = self.getStyle.apply(self, prefixedGetters);
+            results = self.getStyle.apply(self, prefixedGetters).arrayz;
 
             // If all are the same, return the first
             if(results[0] && every(results, function(check) {
