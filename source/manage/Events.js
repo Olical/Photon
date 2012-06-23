@@ -184,25 +184,36 @@ define([
     /*
         Function: fireEvent
 
-        Executes all listeners for a specified event. You can also pass an array of arguments to be passed to every listener.
+        Executes all listeners for a specified event. You can also pass an array of arguments to be passed to every listener. Just like the other methods, you can pass an object as the first argument to fire multiple events. So the keys of the objects would represent the event name and the values would be the arrays of arguments.
 
         Parameters:
 
-            key - The name of the event to fire.
-            args - An optional array of arguments to pass to the listeners.
+            key - The name of the event to fire. You can also pass an object with events as keys and optional argument arrays as values.
+            args - An optional array of arguments to pass to the listeners. Will be ignored if you use an object for the first argument.
 
         Returns:
 
             This class instance.
     */
     Events.fn.fireEvent = function(key, args) {
-        // Loop over all of the listeners
-        each(this.getEvents(key), function(e) {
-            // Execute the listener
-            e.apply(null, args);
-        });
+        // Initialise variables
+        var self = this;
 
-        return this;
+        // If event is an object then recursively fire events
+        if(type(key) === 'object') {
+            each(key, function(args, key) {
+                self.fireEvent(key, args);
+            });
+        }
+        else {
+            // Loop over all of the listeners
+            each(self.getEvents(key), function(e) {
+                // Execute the listener
+                e.apply(null, args);
+            });
+        }
+
+        return self;
     };
 
     return Events;
