@@ -31,6 +31,7 @@ define([
         Parameters:
         
             orig - Object or array to clone.
+            shallow - If true it will not recurse. This is faster for one level deep lists.
         
         Returns:
         
@@ -41,7 +42,7 @@ define([
             - <type>
             - <each>
     */
-    function clone(orig) {
+    function clone(orig, shallow) {
         // Initialise variables
         var copy = null,
             origType = type(orig);
@@ -60,7 +61,7 @@ define([
             // If the current item is iterable then recurse
             // Store the recursed item in the place of the current item
             // Only do this if shallow is not true
-            if(each(value)) {
+            if(shallow !== true && each(value)) {
                 copy[key] = clone(value);
             }
             else {
