@@ -4,9 +4,8 @@ define([
     '../core/each',
     '../core/contains',
     '../core/index',
-    '../core/every',
-    './ElementList'
-], function(Class, type, each, contains, index, every, ElementList) {
+    '../core/every'
+], function(Class, type, each, contains, index, every) {
     /*
         Class: Element
         
@@ -312,7 +311,7 @@ define([
 
         Returns:
 
-            An <ElementList> of parent elements for the current element. The first is the first parent, the last is the last parent.
+            An array of parent elements for the current element. The first is the first parent, the last is the last parent.
     */
     Element.prototype.getParents = function() {
         // Set up the variables
@@ -325,7 +324,7 @@ define([
         }
 
         // Return the list
-        return new ElementList(parents);
+        return parents;
     };
 
     /*
@@ -605,7 +604,7 @@ define([
 
         Returns:
 
-            An <ElementList> of child elements.
+            An array of child elements.
     */
     Element.prototype.getChildren = function() {
         // Initialise the variables
@@ -634,13 +633,13 @@ define([
             }
         });
 
-        return new ElementList(children);
+        return children;
     };
 
     /*
         Function: getDescendants
 
-        Recursively fetches all children of the current element and returns them in one flat <ElementList>.
+        Recursively fetches all children of the current element and returns them in one flat array.
 
         Parameters:
 
@@ -648,7 +647,7 @@ define([
 
         Returns:
 
-            An <ElementList> containing all descendants of the current element.
+            An array containing all descendants of the current element.
     */
     Element.prototype.getDescendants = function(current) {
         // Initialise the variables
@@ -670,7 +669,7 @@ define([
 
         // Return all of the arrays concatenated together
         // I am so proud of this line...
-        return new ElementList(Array.prototype.concat.apply([], descendants));
+        return Array.prototype.concat.apply([], descendants);
     };
 
     /*
@@ -680,7 +679,7 @@ define([
 
         Returns:
 
-            An <ElementList> of the next siblings.
+            An array of the next siblings.
     */
     Element.prototype.getAllNext = function() {
         // Initialise the variables
@@ -692,7 +691,7 @@ define([
             sibs.push(cur);
         }
 
-        return new ElementList(sibs);
+        return sibs;
     };
 
     /*
@@ -702,7 +701,7 @@ define([
 
         Returns:
 
-            An <ElementList> of the previous siblings.
+            An array of the previous siblings.
     */
     Element.prototype.getAllPrevious = function() {
         // Initialise the variables
@@ -714,7 +713,7 @@ define([
             sibs.push(cur);
         }
 
-        return new ElementList(sibs);
+        return sibs;
     };
 
     /*
@@ -724,10 +723,10 @@ define([
 
         Returns:
 
-            An <ElementList> of the elements siblings. This does not include the current element.
+            An array of the elements siblings. This does not include the current element.
     */
     Element.prototype.getSiblings = function() {
-        return new ElementList(this.getAllPrevious().concat(this.getAllNext()));
+        return this.getAllPrevious().concat(this.getAllNext());
     };
 
     /*
