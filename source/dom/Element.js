@@ -1112,15 +1112,13 @@ define([
 
         It will also check for a vendor prefixed version of the style and return that instead if found.
 
-        If the style is something like border which has many sub-styles then it will return those sub-styles in an array. You will then have to fetch each of those separately.
-
         Parameters:
 
             key - The key to convert to camel case and return the potentially vendor prefixed version of.
 
         Returns:
 
-            The camel case version of the key with the potential to have a vendor prefix. It may also return an array of more specific styles if there are any.
+            The camel case version of the key with the potential to have a vendor prefix.
     */
     Element.fn.getStyleKey = function(key) {
         // Convert to camel case and create the variables
@@ -1195,7 +1193,31 @@ define([
         var self = this,
             style = self.getStyleKey(key),
             inline = self.element.style[style],
-            results = {};
+            results = {},
+            toJoin = [],
+
+            // These map short cuts to their full style to get
+            directionsStyles = [
+                'Left',
+                'Top',
+                'Right',
+                'Bottom'
+            ],
+            borderStyles = [
+                'Width',
+                'Style',
+                'Color'
+            ],
+            getters = {
+                margin: directionsStyles,
+                padding: directionsStyles,
+                border: directionsStyles,
+                    borderLeft: borderStyles,
+                    borderTop: borderStyles,
+                    borderRight: borderStyles,
+                    borderBottom: borderStyles
+            },
+            prefixedGetters = [];
 
         // If there are multiple keys then recurse and get all of them
         if(arguments.length > 1) {
@@ -1204,6 +1226,33 @@ define([
             });
 
             return results;
+        }
+
+        // If there is a map for this style then get the values for them
+        // It may recurse down the getter tree
+        // When done, return the joined result
+        if(getters[style]) {
+            // Apply the prefix to the getters
+            each(getters[style], function(getter) {
+                prefixedGetters.push(style + getter);
+            });
+
+            // Make the call for the values
+            results = self.getStyle.apply(self, prefixedGetters);
+            
+            // Build the array version of results
+            each(results, function(res) {
+                toJoin.push(res || '0px');
+            });
+
+            // If all are the same, return the first
+            if(toJoin[0] && every(toJoin, function(check) {
+                return check === toJoin[0];
+            })) {
+                return toJoin[0];
+            }
+
+            return toJoin.join(' ');
         }
 
         // Try element.style first
