@@ -4,8 +4,7 @@ define([
     '../core/each',
     '../core/contains',
     '../core/index',
-    '../core/every',
-    '../core/clone'
+    '../core/every'
 ], function(Class, type, each, contains, index, every) {
     /*
         Class: Element
@@ -22,7 +21,6 @@ define([
             - <contains>
             - <index>
             - <every>
-            - <clone>
     */
     var Element = new Class();
 
