@@ -437,5 +437,21 @@ define(['photon/dom/Element'], function(Element) {
             expect(children.contains(children[1])).toEqual(true);
             expect(children.contains(a)).toEqual(false);
         });
+
+        it('get multiple style values', function() {
+            var a = new Element('div', {
+                style: {
+                    width: 50,
+                    height: 100
+                }
+            });
+
+            var styles = a.getStyle('width', 'height');
+
+            expect(styles.width).toEqual('50px');
+            expect(styles.height).toEqual('100px');
+
+            expect(styles.array.length).toEqual(2);
+        });
     });
 });
