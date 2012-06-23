@@ -334,17 +334,23 @@ define(['photon/dom/Element'], function(Element) {
             var d = new Element('p');
             var e = new Element('strong');
 
-            expect(a.getDescendants()).toEqual([]);
+            expect(a.getDescendants().length).toEqual([].length);
 
             b.insertLast(a);
             c.insertLast(a);
             d.insertLast(a);
 
-            expect(a.getDescendants()).toEqual([b, c, d]);
+            var decs1 = a.getDescendants();
+            expect(decs1.length).toEqual([b, c, d].length);
+            expect(decs1[0]).toEqual(b);
+            expect(decs1[2]).toEqual(d);
 
             e.insertLast(d);
 
-            expect(a.getDescendants()).toEqual([b, c, d, e]);
+            var decs2 = a.getDescendants();
+            expect(decs2.length).toEqual([b, c, d, e].length);
+            expect(decs2[0]).toEqual(b);
+            expect(decs2[3]).toEqual(e);
         });
 
         it('contains another element', function() {
