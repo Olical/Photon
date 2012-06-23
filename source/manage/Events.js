@@ -161,6 +161,11 @@ define([
                 if(toDelete !== -1) {
                     eventList.splice(toDelete, 1);
                 }
+
+                // If there is nothing left, just delete the array
+                if(eventList.length === 0) {
+                    delete events[key];
+                }
             }
             else {
                 // This means just a key has been passed
