@@ -1127,13 +1127,13 @@ define([
         var camel = key.replace(/-([a-z])/g, function(str, ch) {
                 return ch.toUpperCase();
             }),
-            check = new RegExp('^[A-Z][a-z]*' + camel.charAt(0).toUpperCase() + camel.slice(1) + '$'),
+            prefixCheck = new RegExp('^[A-Z][a-z]*' + camel.charAt(0).toUpperCase() + camel.slice(1) + '$'),
             i = null,
             specific = [];
 
         // Return the prefixed version if there is one
         for(i in this.element.style) {
-            if(i.match(check)) {
+            if(i.match(prefixCheck)) {
                 return i;
             }
 
@@ -1231,7 +1231,7 @@ define([
             each(results, function(res) {
                 built.push(res);
             });
-            
+
             return built.join(' ');
         }
 
