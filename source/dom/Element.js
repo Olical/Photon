@@ -70,7 +70,7 @@ define([
             // It is not a string, must be an existing element
             // If the element is an instance of the element class then adopt it's element
             // Otherwise adopt el as it is
-            if(el.parentClass === Element) {
+            if(el.constructor === Element) {
                 // It is, adopt it
                 this.element = el.element;
             }
