@@ -7,7 +7,7 @@ define(['photon/core/Class'], function(Class) {
         
         it('allow methods', function() {
             var Test = new Class();
-            Test.prototype.foo = function() {
+            Test.fn.foo = function() {
                 return true;
             };
             var a = new Test();
@@ -21,7 +21,7 @@ define(['photon/core/Class'], function(Class) {
             };
             
             Photon = new Class(Vanilla);
-            Photon.prototype.bar = function() {
+            Photon.fn.bar = function() {
                 return 'this is bar';
             };
             
@@ -32,25 +32,25 @@ define(['photon/core/Class'], function(Class) {
         
         it('allow extension', function() {
             var Test = new Class();
-            Test.prototype.foo = function() {
+            Test.fn.foo = function() {
                 return true;
             };
             
             var Test2 = new Class(Test);
-            Test2.prototype.bar = function() {
+            Test2.fn.bar = function() {
                 return false;
             };
             
             var Test3 = new Class();
-            Test3.prototype.baz = function() {
+            Test3.fn.baz = function() {
                 return 'javascript';
             };
             
             var Test4 = new Class(Test2, Test3);
-            Test4.prototype.boo = function() {
+            Test4.fn.boo = function() {
                 return 'test';
             };
-            Test4.prototype.bar = function() {
+            Test4.fn.bar = function() {
                 return true;
             };
             
@@ -66,7 +66,7 @@ define(['photon/core/Class'], function(Class) {
         it('run the constructor', function() {
             var a = false;
             var Test = new Class();
-            Test.prototype.construct = function() {
+            Test.fn.construct = function() {
                 a = true;
             };
             var b = new Test();
@@ -75,18 +75,18 @@ define(['photon/core/Class'], function(Class) {
 
         it('allow inherited method calls', function() {
             var Foo = new Class();
-            Foo.prototype.run = function() {
+            Foo.fn.run = function() {
                 // Original code
                 expect(this.check).toEqual(true);
             };
 
             var Bar = new Class(Foo);
-            Bar.prototype.run = function() {
+            Bar.fn.run = function() {
                 // Extra code
                 this.check = true;
                 
                 // Execute the original code
-                Bar.inherits.run.apply(this);
+                Foo.fn.run.apply(this);
             };
 
             var test = new Bar();
@@ -95,17 +95,17 @@ define(['photon/core/Class'], function(Class) {
 
         it('allow you to check where it came from', function() {
             var Foo = new Class();
-            Foo.prototype.baz = function() {
+            Foo.fn.baz = function() {
                 // Some code
             };
             var Bar = new Class();
-            Bar.prototype.baz = function() {
+            Bar.fn.baz = function() {
                 // Some code
             };
 
             var test = new Foo();
-            expect(test.parentClass).toEqual(Foo);
-            expect(test.parentClass).not.toEqual(Bar);
+            expect(test.constructor).toEqual(Foo);
+            expect(test.constructor).not.toEqual(Bar);
         });
     });
 });
