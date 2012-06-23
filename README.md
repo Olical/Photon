@@ -81,7 +81,7 @@ After you have learnt how to [load RequireJS and Photon's modules](#loading) you
         var Animal = new Class();
 
         // And give it a method
-        Animal.prototype.makeNoise = function() {
+        Animal.fn.makeNoise = function() {
             alert('The animal made a noise.');
         };
 
@@ -89,9 +89,9 @@ After you have learnt how to [load RequireJS and Photon's modules](#loading) you
         var Dog = new Class(Animal);
 
         // Override the method
-        Dog.prototype.makeNoise = function() {
+        Dog.fn.makeNoise = function() {
             // Call the original parent method
-            Dog.inherits.makeNoise.apply(this);
+            Animal.fn.makeNoise.apply(this);
 
             // Add our own bit on the end
             alert('It was a bark.');
