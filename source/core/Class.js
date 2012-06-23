@@ -68,12 +68,7 @@ define([
         var cl = function() {
                 // Call the construct method if there is one
                 if(type(this.construct) === 'function') {
-                    var res = this.construct.apply(this, arguments);
-
-                    // If the constructor returned something other than undefined then return it
-                    if(type(res) !== 'undefined') {
-                        return res;
-                    }
+                    this.construct.apply(this, arguments);
                 }
             },
             protos = [];
