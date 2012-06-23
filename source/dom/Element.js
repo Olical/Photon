@@ -1234,7 +1234,7 @@ define([
         // If not return all four combined with a default of 0px
         if(key === 'margin' || key === 'padding' || key === 'border') {
             // Get all directions in an object
-            directions = self.getStyle('top', 'right', 'bottom', 'left');
+            directions = self.getStyle(key + 'Top', key + 'Right', key + 'Bottom', key + 'Left');
 
             // If all are the same and top is truthy then return it
             if(directions.top && every(directions, function(dir) {
