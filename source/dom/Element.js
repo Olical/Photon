@@ -229,7 +229,7 @@ define([
         // Checks if the array contains the passed element
         arr.contains = function(el) {
             var target = new Element(el);
-            return each(this.items, function(value) {
+            return each(this, function(value) {
                 if(target.matches(value)) {
                     return true;
                 }
@@ -246,7 +246,7 @@ define([
                     var args = arguments;
 
                     // Call the matched method with all arguments and the scope set to each element
-                    each(arr, function(item) {
+                    each(this, function(item) {
                         fn.apply(item, args);
                     });
 
