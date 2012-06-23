@@ -421,5 +421,18 @@ define(['photon/dom/Element'], function(Element) {
 
             a.remove();
         });
+
+        it('allow calling of looped methods on element lists', function() {
+            var a = new Element('div');
+
+            var ca = new Element('p', { insertLast: a, style: { color: '#FF0000' } });
+            var cb = new Element('p', { insertLast: a });
+            var cc = new Element('p', { insertLast: a });
+
+            var children = a.getChildren();
+
+            children.setText('Photon rocks');
+            expect(children[2].getText()).toEqual('Photon rocks');
+        });
     });
 });
