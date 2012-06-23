@@ -1178,7 +1178,7 @@ define([
 
         Fetches the current style for the passed key. The key is passed through <getStyleKey>.
 
-        You can also pass multiple keys as separate arguments and have them all returned in one object.
+        You can also pass multiple keys as separate arguments and have them all returned in one array in the same order they went in.
 
         Parameters:
 
@@ -1186,22 +1186,21 @@ define([
 
         Returns:
 
-            The current value for the style. If multiple keys were passed then it will return an object of values.
+            The current value for the style. If multiple keys were passed then it will return an array of values.
     */
     Element.fn.getStyle = function(key) {
         // Get the correct key
         var self = this,
             style = self.getStyleKey(key),
             inline = self.element.style[style],
-            results = {},
-            toJoin = [],
+            results = [],
 
             // These map short cuts to their full style to get
             directionsStyles = [
-                'Left',
                 'Top',
                 'Right',
-                'Bottom'
+                'Bottom',
+                'Left'
             ],
             borderStyles = [
                 'Width',
@@ -1222,7 +1221,7 @@ define([
         // If there are multiple keys then recurse and get all of them
         if(arguments.length > 1) {
             each(arguments, function(key) {
-                results[key] = self.getStyle(key);
+                results.push(self.getStyle(key));
             });
 
             return results;
@@ -1239,20 +1238,15 @@ define([
 
             // Make the call for the values
             results = self.getStyle.apply(self, prefixedGetters);
-            
-            // Build the array version of results
-            each(results, function(res) {
-                toJoin.push(res || '0px');
-            });
 
             // If all are the same, return the first
-            if(toJoin[0] && every(toJoin, function(check) {
-                return check === toJoin[0];
+            if(results[0] && every(results, function(check) {
+                return check === results[0];
             })) {
-                return toJoin[0];
+                return results[0];
             }
 
-            return toJoin.join(' ');
+            return results.join(' ');
         }
 
         // Try element.style first
