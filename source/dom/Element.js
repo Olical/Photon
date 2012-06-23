@@ -673,9 +673,8 @@ define([
         // If there is one, remove it
         if(parent) {
             parent.element.removeChild(this.element);
-
         }
-        
+
         return this;
     };
 
