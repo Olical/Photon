@@ -1,12 +1,13 @@
 define([
     './clone',
     './each',
-    './type'
+    './type',
+    './pick'
 ], function(clone, each, type) {
     /*
         Function: merge
         
-        Returns an object containing all properties from the two passed objects. The objects are first cloned to prevent horrible unforeseen consequences such as death and / or Armageddon. Then they are recursively merged unless shallow is specified as true.
+        Returns an object containing all properties from the passed objects. The objects are first cloned to prevent horrible unforeseen consequences such as death and / or Armageddon. Then they are recursively merged.
 
         (start code)
         var baseSettings = {
@@ -32,9 +33,7 @@ define([
 
         Parameters:
         
-            base - Base object to merge with.
-            extra - Object of new properties to add, will override existing ones in base under the same name.
-            shallow - Only merge the first level. Faster for shallow objects.
+            Each argument corresponds to an object to merge. The further right the argument the more priority it has. So the one of the left will be overridden if the property appears in an object to the right.
         
         Returns:
         
@@ -45,31 +44,32 @@ define([
             - <clone>
             - <each>
             - <type>
+            - <pick>
     */
-    function merge(base, extra, shallow) {
-        // First clone both objects
-        // This is so it does not kill the original objects
-        var baseClone = clone(base),
-            extraClone = clone(extra);
-        
-        // Now loop over extra dropping each property into base
-        each(extraClone, function(value, key) {
-            // If the value and base value are objects and shallow is not true then recurse down it
-            if(shallow !== true && type(value) === 'object' && type(baseClone[key] === 'object')) {
-                // Initialise the current item as an object if required
-                baseClone[key] = baseClone[key] || {};
+    function merge() {
+        // Initialise variables
+        var merged = {},
+            previous = null;
 
-                // Now perform the recursive merge
-                baseClone[key] = merge(baseClone[key], value);
-            }
-            else {
-                // Otherwise just copy the value into the base
-                baseClone[key] = value;
-            }
+        // Loop over all passed objects
+        each(arguments, function(obj) {
+            // Loop over all values found in this object
+            each(clone(obj), function(value, key) {
+                // If this and the previous objects version are both objects then recurse
+                if(type(value) === 'object' && previous && type(previous[key]) === 'object') {
+                    merged[key] = merge(value, previous[key]);
+                }
+                else {
+                    // Otherwise, just dump it in
+                    merged[key] = value;
+                }
+            });
+
+            // Set up the previous object to be used in the next iteration
+            previous = obj;
         });
-        
-        // Now return the merged object
-        return baseClone;
+
+        return merged;
     }
     
     return merge;
