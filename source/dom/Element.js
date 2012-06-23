@@ -1128,26 +1128,13 @@ define([
                 return ch.toUpperCase();
             }),
             prefixCheck = new RegExp('^[A-Z][a-z]*' + camel.charAt(0).toUpperCase() + camel.slice(1) + '$'),
-            i = null,
-            specific = [];
+            i = null;
 
         // Return the prefixed version if there is one
         for(i in this.element.style) {
             if(i.match(prefixCheck)) {
                 return i;
             }
-
-            // We also check for a more specific version of the attribute
-            // So when looking for margin, we need to let the getter that there is margin-left and margin-top to get instead
-            if(index(i, key) === 0 && i !== key) {
-                // Looks like this is a more specific version, add it to the array
-                specific.push(i);
-            }
-        }
-
-        // If there are any specific versions then return those instead
-        if(specific.length > 0) {
-            return specific;
         }
 
         return camel;
@@ -1208,32 +1195,7 @@ define([
         var self = this,
             style = self.getStyleKey(key),
             inline = self.element.style[style],
-            results = {},
-            built = [],
-            first = null;
-
-        // If the fixed style key is an array then fetch all and return the joined result
-        if(type(style) === 'array') {
-            // Get all of the values
-            results = self.getStyle.apply(self, style);
-
-            // Get the first value to compare to
-            first = results[style[0]];
-
-            // If all are the same, return the first value
-            if(first && every(results, function(res) {
-                return first === res;
-            })) {
-                return first;
-            }
-
-            // If they are not the same return a merged version
-            each(results, function(res) {
-                built.push(res);
-            });
-
-            return built.join(' ');
-        }
+            results = {};
 
         // If there are multiple keys then recurse and get all of them
         if(arguments.length > 1) {
