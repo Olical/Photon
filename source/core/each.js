@@ -26,6 +26,13 @@ define([
             // Do stuff with it
             console.log(key + ' is ' + value.age + ' years old. Iteration: ' + iteration);
         });
+        
+        // Loop with thisArg set
+        each(someArray, function() {
+            this.foo = true;
+        }, aScopeObject);
+        
+        // aScopeObject.foo === true
         (end)
 
         If an iteration returns something other than undefined then each will break out of the loop and return that value.
@@ -34,6 +41,7 @@ define([
         
             list - Object, string or array to loop over.
             callback - Function for the value, key and iteration to be passed to. For an array the key would be the same as the iteration.
+            thisArg - An optional object that the this keyword should be set to within the loop.
 
         Returns:
 
@@ -43,7 +51,7 @@ define([
 
             - <type>
     */
-    function each(list, callback) {
+    function each(list, callback, thisArg) {
         // Initialise variables
         var key = null,
             listType = type(list),
@@ -61,7 +69,7 @@ define([
             for(key in list) {
                 // Make sure it is not from the prototype
                 if(list.hasOwnProperty(key)) {
-                    res = callback(list[key], key, iter);
+                    res = callback.call(thisArg || null, list[key], key, iter);
                     iter += 1;
 
                     if(type(res) !== 'undefined') {
@@ -72,7 +80,7 @@ define([
         }
         else if(listType === 'array' || str) {
             for(key = 0; key < list.length; key += 1) {
-                res = callback((str) ? list.charAt(key) : list[key], key, key);
+                res = callback.call(thisArg || null, (str) ? list.charAt(key) : list[key], key, key);
 
                 if(type(res) !== 'undefined') {
                     return res;

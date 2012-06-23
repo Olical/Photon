@@ -95,5 +95,15 @@ define(['photon/core/each'], function(each) {
                 }
             })).toEqual(1);
         });
+
+        it('set the thisArg value', function() {
+            var obj = {};
+            var a = { foo: true, bar: false };
+            each(a, function(value, key) {
+                this[key] = value;
+            }, obj);
+
+            expect(obj).toEqual({ foo: true, bar: false });
+        });
     });
 });
