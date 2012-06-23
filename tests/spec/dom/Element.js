@@ -467,5 +467,17 @@ define(['photon/dom/Element'], function(Element) {
             expect(a.getStyle('margin')).toEqual('10px');
             expect(a.getStyle('padding')).toEqual('20px 30px 20px 30px');
         });
+
+        it('empty all children', function() {
+            var a = new Element('div');
+
+            var ca = new Element('p', { insertLast: a, style: { color: '#FF0000' } });
+            var cb = new Element('p', { insertLast: a });
+            var cc = new Element('p', { insertLast: a });
+
+            expect(a.getChildren().length).toEqual(3);
+            a.empty();
+            expect(a.getChildren().length).toEqual(0);
+        });
     });
 });
