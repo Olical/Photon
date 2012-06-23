@@ -145,7 +145,7 @@ define([
                 self.removeEvent(key, fn);
             });
         }
-        else {
+        else if(key) {
             // Check for a passed function
             if(fn) {
                 // This means a string and function have been passed
@@ -172,6 +172,10 @@ define([
                 // Remove all events for that string
                 delete events[key];
             }
+        }
+        else {
+            // Nothing was passed, remove everything
+            self._photonEvents = {};
         }
 
         return self;
