@@ -667,8 +667,15 @@ define([
             The current element.
     */
     Element.fn.remove = function() {
-        this.getParent().element.removeChild(this.element);
+        // Get the parent
+        var parent = this.getParent();
 
+        // If there is one, remove it
+        if(parent) {
+            parent.element.removeChild(this.element);
+
+        }
+        
         return this;
     };
 

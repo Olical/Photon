@@ -129,6 +129,10 @@ define(['photon/dom/Element'], function(Element) {
             expect(a.getParent().matches(document.body)).toEqual(true);
             a.remove();
             expect(a.getParent()).toEqual(null);
+
+            var b = new Element('p');
+            b.remove();
+            expect(b.getParent()).toEqual(null);
         });
 
         it('clone elements', function() {
