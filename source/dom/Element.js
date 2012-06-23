@@ -1239,7 +1239,7 @@ define([
             });
 
             // Make the call for the values
-            results = self.getStyle.apply(self, prefixedGetters).arrayz;
+            results = self.getStyle.apply(self, prefixedGetters).array;
 
             // If all are the same, return the first
             if(results[0] && every(results, function(check) {
