@@ -9,40 +9,41 @@ define([
 
         The base class that all other classes should be created with. It is very similar to the Python style of classes. It can also inherit normal JavaScript classes, they do not have to be an instance of Class.
 
-        You can use the inherits object to access untouched methods from the inherited classes. This means you can call methods you have just overridden. Here is a little example.
+        You have to run methods you have overridden by calling the parent classes method. It may seem manual but it gives you so much more control than how other libraries such as MooTools implement it.
         
         (start code)
-        var Foo = new Class();
-        Foo.prototype.run = function() {
+        var Foo = Class();
+        Foo.fn.run = function() {
             // Original code
             ...
         };
 
-        var Bar = new Class(Foo);
-        Bar.prototype.run = function() {
+        var Bar = Class(Foo);
+        Bar.fn.run = function() {
             // Extra code
             ...
             
             // Execute the original code
-            Bar.inherits.run.apply(this);
+            // Passing the arguments is optional, you decide what you want to pass
+            Bar.fn.run.apply(this, arguments);
         };
 
         var test = new Bar();
         test.run();
         (end)
 
-        As you can see, all methods are added via the prototype. This keeps with JavaScripts prototypical inheritance.
+        As you can see, all methods are added via the fn object. fn is actually pointing at prototype, it is just a shortcut. Use prototype if you want. This keeps with JavaScripts prototypical inheritance.
 
-        If you need to check what class your instance came from you can use the parentClass attribute.
+        If you need to check what class your instance came from you can use the constructor attribute. Also note my lack of the new keyword when instantiating classes. You can use it if you want but it is not required.
 
         (start code)
-        var Foo = new Class();
-        Foo.prototype.bar = function() {
+        var Foo = Class();
+        Foo.fn.bar = function() {
             // Some code
         };
 
         var test = new Foo();
-        if(test.parentClass === Foo) {
+        if(test.constructor === Foo) {
             console.log('Test is an instance of foo.');
         }
         (end)
@@ -63,38 +64,34 @@ define([
             - <type>
     */
     function Class() {
-        // Initialise variables
-        var cl = null,
-            inherits = {};
-        
-        // Start the new class
-        // This will call the constructor when initialized
-        cl = function() {
-            // Make sure we actually have a construct method
-            if(type(this.construct) === 'function') {
-                this.construct.apply(this, arguments);
-            }
+        // Setup the new class and any required variables
+        var cl = function() {
+                // Call the construct method if there is one
+                if(type(this.construct) === 'function') {
+                    this.construct.apply(this, arguments);
+                }
+            },
+            protos = [];
 
-            // Set the instanceOf attribute
-            // This contains a copy of the constructor class
-            // Can be used to tell what something is
-            this.parentClass = cl;
-        };
-        
-        // Merge all passed classes into one object
-        each(arguments, function(value, key) {
-            inherits = merge(inherits, value.prototype);
+        // Create the list of prototype from the passed classes
+        each(arguments, function(parent) {
+            protos.push(clone(parent.prototype));
         });
-        
-        // Replace the prototype with the inherited methods
-        cl.prototype = inherits;
-        
-        // And make a clone of inherits
-        // This is for use by the parent function
-        cl.inherits = clone(inherits);
-        
-        // Return the finished class
-        // You can now add your own methods
+
+        // Create the new classes prototype from the inherited classes
+        // Don't bother if there are no classes to inherit from
+        if(protos.length > 0) {
+            // By reversing the protos array the first class takes priority
+            protos.reverse();
+
+            // Now flatten the protos array down to a new prototype object
+            cl.prototype = merge.apply(null, protos);
+        }
+
+        // Add a shortcut to the prototype
+        cl.fn = cl.prototype;
+
+        // Return the new class
         return cl;
     }
     
