@@ -188,6 +188,7 @@ define([
             - <setStyle>
             - <setText>
             - <toggleClass>
+            - <empty>
 
         The array also has a contains method. It does not work like the <contains> method on elements, it is more like contains function from the core directory. So it will return true if your passed element matches any of the elements in the array.
 
@@ -215,7 +216,8 @@ define([
                 'toggleClass',
                 'setHtml',
                 'setText',
-                'setStyle'
+                'setStyle',
+                'empty'
             ];
 
         // Convert all to Photon elements
