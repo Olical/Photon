@@ -57,6 +57,7 @@ Group: photon  {
       File: index  (core/index.js)
       File: keys  (core/keys.js)
       File: limit  (core/limit.js)
+      File: map  (core/map.js)
       File: merge  (core/merge.js)
       File: pick  (core/pick.js)
       File: random  (core/random.js)
@@ -68,8 +69,13 @@ Group: photon  {
    Group: dom  {
 
       File: Element  (dom/Element.js)
-      File: getById  (dom/getById.js)
       }  # Group: dom
+
+   Group: manage  {
+
+      File: Options  (manage/Options.js)
+      File: Events  (manage/Events.js)
+      }  # Group: manage
 
    File: Meta  (meta.js)
    }  # Group: photon
