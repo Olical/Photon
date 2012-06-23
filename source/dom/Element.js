@@ -1112,13 +1112,15 @@ define([
 
         It will also check for a vendor prefixed version of the style and return that instead if found.
 
+        If the style is something like border which has many sub-styles then it will return those sub-styles in an array. You will then have to fetch each of those separately.
+
         Parameters:
 
             key - The key to convert to camel case and return the potentially vendor prefixed version of.
 
         Returns:
 
-            The camel case version of the key with the potential to have a vendor prefix.
+            The camel case version of the key with the potential to have a vendor prefix. It may also return an array of more specific styles if there are any.
     */
     Element.fn.getStyleKey = function(key) {
         // Convert to camel case and create the variables
@@ -1126,13 +1128,26 @@ define([
                 return ch.toUpperCase();
             }),
             check = new RegExp('^[A-Z][a-z]*' + camel.charAt(0).toUpperCase() + camel.slice(1) + '$'),
-            i = null;
+            i = null,
+            specific = [];
 
         // Return the prefixed version if there is one
         for(i in this.element.style) {
             if(i.match(check)) {
                 return i;
             }
+
+            // We also check for a more specific version of the attribute
+            // So when looking for margin, we need to let the getter that there is margin-left and margin-top to get instead
+            if(index(i, key) === 0 && i !== key) {
+                // Looks like this is a more specific version, add it to the array
+                specific.push(i);
+            }
+        }
+
+        // If there are any specific versions then return those instead
+        if(specific.length > 0) {
+            return specific;
         }
 
         return camel;
@@ -1193,9 +1208,32 @@ define([
         var self = this,
             style = self.getStyleKey(key),
             inline = self.element.style[style],
-            computed = null,
-            directions = null,
-            results = {};
+            results = {},
+            built = [],
+            first = null;
+
+        // If the fixed style key is an array then fetch all and return the joined result
+        if(type(style) === 'array') {
+            // Get all of the values
+            results = self.getStyle.apply(self, style);
+
+            // Get the first value to compare to
+            first = results[style[0]];
+
+            // If all are the same, return the first value
+            if(first && every(results, function(res) {
+                return first === res;
+            })) {
+                return first;
+            }
+
+            // If they are not the same return a merged version
+            each(results, function(res) {
+                built.push(res);
+            });
+            
+            return built.join(' ');
+        }
 
         // If there are multiple keys then recurse and get all of them
         if(arguments.length > 1) {
@@ -1211,48 +1249,13 @@ define([
             return inline;
         }
 
-        // Okay, there is no inline value
-        // Fetch the computed version
-
         // Use getComputedStyle if available.
         if(window.getComputedStyle) {
-            computed = document.defaultView.getComputedStyle(self.element, null)[style];
-        }
-        else {
-            // There is no getComputedStyle, fall back to currentStyle
-            computed = self.element.currentStyle[style];
+            return document.defaultView.getComputedStyle(self.element, null)[style];
         }
 
-        // If there is a computed value then return it
-        if(computed) {
-            return computed;
-        }
-
-        // If it reaches this point it still hasn't found anything, great
-        // Now if the key is margin, border or padding we should try it's directional values
-        // If all four directions are the same, return one
-        // If not return all four combined with a default of 0px
-        if(key === 'margin' || key === 'padding' || key === 'border') {
-            // Get all directions in an object
-            directions = self.getStyle(key + 'Top', key + 'Right', key + 'Bottom', key + 'Left');
-
-            // If all are the same and top is truthy then return it
-            if(directions.top && every(directions, function(dir) {
-                return dir === directions.top;
-            })) {
-                return directions.top;
-            }
-
-            // Otherwise build a string from all four which defaults to 0px
-            computed = [];
-            each(directions, function(dir) {
-                computed.push(dir || '0px');
-            });
-            return computed.join(' ');
-        }
-
-        // Fall back to null
-        return null;
+        // There is no getComputedStyle, fall back to currentStyle
+        return self.element.currentStyle[style];
     };
 
     return Element;
