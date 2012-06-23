@@ -11,7 +11,7 @@ Photon is a JavaScript library made up of [AMD modules](https://github.com/amdjs
  * No editing of native prototypes.
  * Can be built into one file with only the modules you use.
  * Not reliant on any specific AMD loader.
- * Inspired by excellent libraries such as MooTools, Dojo and Django.
+ * Inspired by excellent libraries such as MooTools, Dojo and Django (I know it isn't JavaScript, but it's good).
  * Not jQuery.
 
 ## Compatibility
