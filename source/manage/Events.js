@@ -172,5 +172,29 @@ define([
         return self;
     };
 
+    /*
+        Function: fireEvent
+
+        Executes all listeners for a specified event. You can also pass an array of arguments to be passed to every listener.
+
+        Parameters:
+
+            key - The name of the event to fire.
+            args - An optional array of arguments to pass to the listeners.
+
+        Returns:
+
+            This class instance.
+    */
+    Events.fn.fireEvent = function(key, args) {
+        // Loop over all of the listeners
+        each(self.getEvents(key), function(e) {
+            // Execute the listener
+            e.apply(null, args);
+        });
+
+        return this;
+    };
+
     return Events;
 });
