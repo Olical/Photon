@@ -4,7 +4,8 @@ define([
     '../core/each',
     '../core/contains',
     '../core/index',
-    '../core/every'
+    '../core/every',
+    '../core/clone'
 ], function(Class, type, each, contains, index, every) {
     /*
         Class: Element
@@ -21,6 +22,7 @@ define([
             - <contains>
             - <index>
             - <every>
+            - <clone>
     */
     var Element = new Class();
 
@@ -165,6 +167,96 @@ define([
                 this.insertLast(config.insertLast);
             }
         }
+    };
+
+    /*
+        Function: createList
+
+        Copies your passed array and integrates a set of methods into it's clone. These methods are adapted versions of <setStyle> and other function that can be called on the elements. The adapted methods will be called on all children of the array. So you can call <remove> on a list and all will be removed.
+
+        The methods that will be integrated into the array are as follows.
+
+            - <addClass>
+            - <insertAfter>
+            - <insertBefore>
+            - <insertFirst>
+            - <insertLast>
+            - <remove>
+            - <removeAttribute>
+            - <removeClass>
+            - <setAttribute>
+            - <setClasses>
+            - <setHtml>
+            - <setStyle>
+            - <setText>
+            - <toggleClass>
+
+        The array also has a contains method. It does not work like the <contains> method on elements, it is more like contains function from the core directory. So it will return true if your passed element matches any of the elements in the array.
+
+        Parameters:
+
+            orig - The original array of elements to be built into a list.
+
+        Returns:
+
+            An array of elements that contains the methods listed above. Each method will be run on all elements in the array.
+    */
+    Element.fn.createList = function(orig) {
+        var arr = [],
+            methods = [
+                'setAttribute',
+                'removeAttribute',
+                'insertBefore',
+                'insertLast',
+                'insertAfter',
+                'insertFirst',
+                'remove',
+                'setClasses',
+                'addClass',
+                'removeClass',
+                'toggleClass',
+                'setHtml',
+                'setText',
+                'setStyle'
+            ];
+
+        // Convert all to Photon elements
+        each(orig, function(value) {
+            arr.push(new Element(value));
+        });
+
+        // Add the contains method
+        // Checks if the array contains the passed element
+        arr.contains = function(el) {
+            var target = new Element(el);
+            return each(this.items, function(value) {
+                if(target.matches(value)) {
+                    return true;
+                }
+            }) || false;
+        };
+
+        // Add all basic looping methods
+        each(Element.fn, function(fn, key) {
+            // If the function is found in the array
+            if(contains(methods, key)) {
+                // Add a new method to the list prototype under the same name
+                arr[key] = function() {
+                    // Put the arguments in scope
+                    var args = arguments;
+
+                    // Call the matched method with all arguments and the scope set to each element
+                    each(arr, function(item) {
+                        fn.apply(item, args);
+                    });
+
+                    // Return the list
+                    return this;
+                };
+            }
+        });
+
+        return arr;
     };
 
     /*
