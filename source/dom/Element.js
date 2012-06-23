@@ -416,7 +416,7 @@ define([
         }
 
         // Return the list
-        return parents;
+        return this.createList(parents);
     };
 
     /*
@@ -725,7 +725,7 @@ define([
             }
         });
 
-        return children;
+        return this.createList(children);
     };
 
     /*
@@ -761,7 +761,7 @@ define([
 
         // Return all of the arrays concatenated together
         // I am so proud of this line...
-        return Array.prototype.concat.apply([], descendants);
+        return this.createList(Array.prototype.concat.apply([], descendants));
     };
 
     /*
@@ -783,7 +783,7 @@ define([
             sibs.push(cur);
         }
 
-        return sibs;
+        return this.createList(sibs);
     };
 
     /*
@@ -805,7 +805,7 @@ define([
             sibs.push(cur);
         }
 
-        return sibs;
+        return this.createList(sibs);
     };
 
     /*
@@ -818,7 +818,7 @@ define([
             An array of the elements siblings. This does not include the current element.
     */
     Element.fn.getSiblings = function() {
-        return this.getAllPrevious().concat(this.getAllNext());
+        return this.createList(this.getAllPrevious().concat(this.getAllNext()));
     };
 
     /*
