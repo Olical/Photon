@@ -34,6 +34,8 @@ Every module is thoroughly tested using [Jasmine](http://pivotal.github.com/jasm
 
 I have provided large comments in the source matching the [NaturalDocs](http://www.naturaldocs.org/) format. The documentation site can be generated from these comments by running `make documentation`. Once done you can open `docs/html/index.html` in your browser to see every modules documentation.
 
+However, before you can run the command you will need to download the documentation generator. You can do this by running `make doc-tool`.
+
 ## Loading
 
 To load any of Photon's modules you will need [RequireJS](http://requirejs.org/). It is a asynchronous module loader that was designed for browsers. It works in IE6+ and also provides an optimiser ([r.js](http://requirejs.org/docs/optimization.html)). So when you are done with development you can flatten your code and it's loaded modules down to one file and minify it with [UglifyJS](https://github.com/mishoo/UglifyJS).
