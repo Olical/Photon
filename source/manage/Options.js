@@ -47,6 +47,8 @@ define([
 
         Merges the passed options object with this.options. It will create the options object if it is not already there.
 
+        If your options contain an events object and your class has extended <Events> then your events will be sent off to <Events.addEvent> to be registered in your class.
+
         Parameters:
 
             options - An options object to merge with the existing one.
@@ -56,17 +58,26 @@ define([
             The current class instance.
     */
     Options.fn.setOptions = function(options) {
+        // Create a shortcut to this
+        var self = this;
+
         // Create the options object if not already
         // Try to use the passed options, default to a blank object
-        if(!this.options) {
-            this.options = options || {};
+        if(!self.options) {
+            self.options = options || {};
         }
         else if(options) {
             // It already exists and options were passed, merge them
-            this.options = merge(this.options, options);
+            self.options = merge(self.options, options);
         }
 
-        return this;
+        // Check if the addEvent method exists and if any events were passed
+        // If both are true then pass the events object through to addEvent
+        if(options && options.events && self.addEvent) {
+            self.addEvent(options.events);
+        }
+
+        return self;
     };
 
     return Options;
