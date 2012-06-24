@@ -33,6 +33,8 @@ define([
         test.removeEvent('foo');
         (end)
 
+        By default the events are stored in the current instance under the name `_photonEvents`. You can set `_photonEventsScope` to point to a different object for `_photonEvents` to be stored in. This is used in <Element> so the events are stored on the DOM element and not on the instance of <Element>.
+
         Requires:
 
             - <Class>
@@ -60,11 +62,14 @@ define([
             The object that contains all events. It will create it if it does not exist yet.
     */
     Events.fn.getEvents = function(key) {
+        // Create a shortcut to this
+        var self = this;
+
         // If a key is passed then we need to get the specific array
         // If not, fall past this and just get the storage object
         if(key) {
             // First fetch the storage object
-            var events = this.getEvents();
+            var events = self.getEvents();
 
             // Create the storage array if it is not present
             if(!events[key]) {
@@ -74,12 +79,19 @@ define([
             return events[key];
         }
         
-        // Create the event storage object if not already created
-        if(!this._photonEvents) {
-            this._photonEvents = {};
+        // Create the storage scope if not already there
+        // This scope can be changed so you can store the events in another object
+        // This is used in elements so the events can be stored on the DOM element, not the Element class instance
+        if(!self._photonEventsScope) {
+            self._photonEventsScope = self;
         }
 
-        return this._photonEvents;
+        // Create the event storage object if not already created
+        if(!self._photonEventsScope._photonEvents) {
+            self._photonEventsScope._photonEvents = {};
+        }
+
+        return self._photonEventsScope._photonEvents;
     };
 
     /*
@@ -175,7 +187,7 @@ define([
         }
         else {
             // Nothing was passed, remove everything
-            self._photonEvents = {};
+            self._photonEventsScope._photonEvents = {};
         }
 
         return self;
