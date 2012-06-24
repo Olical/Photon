@@ -4,8 +4,9 @@ define([
     '../core/each',
     '../core/contains',
     '../core/index',
-    '../core/every'
-], function(Class, type, each, contains, index, every) {
+    '../core/every',
+    '../manage/Events'
+], function(Class, type, each, contains, index, every, Events) {
     /*
         Class: Element
         
@@ -21,8 +22,9 @@ define([
             - <contains>
             - <index>
             - <every>
+            - <Events>
     */
-    var Element = Class();
+    var Element = Class(Events);
 
     /*
         Function: construct
@@ -165,6 +167,9 @@ define([
                 this.insertLast(config.insertLast);
             }
         }
+
+        // Set the events scope so events are stored in the DOM element and not this instance
+        this._photonEventsScope = this.element;
     };
 
     /*
