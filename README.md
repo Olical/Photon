@@ -24,7 +24,7 @@ Because Photon is 100% AMD it does not pollute any global namespaces. This means
 
 ## Testing
 
-[The current versions tests.](http://oli.me.uk/Photon/tests/SpecRunner.html).
+[The current versions tests.](http://oli.me.uk/Photon/tests/SpecRunner.html)
 
 Every module is thoroughly tested using [Jasmine](http://pivotal.github.com/jasmine/). You can run the tests locally by opening `tests/SpecRunner.html` in a browser of your choice.
 
