@@ -80,7 +80,7 @@ define([
             // It is not a string, must be an existing element
             // If the element is an instance of the element class then adopt it's element
             // Otherwise adopt el as it is
-            if(el.constructor === Element) {
+            if(el instanceof Element) {
                 // It is, adopt it
                 self.element = el.element;
             }
