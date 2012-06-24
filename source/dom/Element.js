@@ -63,10 +63,13 @@ define([
             config - Optional object of settings to be set on creation. The possible values can be found above.
     */
     Element.fn.construct = function(el, config) {
+        // Create a shortcut to this
+        var self = this;
+
         // Check what el is
         if(type(el) === 'string') {
             // If it is a string then create a new element
-            this.element = document.createElement(el);
+            self.element = document.createElement(el);
         }
         else {
             // It is not a string, must be an existing element
@@ -74,12 +77,12 @@ define([
             // Otherwise adopt el as it is
             if(el.constructor === Element) {
                 // It is, adopt it
-                this.element = el.element;
+                self.element = el.element;
             }
             else {
                 // Otherwise it is a native DOM element
                 // Adopt it
-                this.element = el;
+                self.element = el;
             }
         }
 
@@ -96,7 +99,7 @@ define([
 
             The current element's tag name as a lower case string.
         */
-        this.tag = this.element.nodeName.toLowerCase();
+        self.tag = self.element.nodeName.toLowerCase();
 
         /*
             Variable: type
@@ -118,7 +121,7 @@ define([
                 DOCUMENT_FRAGMENT_NODE - 11
                 NOTATION_NODE - 12
         */
-        this.type = this.element.nodeType;
+        self.type = self.element.nodeType;
 
         /*
             Variable: textAttribute
@@ -127,49 +130,49 @@ define([
 
             This is used internally by the <getText> and <setText> methods.
         */
-        this.textAttribute = (type(this.element.textContent) === 'string') ? 'textContent' : 'innerText';
+        self.textAttribute = (type(self.element.textContent) === 'string') ? 'textContent' : 'innerText';
 
         // Now everything is set up we can apply any passed config
         if(config) {
             if(config.text) {
-                this.setText(config.text);
+                self.setText(config.text);
             }
 
             if(config.html) {
-                this.setHtml(config.html);
+                self.setHtml(config.html);
             }
 
             if(config.style) {
-                this.setStyle(config.style);
+                self.setStyle(config.style);
             }
 
             if(config.attributes) {
-                this.setAttribute(config.attributes);
+                self.setAttribute(config.attributes);
             }
 
             if(config.classes) {
-                this.addClass(config.classes);
+                self.addClass(config.classes);
             }
 
             if(config.replace) {
-                this.replace(config.replace);
+                self.replace(config.replace);
             }
             else if(config.insertAfter) {
-                this.insertAfter(config.insertAfter);
+                self.insertAfter(config.insertAfter);
             }
             else if(config.insertBefore) {
-                this.insertBefore(config.insertBefore);
+                self.insertBefore(config.insertBefore);
             }
             else if(config.insertFirst) {
-                this.insertFirst(config.insertFirst);
+                self.insertFirst(config.insertFirst);
             }
             else if(config.insertLast) {
-                this.insertLast(config.insertLast);
+                self.insertLast(config.insertLast);
             }
         }
 
         // Set the events scope so events are stored in the DOM element and not this instance
-        this._photonEventsScope = this.element;
+        self._photonEventsScope = self.element;
     };
 
     /*
