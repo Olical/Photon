@@ -47,6 +47,11 @@ define([
                 href: 'Some href attribute'
             },
             classes: ['foo', 'bar'],
+            events: {
+                click: function(e) {
+                    console.log('Clicked!');
+                }
+            }
 
             // Only set one of the following...
             replace: target,
@@ -168,6 +173,10 @@ define([
             }
             else if(config.insertLast) {
                 self.insertLast(config.insertLast);
+            }
+
+            if(config.events) {
+                self.setEvent(config.events);
             }
         }
 
