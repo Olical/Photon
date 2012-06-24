@@ -104,8 +104,8 @@ define(['photon/core/Class'], function(Class) {
             };
 
             var test = new Foo();
-            expect(test.constructor).toEqual(Foo);
-            expect(test.constructor).not.toEqual(Bar);
+            expect(test instanceof Foo).toEqual(true);
+            expect(test instanceof Bar).toEqual(false);
         });
     });
 });
