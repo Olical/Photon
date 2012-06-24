@@ -34,7 +34,7 @@ define([
 
         As you can see, all methods are added via the fn object. fn is actually pointing at prototype, it is just a shortcut. Use prototype if you want. This keeps with JavaScripts prototypical inheritance.
 
-        If you need to check what class your instance came from you can use the constructor attribute. Also note my lack of the new keyword when instantiating classes. You can use it if you want but it is not required.
+        If you need to check what class your instance came from you can use the instanceof operator. Also note my lack of the new keyword when instantiating classes. You can use it if you want but it is not required.
 
         (start code)
         var Foo = Class();
@@ -43,7 +43,7 @@ define([
         };
 
         var test = new Foo();
-        if(test.constructor === Foo) {
+        if(test instanceof Foo) {
             console.log('Test is an instance of foo.');
         }
         (end)
