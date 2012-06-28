@@ -4,11 +4,9 @@ define([
     /*
         Function: each
         
-        Loops over the passed object, string or array and passes each value, key, original iterable and iteration count to the callback.
+        Loops over the passed object or array and passes each value, key, original iterable and iteration count to the callback.
         
-        If you only pass a list and no callback then it will return true or false depending on whether the list is iterable. A string is actually iterable, as in you can pass it to each. But the iterable check will deny strings.
-        
-        This is because iterating over strings is so rare and causes a lot of problems in internal loops. The iterable check should be used to see if the item can contain other items.
+        If you only pass a list and no callback then it will return true or false depending on whether the list is iterable. The iterable check should be used to see if the item can contain other items.
 
         (start code)
         // Get some example data
@@ -39,7 +37,7 @@ define([
         
         Parameters:
         
-            list - Object, string or array to loop over.
+            list - Object or array to loop over.
             callback - Function for the value, key, original iterable and iteration to be passed to. For an array the key would be the same as the iteration.
             thisArg - An optional object that the this keyword should be set to within the loop.
 
@@ -55,7 +53,6 @@ define([
         // Initialise variables
         var key = null,
             listType = type(list),
-            str = listType === 'string',
             res = null,
             iter = 0;
         
@@ -78,9 +75,9 @@ define([
                 }
             }
         }
-        else if(listType === 'array' || str) {
+        else if(listType === 'array') {
             for(key = 0; key < list.length; key += 1) {
-                res = callback.call(thisArg || null, (str) ? list.charAt(key) : list[key], key, list, key);
+                res = callback.call(thisArg || null, list[key], key, list, key);
 
                 if(type(res) !== 'undefined') {
                     return res;
