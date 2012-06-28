@@ -8,6 +8,8 @@ define([
         
         If you only pass a list and no callback then it will return true or false depending on whether the list is iterable. The iterable check should be used to see if the item can contain other items.
 
+        The each function with leverage <Array.prototype.forEach at https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach> if it is present in your browser.
+
         (start code)
         // Get some example data
         var users = getUsers();
@@ -76,11 +78,26 @@ define([
             }
         }
         else if(listType === 'array') {
-            for(key = 0; key < list.length; key += 1) {
-                res = callback.call(thisArg || null, list[key], key, list, key);
+            // Use the native method if it is there
+            if(type(list.forEach) === 'function') {
+                // Loop with the native method
+                list.forEach(function(value, key) {
+                    // Pass the values through to the callback
+                    res = res || callback.call(thisArg, value, key, list, key);
+                }, thisArg);
 
+                // Return the result if not undefined
                 if(type(res) !== 'undefined') {
                     return res;
+                }
+            }
+            else {
+                for(key = 0; key < list.length; key += 1) {
+                    res = callback.call(thisArg || null, list[key], key, list, key);
+
+                    if(type(res) !== 'undefined') {
+                        return res;
+                    }
                 }
             }
         }
