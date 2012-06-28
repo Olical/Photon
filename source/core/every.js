@@ -48,18 +48,15 @@ define([
             - <each>
     */
     function every(list, checker, thisArg) {
-        // Set up the flag to return
-        var pass = true;
-
         // Loop over all in the list
-        each(list, function() {
+        // Return the value that came out of each
+        // Default to true
+        return !each(list, function() {
             // If the checker returns false, the pass flag is now false
             if(!checker.apply(null, arguments)) {
-                pass = false;
+                return true;
             }
-        }, thisArg);
-
-        return pass;
+        }, thisArg) || false;
     }
 
     return every;
