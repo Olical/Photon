@@ -7,6 +7,8 @@ define([
 
         Returns true if all iterations over a list passed through a function return true. This allows you to make sure a whole object or array meets your requirements.
 
+        The every function will leverage <Array.prototype.every at https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/every> if it is present in your browser.
+
         (start code)
         var good = [
             'foo',
