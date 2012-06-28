@@ -53,7 +53,7 @@ define([
         // Loop over the list adding to the mapped list
         each(list, function(value, key) {
             // Get the result from the mapper
-            result = mapper.apply(null, arguments);
+            result = mapper.apply(this, arguments);
 
             // If it is an array then push, if not use a key
             if(isArray) {

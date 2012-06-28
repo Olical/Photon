@@ -65,7 +65,7 @@ define([
         // Return the result and default to false
         return each(list, function() {
             // If the checker returns true then break out with true
-            if(checker.apply(null, arguments)) {
+            if(checker.apply(this, arguments)) {
                 return true;
             }
         }, thisArg) || false;

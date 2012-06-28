@@ -65,7 +65,7 @@ define([
         // Default to true
         return !each(list, function() {
             // If the checker returns false, the pass flag is now false
-            if(!checker.apply(null, arguments)) {
+            if(!checker.apply(this, arguments)) {
                 return true;
             }
         }, thisArg) || false;
