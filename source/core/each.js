@@ -83,7 +83,7 @@ define([
                 // Loop with the native method
                 list.forEach(function(value, key) {
                     // Pass the values through to the callback
-                    res = res || callback.call(thisArg, value, key, list, key);
+                    res = res || callback.call(thisArg || null, value, key, list, key);
                 });
 
                 // Return the result if not undefined
