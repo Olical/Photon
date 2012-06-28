@@ -8,7 +8,7 @@ define([
         
         If you only pass a list and no callback then it will return true or false depending on whether the list is iterable. The iterable check should be used to see if the item can contain other items.
 
-        The each function with leverage <Array.prototype.forEach at https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach> if it is present in your browser.
+        The each function will leverage <Array.prototype.forEach at https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach> if it is present in your browser.
 
         (start code)
         // Get some example data
