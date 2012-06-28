@@ -7,6 +7,8 @@ define([
         
         Creates a new object or array with the results of calling a provided function on every element in the passed variable. You can pass it an object or array to map with.
 
+        The map function will leverage <Array.prototype.map at https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/map> if it is present in your browser.
+
         (start code)
         var a = [1, 2, 3];
 
@@ -38,6 +40,15 @@ define([
         var isArray = type(list) === 'array';
             mapped = isArray ? [] : {},
             result = null;
+
+        // Use the native method if found
+        if(isArray && type(list.map) === 'function') {
+            // Return the result of the native method
+            return list.map(function(value, key) {
+                // Return the result of the mapper
+                return mapper.call(thisArg || null, value, key, list, key);
+            });
+        }
 
         // Loop over the list adding to the mapped list
         each(list, function(value, key) {
