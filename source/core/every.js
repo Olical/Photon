@@ -1,6 +1,7 @@
 define([
-    './each'
-], function(each) {
+    './each',
+    './type'
+], function(each, type) {
     /*
         Function: every
 
@@ -46,8 +47,17 @@ define([
         Requires:
 
             - <each>
+            - <type>
     */
     function every(list, checker, thisArg) {
+        // Use the native method if found
+        if(type(list) === 'array' && type(list.every) === 'function') {
+            return list.every(function(value, key) {
+                // Return the response of the checker
+                return checker.call(thisArg || null, value, key, list, key);
+            });
+        }
+
         // Loop over all in the list
         // Return the value that came out of each
         // Default to true
