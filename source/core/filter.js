@@ -1,10 +1,13 @@
 define([
-    './each'
-], function(each) {
+    './each',
+    './type'
+], function(each, type) {
     /*
         Function: filter
 
         Returns an array containing all items from an object or array that caused your check function to return true.
+
+        The filter function will leverage <Array.prototype.filter at https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/filter> if it is present in your browser.
 
         (start code)
         var list = [
@@ -38,8 +41,18 @@ define([
         Requires:
 
             - <each>
+            - <type>
     */
     function filter(list, checker, thisArg) {
+        // Use the native method if found
+        if(type(list) === 'array' && type(list.filter) === 'function') {
+            // Return the result of the native method
+            return list.filter(function(value, key) {
+                // Return the result of the checker
+                return checker.call(thisArg || null, value, key, list, key);
+            });
+        }
+
         // Set up the array to return
         var filtered = [];
 
