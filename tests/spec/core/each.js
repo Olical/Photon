@@ -69,7 +69,7 @@ define(['photon/core/each'], function(each) {
                 'bar',
                 'baz'
             ];
-            each(a, function(value, key, iteration) {
+            each(a, function(value, key, arr, iteration) {
                 expect(key).toEqual(iteration);
             });
 
@@ -78,7 +78,7 @@ define(['photon/core/each'], function(each) {
                 '2': true,
                 '3': true
             };
-            each(a, function(value, key, iteration) {
+            each(a, function(value, key, obj, iteration) {
                 expect(parseInt(key, 10)).toEqual(iteration);
             });
         });
@@ -89,7 +89,7 @@ define(['photon/core/each'], function(each) {
                 'bar',
                 'baz'
             ];
-            expect(each(a, function(value, key, iteration) {
+            expect(each(a, function(value, key, arr, iteration) {
                 if(value === 'bar') {
                     return iteration;
                 }
