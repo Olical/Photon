@@ -44,7 +44,7 @@ define([
         var filtered = [];
 
         // Loop over all in the list
-        each(list, function() {
+        each(list, function(value) {
             // If the checker returns true, add the item to the filtered array
             if(checker.apply(null, arguments)) {
                 filtered.push(value);
