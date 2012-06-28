@@ -28,7 +28,7 @@ define([
         Parameters:
 
             list - Your object or array to loop over.
-            checker - Your function that all values and keys should be passed to. This function should return either true or a falsy value. This can be either false or nothing at all.
+            checker - Your function that all values and keys should be passed to. This function should return either true or a falsy value. This can be either false or nothing at all. It will receive the same arguments as the callback in <each>.
             thisArg - An optional object that the this keyword should be set to within the loop.
 
         Returns:
@@ -44,9 +44,9 @@ define([
         var filtered = [];
 
         // Loop over all in the list
-        each(list, function(value, key) {
+        each(list, function() {
             // If the checker returns true, add the item to the filtered array
-            if(checker(value, key)) {
+            if(checker.apply(null, arguments)) {
                 filtered.push(value);
             }
         }, thisArg);
