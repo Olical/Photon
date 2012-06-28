@@ -1,10 +1,13 @@
 define([
-    './each'
-], function(each) {
+    './each',
+    './type'
+], function(each, type) {
     /*
         Function: some
 
         Returns true if any iterations over a list passed through a function return true. This allows you to make sure some values in a object or array meets your requirements.
+
+        The some function will leverage <Array.prototype.some at https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/some> if it is present in your browser.
 
         (start code)
         var good = [
@@ -46,8 +49,18 @@ define([
         Requires:
 
             - <each>
+            - <type>
     */
     function some(list, checker, thisArg) {
+        // Use the native method if found
+        if(type(list) === 'array' && type(list.some) === 'function') {
+            // Return the result of the native method
+            return list.some(function(value, key) {
+                // Return the result of the checker
+                return checker.call(thisArg || null, value, key, list, key);
+            });
+        }
+
         // Loop over all in the list
         // Return the result and default to false
         return each(list, function() {
