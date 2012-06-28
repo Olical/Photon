@@ -1,9 +1,9 @@
 define([
     './merge',
-    './each',
+    './map',
     './clone',
     './type'
-], function(merge, each, clone, type) {
+], function(merge, map, clone, type) {
     /*
         Function: Class
 
@@ -59,7 +59,7 @@ define([
         Requires:
 
             - <merge>
-            - <each>
+            - <map>
             - <clone>
             - <type>
     */
@@ -71,12 +71,11 @@ define([
                     this.construct.apply(this, arguments);
                 }
             },
-            protos = [];
 
-        // Create the list of prototype from the passed classes
-        each(arguments, function(parent) {
-            protos.push(clone(parent.prototype));
-        });
+            // Create the list of prototype from the passed classes
+            protos = map(arguments, function(parent) {
+                return clone(parent.prototype);
+            });
 
         // Create the new classes prototype from the inherited classes
         // Don't bother if there are no classes to inherit from
