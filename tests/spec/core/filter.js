@@ -1,5 +1,5 @@
-define(['photon/core/pick'], function(pick) {
-    describe('photon/core/pick', function() {
+define(['photon/core/filter'], function(filter) {
+    describe('photon/core/filter', function() {
         it('return an array of items that passed the checker', function() {
             var list = [
                 'foo',
@@ -16,7 +16,7 @@ define(['photon/core/pick'], function(pick) {
                 return false;
             }
 
-            expect(pick(list, checker)).toEqual(['foo', 'foo', 'foo']);
+            expect(filter(list, checker)).toEqual(['foo', 'foo', 'foo']);
         });
     });
 });

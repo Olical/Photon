@@ -2,7 +2,7 @@ define([
     './each'
 ], function(each) {
     /*
-        Function: pick
+        Function: filter
 
         Returns an array containing all items from an object or array that caused your check function to return true.
 
@@ -22,7 +22,7 @@ define([
             return false;
         }
 
-        pick(list, checker); // ['foo', 'foo', 'foo']
+        filter(list, checker); // ['foo', 'foo', 'foo']
         (end)
 
         Parameters:
@@ -39,20 +39,20 @@ define([
 
             - <each>
     */
-    function pick(list, checker, thisArg) {
+    function filter(list, checker, thisArg) {
         // Set up the array to return
-        var picked = [];
+        var filtered = [];
 
         // Loop over all in the list
         each(list, function(value, key) {
-            // If the checker returns true, add the item to the picked array
+            // If the checker returns true, add the item to the filtered array
             if(checker(value, key)) {
-                picked.push(value);
+                filtered.push(value);
             }
         }, thisArg);
 
-        return picked;
+        return filtered;
     }
 
-    return pick;
+    return filter;
 });
