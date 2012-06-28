@@ -5,7 +5,7 @@ define([
     './type'
 ], function(merge, each, clone, type) {
     /*
-        Class: Class
+        Function: Class
 
         The base class that all other classes should be created with. It is very similar to the Python style of classes. It can also inherit normal JavaScript classes, they do not have to be an instance of Class.
 
