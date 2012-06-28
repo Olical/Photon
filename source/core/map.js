@@ -20,7 +20,7 @@ define([
         Parameters:
         
             list - An array or object to run over.
-            mapper - The method to pass each value to. It will be passed the value, key and index. Just like <each>.
+            mapper - The method to pass each value to. It will receive the same arguments as the callback in <each>.
             thisArg - An optional object that the this keyword should be set to within the loop.
         
         Returns:
@@ -40,7 +40,7 @@ define([
             result = null;
 
         // Loop over the list adding to the mapped list
-        each(list, function(value, key, index) {
+        each(list, function(value, key) {
             // Get the result from the mapper
             result = mapper.apply(null, arguments);
 
