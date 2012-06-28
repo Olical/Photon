@@ -84,7 +84,7 @@ define([
                 list.forEach(function(value, key) {
                     // Pass the values through to the callback
                     res = res || callback.call(thisArg, value, key, list, key);
-                }, thisArg);
+                });
 
                 // Return the result if not undefined
                 if(type(res) !== 'undefined') {
