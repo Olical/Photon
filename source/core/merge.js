@@ -1,8 +1,7 @@
 define([
     './clone',
     './each',
-    './type',
-    './pick'
+    './type'
 ], function(clone, each, type) {
     /*
         Function: merge
@@ -44,7 +43,6 @@ define([
             - <clone>
             - <each>
             - <type>
-            - <pick>
     */
     function merge() {
         // Initialise variables
